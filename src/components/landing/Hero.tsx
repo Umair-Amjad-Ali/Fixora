@@ -66,8 +66,9 @@ export function Hero() {
               Dubai & Saudi Arabia&apos;s top-rated maintenance platform. From sudden AC breakdowns to emergency plumbing, our vetted experts arrive at your doorstep in record time.
             </motion.p>
             
+            {/* href="/book-service/category" */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4">
-              <Link href="/book-service/category" className="w-full sm:w-auto">
+              <Link href="#" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all rounded-xl">
                   Book a Technician
                 </Button>

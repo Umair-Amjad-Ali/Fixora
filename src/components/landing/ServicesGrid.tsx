@@ -122,7 +122,8 @@ export function ServicesGrid() {
                 key={service.slug} 
                 className={`${isWide ? 'lg:col-span-2' : 'col-span-1'} h-full`}
               >
-                <BentoCard href={`/book-service/service-type?service=${service.slug}`} isWide={isWide}>
+                {/* href={`/book-service/service-type?service=${service.slug}`} */}
+                <BentoCard href="#" isWide={isWide}>
                   
                   {/* Card Icon Header */}
                   <div className={`flex ${isWide ? 'flex-col justify-between sm:w-1/3' : 'items-start justify-between'} mb-6 sm:mb-0`}>
