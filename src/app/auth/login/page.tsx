@@ -183,11 +183,11 @@ function LoginPageContent() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-end">
+                  {/* <div className="flex items-center justify-end">
                     <Link href="#" className="text-[9px] font-black text-primary hover:underline uppercase tracking-widest">
                       Forgot Password?
                     </Link>
-                  </div>
+                  </div> */}
 
                   <div className="pt-2">
                     <Button 
