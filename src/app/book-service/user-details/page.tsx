@@ -132,21 +132,30 @@ export default function UserDetailsPage() {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col items-center gap-4">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <Button 
+            type="button"
+            variant="outline" 
+            onClick={() => router.back()}
+            className="w-full md:w-auto h-12 px-8 rounded-xl font-black text-sm"
+          >
+            Back
+          </Button>
+          
           <Button 
             type="submit" 
             size="lg" 
-            className="w-full h-12 text-sm font-black rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+            className="w-full md:w-64 h-12 text-sm font-black rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
             disabled={!isValid}
           >
             Continue to Location
             <ArrowRight size={16} />
           </Button>
+        </div>
 
-          <div className="flex items-center gap-2 text-zinc-400 text-[10px] font-black uppercase tracking-widest">
-            <ShieldCheck size={14} className="text-emerald-500" />
-            Secure & Encrypted
-          </div>
+        <div className="mt-6 flex items-center justify-center gap-2 text-zinc-400 text-[10px] font-black uppercase tracking-widest">
+          <ShieldCheck size={14} className="text-emerald-500" />
+          Secure & Encrypted
         </div>
       </form>
     </div>

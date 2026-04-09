@@ -55,65 +55,73 @@ export function Hero() {
             animate="visible"
             className="max-w-3xl text-left"
           > 
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-5 leading-[1.15]">
-              Premium Home Services, <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-500">
-                Delivered Instantly.
-              </span>
-            </motion.h1>
-            
-            <motion.p variants={itemVariants} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 mb-8 max-w-lg">
-              Dubai & Saudi Arabia&apos;s top-rated maintenance platform. From sudden AC breakdowns to emergency plumbing, our vetted experts arrive at your doorstep in record time.
-            </motion.p>
-            
-            {/* href="/book-service/category" */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4">
-              <Link href="#" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all rounded-xl">
-                  Book a Technician
-                </Button>
-              </Link>
-              <Link href="#services" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-base bg-background/50 backdrop-blur-md rounded-xl hover:-translate-y-1 transition-all">
-                  View All Services
-                </Button>
-              </Link>
-            </motion.div>
+             <motion.div 
+               variants={itemVariants}
+               className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 rounded-full text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-6 border border-emerald-500/20"
+             >
+               <ShieldCheck size={12} />
+               1-Month Service Warranty Included
+             </motion.div>
 
-            <motion.div variants={itemVariants} className="mt-12 flex flex-wrap gap-4 md:gap-8 pt-8 border-t border-border/50">
-              {/* Rating Card */}
-              <div className="flex items-center gap-4 group cursor-default">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
-                  <Star size={20} fill="currentColor" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xl font-black text-foreground leading-none">4.9/5</span>
-                  <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">10k+ Reviews</span>
-                </div>
-              </div>
+             <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-5 leading-[1.15]">
+               Premium Home Services, <br />
+               <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-500">
+                 Delivered Instantly.
+               </span>
+             </motion.h1>
+             
+             <motion.p variants={itemVariants} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 mb-8 max-w-lg">
+               Dubai & Saudi Arabia&apos;s top-rated maintenance platform. From sudden AC breakdowns to emergency plumbing, our vetted experts arrive at your doorstep in record time.
+             </motion.p>
+             
+             {/* href="/book-service/category" */}
+             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4">
+               <Link href="/book-service/category" className="w-full sm:w-auto">
+                 <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base hover:-translate-y-1 transition-all rounded-xl">
+                   Book a Technician
+                 </Button>
+               </Link>
+               <Link href="#services" className="w-full sm:w-auto">
+                 <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-base bg-background/50 backdrop-blur-md rounded-xl hover:-translate-y-1 transition-all">
+                   View All Services
+                 </Button>
+               </Link>
+             </motion.div>
 
-              {/* Speed Card */}
-              <div className="flex items-center gap-4 group cursor-default">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
-                  <Zap size={20} fill="currentColor" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xl font-black text-foreground leading-none">Fast</span>
-                  <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">Arrival Time</span>
-                </div>
-              </div>
+             <motion.div variants={itemVariants} className="mt-12 flex flex-wrap gap-4 md:gap-8 pt-8 border-t border-border/50">
+               {/* Rating Card */}
+               <div className="flex items-center gap-4 group cursor-default">
+                 <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
+                   <Star size={20} fill="currentColor" />
+                 </div>
+                 <div className="flex flex-col">
+                   <span className="text-xl font-black text-foreground leading-none">4.9/5</span>
+                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">10k+ Reviews</span>
+                 </div>
+               </div>
 
-              {/* Security Card */}
-              <div className="flex items-center gap-4 group cursor-default">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <ShieldCheck size={20} fill="currentColor" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xl font-black text-foreground leading-none">100%</span>
-                  <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">Secure Job</span>
-                </div>
-              </div>
-            </motion.div>
+               {/* Warranty Card */}
+               <div className="flex items-center gap-4 group cursor-default">
+                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                   <ShieldCheck size={20} fill="currentColor" />
+                 </div>
+                 <div className="flex flex-col">
+                   <span className="text-xl font-black text-foreground leading-none">30 Day</span>
+                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">Work Warranty</span>
+                 </div>
+               </div>
+
+               {/* Speed Card */}
+               <div className="flex items-center gap-4 group cursor-default">
+                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                   <Zap size={20} fill="currentColor" />
+                 </div>
+                 <div className="flex flex-col">
+                   <span className="text-xl font-black text-foreground leading-none">Fast</span>
+                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">Arrival Time</span>
+                 </div>
+               </div>
+             </motion.div>
           </motion.div>
 
           {/* Floating UI Elements / Abstract Visuals */}

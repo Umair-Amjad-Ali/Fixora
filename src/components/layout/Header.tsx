@@ -6,16 +6,20 @@ import { useRouter, usePathname } from "next/navigation";
 import { Wrench, LogIn, UserPlus, LogOut, LayoutDashboard, ChevronDown, User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/context/AuthContext";
+import { useBooking } from "@/context/BookingContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 
 export function Header() {
   const { user, logout, loading } = useAuth();
+  const { bookingData, updateLocation, setRegionModalOpen } = useBooking();
   const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const isAuthPage = pathname?.startsWith("/auth");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -76,41 +80,53 @@ export function Header() {
 
           {/* Auth Actions & Mobile Toggle */}
           <div className="flex items-center gap-2">
-            {loading ? (
-              <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
-            ) : user ? (
-              <div className="relative">
-                <button 
-                  onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className="flex items-center gap-2 p-1.5 pr-3 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-2xl hover:border-primary/40 transition-all active:scale-95"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-primary text-white flex items-center justify-center font-black text-xs">
-                    {user.email?.[0].toUpperCase()}
-                  </div>
-                  <ChevronDown size={14} className={`text-zinc-400 transition-transform duration-300 ${showProfileMenu ? "rotate-180" : ""}`} />
-                </button>
+            {/* Region Switcher */}
+            <button 
+              onClick={() => setRegionModalOpen(true)}
+              className="flex items-center justify-center gap-1.5 h-10 px-2 lg:px-4 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl hover:border-primary/40 transition-all mr-1 lg:mr-2 group"
+            >
+              <span className="text-base lg:text-lg leading-none mt-0.5">{bookingData.location.country === "KSA" ? "🇸🇦" : "🇦🇪"}</span>
+              <span className="text-[9px] lg:text-[11px] font-black uppercase tracking-tight lg:tracking-widest text-zinc-500 group-hover:text-primary transition-colors">
+                {bookingData.location.country || "Region"}
+              </span>
+            </button>
 
-                <AnimatePresence>
-                  {showProfileMenu && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute top-full right-0 mt-3 w-56 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden p-2 z-60"
-                    >
-                      <div className="px-4 py-3 border-b border-zinc-100 dark:border-slate-900 mb-2">
-                        <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Active Account</p>
-                        <p className="text-xs font-bold truncate text-foreground">{user.email}</p>
-                      </div>
-                      <Link 
-                        href="/profile" 
-                        onClick={() => setShowProfileMenu(false)}
-                        className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-colors group"
+            {!isAuthPage && (
+              loading ? (
+                <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+              ) : user ? (
+                <div className="relative">
+                  <button 
+                    onClick={() => setShowProfileMenu(!showProfileMenu)}
+                    className="flex items-center gap-2 p-1.5 pr-3 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-2xl hover:border-primary/40 transition-all active:scale-95"
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-primary text-white flex items-center justify-center font-black text-xs">
+                      {user.email?.[0].toUpperCase()}
+                    </div>
+                    <ChevronDown size={14} className={`text-zinc-400 transition-transform duration-300 ${showProfileMenu ? "rotate-180" : ""}`} />
+                  </button>
+  
+                  <AnimatePresence>
+                    {showProfileMenu && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute top-full right-0 mt-3 w-56 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden p-2 z-60"
                       >
-                        <User size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
-                        <span className="text-sm font-black uppercase tracking-tight">My Profile</span>
-                      </Link>
-                      {/* <Link 
+                        <div className="px-4 py-3 border-b border-zinc-100 dark:border-slate-900 mb-2">
+                          <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Active Account</p>
+                          <p className="text-xs font-bold truncate text-foreground">{user.email}</p>
+                        </div>
+                        <Link 
+                          href="/profile" 
+                          onClick={() => setShowProfileMenu(false)}
+                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-colors group"
+                        >
+                          <User size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
+                          <span className="text-sm font-black uppercase tracking-tight">My Profile</span>
+                        </Link>
+                        {/* <Link 
                         href="/orders" 
                         onClick={() => setShowProfileMenu(false)}
                         className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-colors group"
@@ -118,32 +134,34 @@ export function Header() {
                         <LayoutDashboard size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
                         <span className="text-sm font-black uppercase tracking-tight">My Bookings</span>
                       </Link> */}
-                      <button 
-                        onClick={handleLogout}
-                        className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 transition-colors group"
-                      >
-                        <LogOut size={18} className="group-hover:scale-110 transition-transform" />
-                        <span className="text-sm font-black uppercase tracking-tight">Sign Out</span>
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link href="/auth/login" className="hidden lg:block">
-                  <Button variant="ghost" size="sm" className="h-10 px-5 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2">
-                    <LogIn size={15} />
-                    Sign In
-                  </Button>
-                </Link>
-                <Link href="/auth/signup" className="hidden sm:block">
-                  <Button size="sm" className="h-10 px-5 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2 shadow-lg shadow-primary/20">
-                    <UserPlus size={15} />
-                    Sign Up
-                  </Button>
-                </Link>
-              </div>
+                        
+                        <button 
+                          onClick={handleLogout}
+                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 transition-colors group"
+                        >
+                          <LogOut size={18} className="group-hover:scale-110 transition-transform" />
+                          <span className="text-sm font-black uppercase tracking-tight">Sign Out</span>
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link href="/auth/login" className="hidden lg:block">
+                    <Button variant="ghost" size="sm" className="h-10 px-5 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2">
+                      <LogIn size={15} />
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link href="/auth/signup" className="hidden sm:block">
+                    <Button size="sm" className="h-10 px-5 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2 shadow-lg shadow-primary/20">
+                      <UserPlus size={15} />
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              )
             )}
 
             {/* Mobile Menu Button */}
@@ -177,7 +195,7 @@ export function Header() {
                 </Link>
               </nav>
 
-              {!user && (
+              {!user && !isAuthPage && (
                 <div className="flex flex-col gap-3 pt-4">
                   <Link href="/auth/login" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button variant="outline" className="w-full h-14 rounded-2xl font-black uppercase tracking-widest text-xs gap-3">

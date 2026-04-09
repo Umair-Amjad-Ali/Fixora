@@ -10,15 +10,19 @@ export interface ServiceCategory {
   icon: string;
   description: string;
   hasSubTypes: boolean;
+  startingPrice?: number;
 }
 
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
-  { slug: "ac", name: "AC Maintenance", icon: "❄️", description: "AC repair, servicing & installation", hasSubTypes: true },
-  { slug: "electrical", name: "Electrical", icon: "⚡", description: "Wiring, switches & fixtures", hasSubTypes: false },
-  { slug: "plumbing", name: "Plumbing", icon: "🔧", description: "Pipes, leaks & fixtures", hasSubTypes: false },
-  { slug: "painting", name: "Painting", icon: "🎨", description: "Interior & exterior painting", hasSubTypes: false },
-  { slug: "tile", name: "Tile / Stone Work", icon: "🧱", description: "Tile repair & installation", hasSubTypes: false },
-  { slug: "cleaning", name: "Cleaning", icon: "🧹", description: "Deep cleaning & regular cleaning", hasSubTypes: false },
+  { slug: "ac", name: "AC Maintenance", icon: "Wind", description: "AC repair, servicing & installation", hasSubTypes: true, startingPrice: 100 },
+  { slug: "washing_machine", name: "Washing Machine", icon: "WashingMachine", description: "Automatic & semi-auto repair", hasSubTypes: false },
+  { slug: "refrigerator", name: "Refrigerator", icon: "Refrigerator", description: "Cooling repair & gas refill", hasSubTypes: false, startingPrice: 150 },
+  { slug: "electrical", name: "Electrical", icon: "Zap", description: "Wiring, switches & fixtures", hasSubTypes: false, startingPrice: 120 },
+  { slug: "plumbing", name: "Plumbing", icon: "Droplets", description: "Pipes, leaks & fixtures", hasSubTypes: false },
+  { slug: "painting", name: "Painting", icon: "PaintBucket", description: "Interior & exterior painting", hasSubTypes: false },
+  { slug: "tile", name: "Tile / Stone Work", icon: "Square", description: "Tile repair & installation", hasSubTypes: false },
+  { slug: "cleaning", name: "Cleaning", icon: "Sparkles", description: "Deep cleaning & regular cleaning", hasSubTypes: false },
+  { slug: "contractor", name: "Building Contractor", icon: "HardHat", description: "Civil works & renovations", hasSubTypes: false },
 ];
 
 // ==========================================
@@ -103,6 +107,32 @@ export const TILE_ISSUES: IssueOption[] = [
   { slug: "others", label: "Others", description: "Describe your tile/stone issue" },
 ];
 
+export const WASHING_MACHINE_ISSUES: IssueOption[] = [
+  { slug: "not_draining", label: "Not Draining", description: "Water staying in the drum" },
+  { slug: "noise", label: "Heavy Noise", description: "Banging or screeching during spin" },
+  { slug: "leakage", label: "Water Leakage", description: "Water leaking from bottom or door" },
+  { slug: "door_lock", label: "Door Lock Issue", description: "Door won't open or lock properly" },
+  { slug: "vibration", label: "Excessive Vibration", description: "Machine moving or shaking wildly" },
+  { slug: "others", label: "Others", description: "Describe your washing machine issue" },
+];
+
+export const REFRIGERATOR_ISSUES: IssueOption[] = [
+  { slug: "not_cooling", label: "Not Cooling", description: "Fridge or freezer not cold enough" },
+  { slug: "gas_leak", label: "Gas Leakage", description: "Suspected refrigerant leak" },
+  { slug: "noise", label: "Strange Noise", description: "Unusual humming or ticking sounds" },
+  { slug: "water_leak", label: "Water Inside", description: "Water pooling at the bottom of the fridge" },
+  { slug: "ice_buildup", label: "Excessive Ice", description: "Heavy frost buildup in the freezer" },
+  { slug: "others", label: "Others", description: "Describe your refrigerator issue" },
+];
+
+export const CONTRACTOR_ISSUES: IssueOption[] = [
+  { slug: "civil_works", label: "Civil Works", description: "Concrete, masonry, or structural repairs" },
+  { slug: "renovation", label: "Full Renovation", description: "Kitchen, bathroom or home remodeling" },
+  { slug: "handyman", label: "General Handyman", description: "Multiple small repairs and fixes" },
+  { slug: "interiors", label: "Interior Design", description: "Fit-out and decorative works" },
+  { slug: "others", label: "Others", description: "Describe your contracting needs" },
+];
+
 export const CATEGORY_ISSUES_MAP: Record<ServiceType, IssueOption[]> = {
   ac: AC_ISSUES,
   electrical: ELECTRICAL_ISSUES,
@@ -110,6 +140,68 @@ export const CATEGORY_ISSUES_MAP: Record<ServiceType, IssueOption[]> = {
   cleaning: CLEANING_ISSUES,
   painting: PAINTING_ISSUES,
   tile: TILE_ISSUES,
+  washing_machine: WASHING_MACHINE_ISSUES,
+  refrigerator: REFRIGERATOR_ISSUES,
+  contractor: CONTRACTOR_ISSUES,
+};
+
+// ==========================================
+// SUB SERVICES MAPPING
+// ==========================================
+
+export interface SubService {
+  id: string;
+  name: string;
+  description: string;
+  features: string[];
+  startingPrice?: number;
+}
+
+export const SUB_SERVICES_MAP: Record<string, SubService[]> = {
+  ac: [
+    { id: "general_service", name: "General AC Servicing", description: "Filter cleaning, chemical wash of drain tray, and overall health check.", features: ["30 Day Warranty", "Chemical Wash", "Gas Check"], startingPrice: 100 },
+    { id: "ac_repair", name: "AC Repair & Breakdown", description: "Emergency repair for non-cooling, noise, or power issues.", features: ["Express Arrival", "Certified Technicians", "6 Month Warranty"], startingPrice: 150 },
+    { id: "duct_cleaning", name: "Duct & Coil Cleaning", description: "Deep sterilization of ducts and sanitization of coils.", features: ["Breathe Clean Air", "Removes Allergens", "2 Year Guarantee"], startingPrice: 300 },
+    { id: "installation", name: "New Unit Installation", description: "Professional installation of new AC units with copper piping.", features: ["Certified Installers", "Testing & Balancing", "Full Setup"], startingPrice: 400 },
+  ],
+  electrical: [
+    { id: "lights_fix", name: "Lighting & Fixtures", description: "Repairing or replacing light fixtures, LEDs, dimmers, and switches.", features: ["Safety First", "Material Included Option", "Expert Routing"], startingPrice: 120 },
+    { id: "socket_repair", name: "Sockets & Wiring", description: "Fixing burnt sockets and faulty residential wiring.", features: ["DEWA Approved Pros", "Safe Wiring Check"], startingPrice: 150 },
+    { id: "db_panel", name: "DB Panel & Breakers", description: "Troubleshooting frequent fuse tripping, overloaded breakers, and main boards.", features: ["Full Diagnostics", "Same Day Fix"], startingPrice: 200 },
+  ],
+  plumbing: [
+    { id: "leakage", name: "Leak Detection & Repair", description: "Fixing visible and hidden leaks in bathrooms, ceilings, or kitchens.", features: ["Advanced Equipment", "No Mess Guaranteed", "Pipe Sealing"] },
+    { id: "blockage", name: "Drain & Toilet Unblocking", description: "Removing hair, grease and stubborn blocks from main drains or toilets.", features: ["Immediate Relief", "Hydro Jetting Option"] },
+    { id: "heater", name: "Water Heater Service", description: "Repairing thermostat issues, leaks, or replacing faulty water heaters entirely.", features: ["Safety Tested", "Parts Warranty"] },
+    { id: "fixtures", name: "Sanitary Installation", description: "Installing or replacing taps, bidets, shower heads, and sinks.", features: ["Precision Fit", "100% Water Tight"] },
+  ],
+  cleaning: [
+    { id: "deep_cleaning", name: "Deep Cleaning & Sanitization", description: "Intensive deep clean for apartments or villas including hard-to-reach areas.", features: ["Eco-Friendly Focus", "Trained Team", "100% Satisfaction"] },
+    { id: "regular_cleaning", name: "Standard Maid Service", description: "Regular maintenance cleaning of rooms, dusting, and mopping.", features: ["Flexible Hours", "Background Checked"] },
+    { id: "sofa_carpet", name: "Sofa & Carpet Shampoo", description: "Deep extraction shampoo cleaning to remove stains and odors.", features: ["Quick Dry", "Stain Removal"] },
+  ],
+  painting: [
+    { id: "full_interior", name: "Full Home Interior Painting", description: "Fresh coat of premium paint across the entire apartment or villa.", features: ["Premium Paint", "Floor Protection", "Post-Paint Cleanup"] },
+    { id: "accent_wall", name: "Accent Wall & Touch-up", description: "Painting specific walls or fixing minor water damage and peeling.", features: ["Quick Turnaround", "Color Matching"] },
+    { id: "exterior_paint", name: "Exterior Villa Painting", description: "Weather-resistant coating for villa exteriors.", features: ["Scaffolding Included", "Weatherproof"] },
+  ],
+  tile: [
+    { id: "tile_repair", name: "Tile Repair & Replacement", description: "Replacing cracked or hollow floor and wall tiles seamlessly.", features: ["Seamless Match", "High Quality Mortar"] },
+    { id: "regrouting", name: "Grout Cleaning & Regrouting", description: "Removing old, dirty grout and applying fresh waterproofing grout.", features: ["Mold Resistant", "Color Options"] },
+    { id: "new_installation", name: "New Tile Installation", description: "Laying fresh porcelain, ceramic or marble tiles.", features: ["Laser Leveling", "Expert Masons"] },
+  ],
+  washing_machine: [
+    { id: "wm_repair", name: "Washing Machine Repair", description: "Fixing drainage, noise, and power issues for automatic machines.", features: ["All Brands Covered", "30 Day Warranty"] },
+    { id: "wm_install", name: "Installation & Setup", description: "Professional installation and plumbing connection for new units.", features: ["Testing & Calibration", "Leak-Proof Setup"] },
+  ],
+  refrigerator: [
+    { id: "fridge_repair", name: "Refrigerator Repair", description: "Fixing cooling issues, gas leakage, and compressor problems.", features: ["Certified Gas Refill", "Genuine Parts"], startingPrice: 150 },
+    { id: "fridge_service", name: "General Maintenance", description: "Internal cleaning, gasket replacement, and overall performance check.", features: ["Energy Save Check", "Deep Interior Clean"], startingPrice: 120 },
+  ],
+  contractor: [
+    { id: "civil_works", name: "Civil & Structural Works", description: "Concrete repairs, wall removals, and masonry work.", features: ["Engineered Solutions", "Permit Assistance"] },
+    { id: "renovation", name: "Full Home Renovation", description: "Complete transformation of your villa or apartment.", features: ["Design Consultation", "End-to-End Management"] },
+  ],
 };
 
 // ==========================================
@@ -195,10 +287,87 @@ export const BOOKING_STEPS: BookingStep[] = [
 // DEFAULT BOOKING DATA
 // ==========================================
 
+// ==========================================
+// PRIVACY POLICY CONTENT
+// ==========================================
+
+export const PRIVACY_SECTIONS = [
+  {
+    title: "Data Collection",
+    content: "We collect information you provide directly to us, such as when you create an account, book a service, or contact support. This includes your name, email, phone number, and location data required for service delivery."
+  },
+  {
+    title: "How We Use Your Data",
+    content: "Your data is used solely to provide and improve Fixora's services, including connecting you with technicians, processing bookings, and sending service updates. We do not sell your personal data to third parties."
+  },
+  {
+    title: "Location Privacy",
+    content: "Because Fixora is a location-based service, we use geolocation data to ensure technicians arrive at the correct address. We only access this data when you are actively using the platform to book or track a service."
+  },
+  {
+    title: "Security Measures",
+    content: "We use industry-standard encryption and security protocols to protect your personal information. Our databases are secured following UAE and KSA data protection guidelines."
+  },
+  {
+    title: "Your Rights",
+    content: "You have the right to request access to your personal data, ask for corrections, or request deletion of your account and associated data at any time through our app settings or support."
+  }
+];
+
+// ==========================================
+// TERMS OF SERVICE CONTENT
+// ==========================================
+
+export const TERMS_SECTIONS = [
+  {
+    title: "1. Acceptance of Terms",
+    content: "By accessing or using the Fixora platform, you agree to be bound by these Terms of Service. If you do not agree to all of the terms and conditions of this agreement, you should not access the website or use any of our services."
+  },
+  {
+    title: "2. Service Scope",
+    content: "Fixora provides a platform connecting users with certified home service professionals. While we vet all technicians, the final agreement for work performed is between the user and the professional, backed by our Quality Guarantee."
+  },
+  {
+    title: "3. User Responsibilities",
+    content: "Users must provide accurate location and contact information. You are responsible for ensuring that the technician has safe access to the premises at the scheduled time."
+  },
+  {
+    title: "4. Pricing & Payments",
+    content: "Final pricing is determined on-site based on the actual scope of work. Payments are made directly to the technician or via the platform as specified during booking. Fixora reserves the right to charge a cancellation fee for appointments cancelled less than 2 hours before the slot."
+  },
+  {
+    title: "5. Region Specifics",
+    content: "This agreement is governed by the laws of the United Arab Emirates and the Kingdom of Saudi Arabia, depending on the service location."
+  }
+];
+
+// ==========================================
+// REGIONS
+// ==========================================
+
+export const REGIONS = [
+  {
+    id: "UAE",
+    name: "United Arab Emirates",
+    description: "Dubai, Abu Dhabi, Sharjah & more",
+    currency: "AED",
+    icon: "🇦🇪",
+    accent: "bg-emerald-500"
+  },
+  {
+    id: "KSA",
+    name: "Saudi Arabia",
+    description: "Riyadh, Jeddah, Dammam & more",
+    currency: "SAR",
+    icon: "🇸🇦",
+    accent: "bg-emerald-600"
+  }
+];
+
 export const DEFAULT_BOOKING_DATA = {
   user: { name: "", phone: "", countryCode: "+971", email: "" },
   location: { lat: null, lng: null, formattedAddress: "", buildingDetails: "", city: "", country: "" as const },
   schedule: { preferredDate: "", preferredTimeSlot: "" as const, timeRange: "" },
-  service: { serviceType: "" as const, serviceSubType: "" as const, issue: { type: "" as const, label: "", customDescription: "" } },
+  service: { serviceType: "" as const, serviceSubType: "" as const, estimatedPrice: 0, currency: "", issue: { selectedIssues: [], type: "", label: "", customDescription: "" } },
   currentStep: 1,
 };

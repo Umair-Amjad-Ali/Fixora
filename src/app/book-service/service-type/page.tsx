@@ -4,45 +4,11 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 import { Button } from "@/components/ui/Button";
-import { SERVICE_CATEGORIES } from "@/lib/constants";
-import { Hammer, Sparkles, ArrowLeft, ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
+import { SERVICE_CATEGORIES, SUB_SERVICES_MAP, SubService } from "@/lib/constants";
+import * as LucideIcons from "lucide-react";
+import { Hammer, Sparkles, ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Info, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
-
-// Mock sub-services mapping
-const SUB_SERVICES: Record<string, { id: string; name: string; description: string; features: string[] }[]> = {
-  ac: [
-    { id: "general_service", name: "General AC Servicing", description: "Filter cleaning, chemical wash of drain tray, and overall health check.", features: ["30 Day Warranty", "Chemical Wash", "Gas Check"] },
-    { id: "ac_repair", name: "AC Repair & Breakdown", description: "Emergency repair for non-cooling, noise, or power issues.", features: ["Express Arrival", "Certified Technicians", "6 Month Warranty"] },
-    { id: "duct_cleaning", name: "Duct & Coil Cleaning", description: "Deep sterilization of ducts and sanitization of coils.", features: ["Breathe Clean Air", "Removes Allergens", "2 Year Guarantee"] },
-    { id: "installation", name: "New Unit Installation", description: "Professional installation of new AC units with copper piping.", features: ["Certified Installers", "Testing & Balancing", "Full Setup"] },
-  ],
-  electrical: [
-    { id: "lights_fix", name: "Lighting & Fixtures", description: "Repairing or replacing light fixtures, LEDs, dimmers, and switches.", features: ["Safety First", "Material Included Option", "Expert Routing"] },
-    { id: "socket_repair", name: "Sockets & Wiring", description: "Fixing burnt sockets and faulty residential wiring.", features: ["DEWA Approved Pros", "Safe Wiring Check"] },
-    { id: "db_panel", name: "DB Panel & Breakers", description: "Troubleshooting frequent fuse tripping, overloaded breakers, and main boards.", features: ["Full Diagnostics", "Same Day Fix"] },
-  ],
-  plumbing: [
-    { id: "leakage", name: "Leak Detection & Repair", description: "Fixing visible and hidden leaks in bathrooms, ceilings, or kitchens.", features: ["Advanced Equipment", "No Mess Guaranteed", "Pipe Sealing"] },
-    { id: "blockage", name: "Drain & Toilet Unblocking", description: "Removing hair, grease and stubborn blocks from main drains or toilets.", features: ["Immediate Relief", "Hydro Jetting Option"] },
-    { id: "heater", name: "Water Heater Service", description: "Repairing thermostat issues, leaks, or replacing faulty water heaters entirely.", features: ["Safety Tested", "Parts Warranty"] },
-    { id: "fixtures", name: "Sanitary Installation", description: "Installing or replacing taps, bidets, shower heads, and sinks.", features: ["Precision Fit", "100% Water Tight"] },
-  ],
-  cleaning: [
-    { id: "deep_cleaning", name: "Deep Cleaning & Sanitization", description: "Intensive deep clean for apartments or villas including hard-to-reach areas.", features: ["Eco-Friendly Focus", "Trained Team", "100% Satisfaction"] },
-    { id: "regular_cleaning", name: "Standard Maid Service", description: "Regular maintenance cleaning of rooms, dusting, and mopping.", features: ["Flexible Hours", "Background Checked"] },
-    { id: "sofa_carpet", name: "Sofa & Carpet Shampoo", description: "Deep extraction shampoo cleaning to remove stains and odors.", features: ["Quick Dry", "Stain Removal"] },
-  ],
-  painting: [
-    { id: "full_interior", name: "Full Home Interior Painting", description: "Fresh coat of premium paint across the entire apartment or villa.", features: ["Premium Paint", "Floor Protection", "Post-Paint Cleanup"] },
-    { id: "accent_wall", name: "Accent Wall & Touch-up", description: "Painting specific walls or fixing minor water damage and peeling.", features: ["Quick Turnaround", "Color Matching"] },
-    { id: "exterior_paint", name: "Exterior Villa Painting", description: "Weather-resistant coating for villa exteriors.", features: ["Scaffolding Included", "Weatherproof"] },
-  ],
-  tile: [
-    { id: "tile_repair", name: "Tile Repair & Replacement", description: "Replacing cracked or hollow floor and wall tiles seamlessly.", features: ["Seamless Match", "High Quality Mortar"] },
-    { id: "regrouting", name: "Grout Cleaning & Regrouting", description: "Removing old, dirty grout and applying fresh waterproofing grout.", features: ["Mold Resistant", "Color Options"] },
-    { id: "new_installation", name: "New Tile Installation", description: "Laying fresh porcelain, ceramic or marble tiles.", features: ["Laser Leveling", "Expert Masons"] },
-  ],
-};
+import { getCurrency } from "@/lib/utils";
 
 function ServiceTypeContent() {
   const router = useRouter();
@@ -58,17 +24,26 @@ function ServiceTypeContent() {
       router.replace("/book-service/category");
       return;
     }
-    if (!bookingData.service.serviceType) {
+    
+    // Sync serviceType from URL to state if they don't match
+    if (bookingData.service.serviceType !== initialCategory) {
        updateService({ serviceType: initialCategory as any });
     }
   }, [setCurrentStep, initialCategory, bookingData.service.serviceType, updateService, router]);
 
   const currentCategory = SERVICE_CATEGORIES.find(c => c.slug === initialCategory) || SERVICE_CATEGORIES[0];
-  const subs = SUB_SERVICES[initialCategory] || [];
+  const subs = SUB_SERVICES_MAP[initialCategory] || [];
 
   const handleNext = () => {
     if (selectedSub) {
-      updateService({ serviceSubType: selectedSub as any });
+      const sub = subs.find(s => s.id === selectedSub);
+      const currency = bookingData.location.country === "KSA" ? "SAR" : "AED";
+
+      updateService({ 
+        serviceSubType: selectedSub as any,
+        estimatedPrice: (sub as any)?.startingPrice || 0,
+        currency: currency
+      });
       
       // Conditional logic: If AC, go to AC-Type. Else go to Issues.
       if (initialCategory === "ac") {
@@ -83,8 +58,11 @@ function ServiceTypeContent() {
     <div className="max-w-4xl mx-auto">
       <div className="mb-8 text-left">
         <div className="flex items-center gap-3 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-lg">
-               {currentCategory.icon}
+            <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+               {(() => {
+                 const Icon = (LucideIcons as any)[currentCategory.icon] || LucideIcons.Wrench;
+                 return <Icon size={22} />;
+               })()}
             </div>
             <h2 className="text-2xl font-black">{currentCategory.name}</h2>
         </div>
@@ -135,7 +113,17 @@ function ServiceTypeContent() {
                   </div>
                 </div>
 
-                <div className="mt-5 md:mt-0 md:ml-6 flex flex-col items-end gap-3 justify-center min-w-[120px]">
+                <div className="mt-5 md:mt-0 md:ml-6 flex flex-col items-end gap-3 justify-center min-w-[140px]">
+                   {(sub as any).startingPrice && (
+                     <div className={`px-3 py-1.5 rounded-xl border flex flex-col items-end transition-colors
+                        ${isSelected ? "bg-white/10 border-white/20" : "bg-zinc-50 border-zinc-100 dark:bg-slate-800 dark:border-slate-700"}
+                     `}>
+                        <span className={`text-[8px] font-black uppercase tracking-widest ${isSelected ? "text-white/60" : "text-zinc-400"}`}>Starting From</span>
+                        <span className={`text-sm font-black ${isSelected ? "text-white" : "text-primary"}`}>
+                          {getCurrency(bookingData.location.country || "UAE")} {(sub as any).startingPrice}
+                        </span>
+                     </div>
+                   )}
                    <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all
                       ${isSelected ? "bg-white text-primary" : "bg-zinc-100 dark:bg-slate-800 group-hover:bg-primary group-hover:text-white"}
                    `}>

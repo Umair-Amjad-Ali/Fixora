@@ -4,29 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FileText, ShieldCheck, Scale, Globe } from "lucide-react";
 
+import { TERMS_SECTIONS } from "@/lib/constants";
+
 export default function TermsPage() {
-  const sections = [
-    {
-      title: "1. Acceptance of Terms",
-      content: "By accessing or using the Fixora platform, you agree to be bound by these Terms of Service. If you do not agree to all of the terms and conditions of this agreement, you should not access the website or use any of our services."
-    },
-    {
-      title: "2. Service Scope",
-      content: "Fixora provides a platform connecting users with certified home service professionals. While we vet all technicians, the final agreement for work performed is between the user and the professional, backed by our Quality Guarantee."
-    },
-    {
-      title: "3. User Responsibilities",
-      content: "Users must provide accurate location and contact information. You are responsible for ensuring that the technician has safe access to the premises at the scheduled time."
-    },
-    {
-      title: "4. Pricing & Payments",
-      content: "Final pricing is determined on-site based on the actual scope of work. Payments are made directly to the technician or via the platform as specified during booking. Fixora reserves the right to charge a cancellation fee for appointments cancelled less than 2 hours before the slot."
-    },
-    {
-      title: "5. Region Specifics",
-      content: "This agreement is governed by the laws of the United Arab Emirates and the Kingdom of Saudi Arabia, depending on the service location."
-    }
-  ];
 
   return (
     <div className="min-h-screen pt-32 pb-20">
@@ -45,7 +25,7 @@ export default function TermsPage() {
         </motion.div>
 
         <div className="space-y-12">
-          {sections.map((section, i) => (
+          {TERMS_SECTIONS.map((section, i) => (
             <motion.section 
               key={i}
               initial={{ opacity: 0, y: 10 }}

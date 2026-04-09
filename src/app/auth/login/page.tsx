@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { loginUser, getAuthErrorMessage } from "@/lib/services/authService";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
@@ -23,7 +22,7 @@ function LoginPageContent() {
     password: "",
   });
   
-  const { user } = useAuth(); // Import useAuth at the top
+  const { user } = useAuth(); 
 
   useEffect(() => {
     if (user) {
@@ -31,34 +30,17 @@ function LoginPageContent() {
     }
   }, [user, router]);
 
-  const getFriendlyErrorMessage = (errorCode: string) => {
-    switch (errorCode) {
-      case "auth/invalid-credential":
-      case "auth/user-not-found":
-      case "auth/wrong-password":
-        return "Invalid email or password. Please try again.";
-      case "auth/too-many-requests":
-        return "Too many failed attempts. Please try again later.";
-      case "auth/user-disabled":
-        return "This account has been disabled. Please contact support.";
-      case "auth/invalid-email":
-        return "Please enter a valid email address.";
-      default:
-        return "An error occurred during sign in. Please try again.";
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      await loginUser(formData.email, formData.password);
       toast.success("Welcome back!");
       router.push(callbackUrl);
     } catch (error: any) {
       console.error("Login error:", error);
-      const friendlyMessage = getFriendlyErrorMessage(error.code);
+      const friendlyMessage = getAuthErrorMessage(error.code);
       toast.error(friendlyMessage);
     } finally {
       setLoading(false);

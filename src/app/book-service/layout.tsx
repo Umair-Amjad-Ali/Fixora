@@ -8,6 +8,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useBooking } from "@/context/BookingContext";
+import { SERVICE_CATEGORIES } from "@/lib/constants";
 
 interface BookingLayoutProps {
   children: ReactNode;
@@ -74,7 +75,20 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             <span className="text-xs font-black uppercase tracking-widest">Back to Home</span>
           </Link>
-          <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-8">Configure Your Service</h1>
+          {(() => {
+            const isCategoryStep = pathname === "/book-service/category";
+            const selectedCategory = SERVICE_CATEGORIES.find(c => c.slug === bookingData.service.serviceType);
+            
+            // If we are on the first step (category selection) or no category is picked yet,
+            // we show the default "Configure Your Service" title.
+            return (
+              <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-8">
+                {(isCategoryStep || !selectedCategory) 
+                  ? "Configure Your Service" 
+                  : `Configure ${selectedCategory.name}`}
+              </h1>
+            );
+          })()}
         </div>
       </div>
 

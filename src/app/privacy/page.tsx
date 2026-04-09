@@ -4,29 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, Eye, Lock, Database } from "lucide-react";
 
+import { PRIVACY_SECTIONS } from "@/lib/constants";
+
 export default function PrivacyPage() {
-  const sections = [
-    {
-      title: "Data Collection",
-      content: "We collect information you provide directly to us, such as when you create an account, book a service, or contact support. This includes your name, email, phone number, and location data required for service delivery."
-    },
-    {
-      title: "How We Use Your Data",
-      content: "Your data is used solely to provide and improve Fixora's services, including connecting you with technicians, processing bookings, and sending service updates. We do not sell your personal data to third parties."
-    },
-    {
-      title: "Location Privacy",
-      content: "Because Fixora is a location-based service, we use geolocation data to ensure technicians arrive at the correct address. We only access this data when you are actively using the platform to book or track a service."
-    },
-    {
-      title: "Security Measures",
-      content: "We use industry-standard encryption and security protocols to protect your personal information. Our databases are secured following UAE and KSA data protection guidelines."
-    },
-    {
-      title: "Your Rights",
-      content: "You have the right to request access to your personal data, ask for corrections, or request deletion of your account and associated data at any time through our app settings or support."
-    }
-  ];
 
   return (
     <div className="min-h-screen pt-32 pb-20">
@@ -45,7 +25,7 @@ export default function PrivacyPage() {
         </motion.div>
 
         <div className="grid grid-cols-1 gap-12">
-          {sections.map((section, i) => (
+          {PRIVACY_SECTIONS.map((section, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, scale: 0.98 }}

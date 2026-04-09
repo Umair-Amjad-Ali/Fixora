@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 import { Button } from "@/components/ui/Button";
 import { CATEGORY_ISSUES_MAP } from "@/lib/constants";
-import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, HelpCircle, Wrench, Droplet, Zap, Paintbrush, Loader2, Sparkles, LayoutGrid } from "lucide-react";
+import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, HelpCircle, Wrench, Droplet, Zap, Paintbrush, Loader2, Sparkles, LayoutGrid, Snowflake, HardHat } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function IssuePage() {
@@ -22,12 +22,15 @@ export default function IssuePage() {
 
   // Dynamic Content Mapping
   const contentMap = {
-    ac: { icon: Sparkles, placeholder: "e.g., AC is making a clicking sound twice every hour..." },
+    ac: { icon: Snowflake, placeholder: "e.g., AC is making a clicking sound twice every hour..." },
     electrical: { icon: Zap, placeholder: "e.g., The main DB trips whenever I turn on the water heater..." },
     plumbing: { icon: Droplet, placeholder: "e.g., Water is leaking from the kitchen sink pipe..." },
     cleaning: { icon: Sparkles, placeholder: "e.g., Need deep cleaning for a 3-bedroom villa before moving in..." },
     painting: { icon: Paintbrush, placeholder: "e.g., Want to paint one wall in the living room Navy Blue..." },
     tile: { icon: LayoutGrid, placeholder: "e.g., Three tiles in the bathroom floor are cracked and loose..." },
+    washing_machine: { icon: Wrench, placeholder: "e.g., Washing machine is vibrating heavily and not draining..." },
+    refrigerator: { icon: Snowflake, placeholder: "e.g., Fridge is making a loud buzzing noise and not cooling..." },
+    contractor: { icon: HardHat, placeholder: "e.g., Need a wall removed and plastering finished in the hall..." },
   };
 
   const currentContent = contentMap[serviceType as keyof typeof contentMap] || contentMap.ac;
@@ -44,12 +47,17 @@ export default function IssuePage() {
   };
 
   const handleNext = () => {
-    const finalDescription = customBrief || selectedIssues.join(", ");
+    const selectedLabels = issues
+      .filter(i => selectedIssues.includes(i.slug))
+      .map(i => i.label);
+    
     updateService({ 
       issue: { 
-        ...bookingData.service.issue, 
-        customDescription: finalDescription,
-        label: selectedIssues[0] || "Custom" 
+        ...bookingData.service.issue,
+        selectedIssues: selectedIssues,
+        type: selectedIssues[0] || "custom", // Keep first one as primary type
+        label: selectedLabels.length > 0 ? selectedLabels.join(", ") : "Custom",
+        customDescription: customBrief
       } 
     });
     router.push("/book-service/user-details");

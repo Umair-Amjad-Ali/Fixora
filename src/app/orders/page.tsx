@@ -291,10 +291,19 @@ export default function ProfileDashboard() {
                            <h3 className="text-lg sm:text-xl font-black text-foreground mb-1 capitalize">
                               {order.service?.serviceType} Service
                            </h3>
-                           <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-4">
+                           <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">
                               {order.service?.serviceSubType?.replace(/_/g, " ")} 
                               {order.service?.issue?.type && ` • ${order.service.issue.type.replace(/_/g, " ")}`}
                            </p>
+
+                           <div className="flex items-center gap-2 mb-4 bg-primary/5 w-fit px-3 py-1 rounded-lg border border-primary/10">
+                              <span className="text-[8px] font-black text-primary uppercase tracking-tight">Est. Price:</span>
+                              <span className="text-[8px] font-black text-primary">
+                                 {order.service?.estimatedPrice > 0 
+                                   ? `${order.service.currency} ${order.service.estimatedPrice}` 
+                                   : "Not Specified"}
+                              </span>
+                           </div>
                            
                            <div className="flex flex-wrap gap-4 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                               <div className="flex items-center gap-1.5 bg-zinc-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-zinc-100 dark:border-slate-700">

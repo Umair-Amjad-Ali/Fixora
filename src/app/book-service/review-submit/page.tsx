@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 import { useAuth } from "@/context/AuthContext";
-import { db } from "@/lib/firebase";
-import { collection, addDoc, updateDoc, doc, serverTimestamp, increment } from "firebase/firestore";
+import { createBooking } from "@/lib/services/bookingService";
 import { Button } from "@/components/ui/Button";
 import { SERVICE_CATEGORIES } from "@/lib/constants";
 import { format } from "date-fns";
@@ -21,7 +20,9 @@ import {
   Zap, 
   Info,
   Clock,
-  Loader2
+  Loader2,
+  DollarSign,
+  ChevronRight
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
@@ -46,43 +47,21 @@ export default function ReviewSubmitPage() {
 
     setIsSubmitting(true);
     try {
-      // 1. Prepare Order Data
-      const orderData = {
+      const docRef = await createBooking({
         userId: user.uid,
         userEmail: user.email,
-        userDetails: bookingData.user,
-        location: bookingData.location,
-        schedule: bookingData.schedule,
-        service: bookingData.service,
-
-        status: "pending",
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-      };
-
-      // 2. Save to Firestore
-      const docRef = await addDoc(collection(db, "orders"), orderData);
-
-      // 2.1 Update User Stats
-      await updateDoc(doc(db, "users", user.uid), {
-        totalOrders: increment(1)
+        bookingData,
       });
 
       toast.success("Order Placed Successfully!", {
         description: `Your technician will arrive soon. Booking ID: ${docRef.id.slice(0, 8)}`,
       });
 
-      // 3. Cleanup & Redirect to Landing Page (and obliterate ghost history)
-      const stepsToPop = bookingData.currentStep || 8;
+      resetBooking();
       
-      if (typeof window !== "undefined") {
-         window.history.go(-stepsToPop);
-      }
-      
-      // Delay wiping the state so React doesn't crash the router mid-jump
       setTimeout(() => {
-         resetBooking();
-      }, 500);
+        router.replace("/");
+      }, 100);
     } catch (error: any) {
       console.error("Booking error:", error);
       toast.error("Failed to complete booking", { description: error.message || "Please try again later." });
@@ -121,7 +100,7 @@ export default function ReviewSubmitPage() {
                   </h4>
                   <p className="text-zinc-500 font-bold uppercase text-[9px] tracking-wider mt-0.5">
                     {bookingData.service.serviceSubType?.replace(/_/g, " ")} 
-                    {bookingData.service.issue?.type && ` • ${bookingData.service.issue.type.replace(/_/g, " ")}`}
+                    {bookingData.service.issue?.label && ` • ${bookingData.service.issue.label}`}
                   </p>
                 </div>
                 {bookingData.service.issue?.customDescription && (
@@ -185,6 +164,23 @@ export default function ReviewSubmitPage() {
                 <p className="text-zinc-500 font-normal text-[11px] mt-0.5">{bookingData.location.city}, {bookingData.location.country}</p>
              </div>
           </div>
+
+          {/* Modify Selection Card */}
+          <button 
+            onClick={() => router.back()}
+            className="group w-full p-4 bg-zinc-50 dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl flex items-center justify-between hover:border-primary/50 transition-all active:scale-[0.99]"
+          >
+             <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-white dark:bg-slate-900 flex items-center justify-center text-zinc-400 group-hover:text-primary transition-colors">
+                   <ArrowLeft size={14} />
+                </div>
+                <div className="text-left">
+                   <span className="block text-[8px] font-black uppercase tracking-widest text-zinc-400">Changed your mind?</span>
+                   <span className="block text-xs font-black text-foreground group-hover:text-primary transition-colors tracking-tight">Modify Your Selections</span>
+                </div>
+             </div>
+             <ChevronRight size={14} className="text-zinc-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+          </button>
         </div>
 
         {/* Right Column: Checkout Sidebar */}
@@ -197,13 +193,32 @@ export default function ReviewSubmitPage() {
                     Summary
                  </h3>
 
-                 <div className="space-y-3 pb-6 mb-6 border-b border-zinc-200 dark:border-slate-800">
-                    <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                       Technician will provide an exact, transparent quote on-site before work.
-                    </p>
-                    <div className="flex items-center gap-2 p-2.5 bg-emerald-500/3 dark:bg-emerald-500/5 border border-emerald-500/10 rounded-xl">
+                 <div className="space-y-4 pb-6 mb-6 border-b border-zinc-200 dark:border-slate-800">
+                    <div className="flex items-center justify-between px-1">
+                       <span className="text-[8px] font-black uppercase tracking-widest text-zinc-400">Est. Starting Price</span>
+                       <span className="text-[10px] font-black text-foreground">
+                          {bookingData.service.estimatedPrice > 0 
+                            ? `${bookingData.service.currency} ${bookingData.service.estimatedPrice}` 
+                            : "Not Specified"}
+                       </span>
+                    </div>
+
+                    <div className="p-4 bg-primary/5 border border-primary/10 rounded-2xl">
+                      <h4 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary mb-2">
+                        <DollarSign size={12} />
+                        Pricing Policy
+                      </h4>
+                      <p className="text-[11px] font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        For complex issues, our technician will provide an exact, transparent quote on-site after inspection. Work begins only after your approval.
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 p-3 bg-emerald-500/5 border border-emerald-500/10 rounded-xl">
                        <CreditCard size={14} className="text-emerald-500" />
-                       <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-500 uppercase tracking-tight">On-Site Payment</span>
+                       <div className="flex flex-col">
+                          <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-500 uppercase tracking-tight">On-Site Payment</span>
+                          <span className="text-[9px] text-zinc-400 font-bold">Secure settlement at your doorstep</span>
+                       </div>
                     </div>
                  </div>
 
@@ -231,14 +246,6 @@ export default function ReviewSubmitPage() {
                  </div>
               </div>
 
-              {/* Modify Selection */}
-              <button 
-                onClick={() => router.back()}
-                className="w-full h-10 border border-zinc-200 dark:border-slate-800 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-zinc-50 dark:hover:bg-slate-800 transition-colors text-zinc-500"
-              >
-                <ArrowLeft size={12} />
-                Modify Selections
-              </button>
 
            </div>
         </div>

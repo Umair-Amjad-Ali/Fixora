@@ -223,22 +223,47 @@ export default function OrderDetailPage() {
 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl sm:text-4xl font-black text-white tracking-tight capitalize mb-2">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                className="text-2xl sm:text-4xl font-black text-white tracking-tight capitalize mb-2 break-words"
+              >
                 {order.service?.serviceType?.replace(/_/g, " ") || "Service"} Order
               </motion.h1>
-              <div className="flex flex-wrap items-center gap-3 text-zinc-400 text-sm">
+              <div className="flex flex-wrap items-center gap-3 text-zinc-400 text-xs sm:text-sm">
                 <button onClick={copyId} className="flex items-center gap-1.5 hover:text-white transition-colors group">
-                  <span className="font-mono font-bold">#{shortId}</span>
+                  <span className="font-mono font-bold break-all">#{shortId}</span>
                   <Copy size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
-                <span className="w-1 h-1 rounded-full bg-zinc-700" />
+                <span className="hidden sm:block w-1 h-1 rounded-full bg-zinc-700" />
                 <span className="font-medium">{createdDate}</span>
               </div>
             </div>
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }} 
+              animate={{ opacity: 1, scale: 1 }}
+              className="flex flex-wrap items-center gap-2 sm:gap-3"
+            >
               <span className={`inline-flex items-center gap-2 px-5 py-2.5 ${status.bg} ${status.color} border ${status.border} rounded-2xl text-xs font-black uppercase tracking-widest`}>
                 {status.icon} {status.label}
               </span>
+
+              {order.status === "pending" && (
+                <button 
+                  onClick={handleCancelOrder}
+                  disabled={isCancelling}
+                  className="bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border border-red-500/20 px-4 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 disabled:opacity-50 shrink-0 flex items-center gap-1.5"
+                >
+                  {isCancelling ? (
+                    <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <AlertCircle size={12} />
+                      Cancel Order
+                    </>
+                  )}
+                </button>
+              )}
             </motion.div>
           </div>
         </div>
@@ -267,8 +292,16 @@ export default function OrderDetailPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <InfoCell label="Service Type" value={order.service?.serviceType?.replace(/_/g, " ")} />
                 <InfoCell label="Sub Type" value={order.service?.serviceSubType?.replace(/_/g, " ")} />
+                <div className="bg-primary/5 p-3 rounded-2xl border border-primary/10">
+                  <InfoCell 
+                    label="Estimated Price" 
+                    value={order.service?.estimatedPrice > 0 
+                      ? `${order.service.currency} ${order.service.estimatedPrice}` 
+                      : "Not Specified"} 
+                  />
+                </div>
                 {order.service?.acType && <InfoCell label="AC Type" value={order.service.acType.replace(/_/g, " ")} />}
-                {order.service?.issue?.type && <InfoCell label="Issue" value={order.service.issue.type.replace(/_/g, " ")} />}
+                {order.service?.issue?.label && <InfoCell label="Issue" value={order.service.issue.label} />}
                 {order.service?.issue?.description && (
                   <div className="sm:col-span-2">
                     <InfoCell label="Description" value={order.service.issue.description} />
@@ -398,25 +431,6 @@ export default function OrderDetailPage() {
               </div>
             </motion.div>
 
-            {/* Cancel Order Action */}
-            {order.status === "pending" && (
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
-                <button 
-                  onClick={handleCancelOrder}
-                  disabled={isCancelling}
-                  className="w-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white border border-red-500/20 transition-colors rounded-3xl p-5 font-black text-sm flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
-                >
-                  {isCancelling ? (
-                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <AlertCircle size={18} />
-                      <span>Cancel Order</span>
-                    </>
-                  )}
-                </button>
-              </motion.div>
-            )}
 
           </div>
         </div>
@@ -429,7 +443,7 @@ function InfoCell({ label, value }: { label: string; value?: string }) {
   return (
     <div>
       <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1.5">{label}</p>
-      <p className="text-sm font-bold text-foreground capitalize leading-relaxed">{value || "—"}</p>
+      <p className="text-sm font-bold text-foreground capitalize leading-relaxed break-words">{value || "—"}</p>
     </div>
   );
 }

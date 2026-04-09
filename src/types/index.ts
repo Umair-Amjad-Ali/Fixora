@@ -6,7 +6,7 @@ import { Timestamp } from "firebase/firestore";
 
 export type ServiceStatus = "pending" | "in_progress" | "completed" | "cancelled";
 
-export type ServiceType = "ac" | "electrical" | "plumbing" | "painting" | "tile" | "cleaning";
+export type ServiceType = "ac" | "electrical" | "plumbing" | "painting" | "tile" | "cleaning" | "washing_machine" | "refrigerator" | "contractor";
 export type ACType = "window_ac" | "split_ac" | "cassette_ac" | "package_ac";
 export type IssueType = 
   | "not_cooling" | "gas_leak" | "noise" | "water_leak" | "not_turning_on" 
@@ -43,7 +43,8 @@ export interface ScheduleInfo {
 }
 
 export interface IssueInfo {
-  type: IssueType;
+  selectedIssues: string[];
+  type: string; // Keep for compatibility if needed, but we'll use selectedIssues
   label: string;
   customDescription?: string;
 }
@@ -148,14 +149,17 @@ export interface BookingData {
     preferredTimeSlot: TimeSlot | "";
     timeRange: string;
   };
-  service: {
-    serviceType: ServiceType | "";
-    serviceSubType: ACType | "";
-    issue: {
-      type: IssueType | "";
-      label: string;
-      customDescription: string;
+    service: {
+      serviceType: ServiceType | "";
+      serviceSubType: ACType | string; 
+      estimatedPrice: number;
+      currency: string;
+      issue: {
+        selectedIssues: string[];
+        type: string;
+        label: string;
+        customDescription: string;
+      };
     };
-  };
   currentStep: number;
 }

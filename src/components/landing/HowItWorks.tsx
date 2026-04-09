@@ -168,13 +168,6 @@ export function HowItWorks() {
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-32">
           <div className="max-w-2xl">
-            <motion.div 
-               initial={{ opacity: 0, x: -20 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 dark:bg-slate-800 rounded-full text-xs font-bold mb-6 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-slate-700"
-            >
-              The Modern Way
-            </motion.div>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -211,7 +204,7 @@ export function HowItWorks() {
             <motion.span 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex bg-white text-black px-6 sm:px-10 py-3.5 sm:py-5 rounded-full font-black text-sm sm:text-lg items-center gap-2 mx-auto shadow-2xl relative z-10 group/btn"
+              className="inline-flex bg-white text-black px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-widest items-center gap-2 mx-auto shadow-2xl relative z-10 group/btn"
             >
               Book Your First Service
               <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" size={18} />

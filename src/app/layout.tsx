@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RegionSelector } from "@/components/layout/RegionSelector";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -37,9 +38,12 @@ export default function RootLayout({
         <AuthProvider>
           <BookingProvider>
             <Header />
-            {children}
+            <RegionSelector />
+            <main className="min-h-screen">
+              {children}
+            </main>
             <Footer />
-            <Toaster position="top-center" />
+            <Toaster position="top-center" richColors />
           </BookingProvider>
         </AuthProvider>
       </body>

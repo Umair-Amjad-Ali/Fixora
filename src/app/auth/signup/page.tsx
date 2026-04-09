@@ -2,10 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { createUserWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
-import { auth, db } from "@/lib/firebase";
+import { registerUser, getAuthErrorMessage, logoutUser } from "@/lib/services/authService";
 import { useAuth } from "@/context/AuthContext";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -23,31 +21,18 @@ export default function SignupPage() {
     password: "",
   });
   
-  const { user } = useAuth(); // Import useAuth at the top
+  const { user } = useAuth(); 
+  const [isRedirectDisabled, setIsRedirectDisabled] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (user && !isRedirectDisabled) {
       router.replace("/");
     }
-  }, [user, router]);
-
-  const getFriendlyErrorMessage = (errorCode: string) => {
-    switch (errorCode) {
-      case "auth/email-already-in-use":
-        return "An account with this email address already exists. Please log in instead.";
-      case "auth/invalid-email":
-        return "Please enter a valid email address.";
-      case "auth/weak-password":
-        return "Your password is too weak. It must be at least 6 characters long.";
-      case "auth/operation-not-allowed":
-        return "Email/Password sign up is not enabled. Please contact support.";
-      default:
-        return "Failed to create account. Please try again.";
-    }
-  };
+  }, [user, router, isRedirectDisabled]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsRedirectDisabled(true); // Disable automatic redirect to home
     
     // Frontend Validation
     if (formData.password.length < 6) {
@@ -63,37 +48,21 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-      
-      const user = userCredential.user;
-
-      await updateProfile(user, {
-        displayName: formData.name,
-      });
-
-      await setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
+      await registerUser({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        totalOrders: 0,
-        completedOrders: 0,
-        cancelledOrders: 0,
-        createdAt: serverTimestamp(),
+        password: formData.password
       });
 
       // Firebase automatically logs in a newly created user
-      await signOut(auth);
+      await logoutUser();
 
       toast.success("Account created successfully. Please log in.");
       router.push("/auth/login");
     } catch (error: any) {
       console.error("Signup error:", error);
-      const friendlyMessage = getFriendlyErrorMessage(error.code);
+      const friendlyMessage = getAuthErrorMessage(error.code);
       toast.error(friendlyMessage);
     } finally {
       setLoading(false);
