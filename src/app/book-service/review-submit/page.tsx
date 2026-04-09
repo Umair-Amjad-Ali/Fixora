@@ -54,7 +54,7 @@ export default function ReviewSubmitPage() {
       });
 
       toast.success("Order Placed Successfully!", {
-        description: `Your technician will arrive soon. Booking ID: ${docRef.id.slice(0, 8)}`,
+        description: `Your technician will arrive soon.`,
       });
 
       resetBooking();
