@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { MAP_CENTERS } from "@/lib/constants";
 
-// Dynamically import Leaflet map to prevent "window is not defined" SSR errors
+// Dynamically import Google Maps component to prevent SSR errors and improve initial bundle size
 const MapComponent = dynamic(() => import("@/components/booking/MapComponent"), { ssr: false, loading: () => (
   <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-100 dark:bg-slate-900 rounded-[2.5rem]">
     <Loader2 className="animate-spin text-primary mb-2" size={32} />
@@ -25,6 +25,7 @@ const locationSchema = z.object({
   formattedAddress: z.string().min(10, "Please provide a more detailed address"),
   buildingDetails: z.string().min(2, "Villa/Apartment number is required"),
   city: z.string().min(2, "City is required"),
+  area: z.string().optional(),
   country: z.enum(["UAE", "KSA"]),
   lat: z.number().nullable(),
   lng: z.number().nullable(),
@@ -56,6 +57,7 @@ export default function LocationPage() {
       formattedAddress: bookingData.location.formattedAddress || "",
       buildingDetails: bookingData.location.buildingDetails || "",
       city: bookingData.location.city || DEFAULT_CENTER.label,
+      area: bookingData.location.area || "",
       country: activeCountry,
       lat: bookingData.location.lat,
       lng: bookingData.location.lng,
@@ -66,56 +68,82 @@ export default function LocationPage() {
     setCurrentStep(6);
   }, [setCurrentStep]);
 
-  // OpenStreetMap Reverse Geocoding (Lat/Lng to Address)
+  // Reverse Geocoding using Nominatim (free, no API key needed)
   const reverseGeocode = async (lat: number, lng: number) => {
     try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=${mapLanguage}`);
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=${mapLanguage}`,
+        { headers: { "User-Agent": "Fixora-App" } }
+      );
       const data = await res.json();
+
       if (data && data.display_name) {
         setValue("formattedAddress", data.display_name);
-        
-        // Extract city safely
-        const address = data.address;
-        const city = address.city || address.town || address.village || address.suburb || DEFAULT_CENTER.label;
+
+        const addr = data.address || {};
+        const city = addr.city || addr.town || addr.village || addr.state || DEFAULT_CENTER.label;
+        const area = addr.suburb || addr.neighbourhood || addr.district || "";
+
         setValue("city", city);
+        setValue("area", area);
       }
     } catch (error) {
-      console.error("Geocoding failed:", error);
+      console.error("Reverse geocoding failed:", error);
     }
   };
 
-  // Handle marker moving physically on the map
-  const handleMarkerChange = (pos: { lat: number, lng: number }) => {
+  // Handle marker moving on the map (click or drag)
+  const handleMarkerChange = (pos: { lat: number; lng: number }) => {
     setMarkerPos(pos);
     setValue("lat", pos.lat);
     setValue("lng", pos.lng);
     reverseGeocode(pos.lat, pos.lng);
   };
 
-  // Search Engine using Nominatim (OpenStreetMap)
+  // Search using Nominatim (free, no API key needed)
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
 
     setIsSearching(true);
     try {
-      const query = `${searchQuery}, ${activeCountry}`;
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&accept-language=${mapLanguage}`);
+      const query = encodeURIComponent(`${searchQuery}, ${activeCountry}`);
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${query}&limit=5&addressdetails=1&accept-language=${mapLanguage}`,
+        { headers: { "User-Agent": "Fixora-App" } }
+      );
       const data = await res.json();
-      setSearchResults(data);
+
+      if (data && data.length > 0) {
+        setSearchResults(data);
+      } else {
+        setSearchResults([]);
+        toast.error("No locations found.");
+      }
     } catch (error) {
-      toast.error("Failed to search location.");
+      setSearchResults([]);
+      toast.error("Search failed. Please try again.");
     } finally {
       setIsSearching(false);
     }
   };
 
   const selectSearchResult = (result: any) => {
-    const newPos = { lat: parseFloat(result.lat), lng: parseFloat(result.lon) };
+    const newPos = {
+      lat: parseFloat(result.lat),
+      lng: parseFloat(result.lon),
+    };
     setMarkerPos(newPos);
     setValue("lat", newPos.lat);
     setValue("lng", newPos.lng);
     setValue("formattedAddress", result.display_name);
+
+    const addr = result.address || {};
+    const city = addr.city || addr.town || addr.village || addr.state || DEFAULT_CENTER.label;
+    const area = addr.suburb || addr.neighbourhood || addr.district || "";
+    setValue("city", city);
+    setValue("area", area);
+
     setSearchQuery(result.display_name);
     setSearchResults([]);
   };
@@ -135,7 +163,7 @@ export default function LocationPage() {
         };
         handleMarkerChange(newPos);
         toast.dismiss();
-        toast.success("Location found map updated");
+        toast.success("Location found — map updated!");
       },
       () => {
         toast.dismiss();
@@ -168,11 +196,12 @@ export default function LocationPage() {
         </div>
         <div className="flex items-center justify-between">
             <p className="text-sm text-zinc-500 font-medium">Pinpoint exactly where you need our technicians to arrive.</p>
-            <div className="hidden md:flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20">
-              <ShieldCheck size={12} /> OpenStreetMap Secure
+            <div className="hidden md:flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/20">
+              <ShieldCheck size={12} /> Google Maps Secure
             </div>
         </div>
       </div>
+
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:h-[550px]">
@@ -272,7 +301,10 @@ export default function LocationPage() {
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Detected Area</label>
                   <p className="font-bold text-sm text-foreground bg-white dark:bg-slate-950 p-3.5 rounded-xl border border-zinc-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
-                    {watch("city")}
+                    <span>
+                      {watch("city")}
+                      {watch("area") && <span className="text-zinc-400 font-medium ml-1.5">/ {watch("area")}</span>}
+                    </span>
                     <MapIcon className="text-zinc-300" size={16} />
                   </p>
                 </div>

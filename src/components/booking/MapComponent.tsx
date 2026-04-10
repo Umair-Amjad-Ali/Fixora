@@ -1,20 +1,15 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-
-// Fix for Leaflet marker icons in Next.js environment
-if (typeof window !== "undefined") {
-  delete (L.Icon.Default.prototype as any)._getIconUrl;
-
-  L.Icon.Default.mergeOptions({
-    iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-    iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-    shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  });
-}
+import React, { useCallback, useEffect } from "react";
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+  useMap,
+  useApiIsLoaded,
+} from "@vis.gl/react-google-maps";
+import { Loader2, AlertTriangle } from "lucide-react";
 
 interface MapComponentProps {
   center: { lat: number; lng: number };
@@ -23,47 +18,96 @@ interface MapComponentProps {
   language?: "en" | "ar";
 }
 
-function LocationUpdater({ markerPos, setMarkerPos }: { markerPos: { lat: number; lng: number }, setMarkerPos: any }) {
-  const map = useMapEvents({
-    click(e: any) {
-      setMarkerPos({ lat: e.latlng.lat, lng: e.latlng.lng });
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
+function MapMarker({
+  markerPos,
+  onMarkerPosChange,
+}: {
+  markerPos: { lat: number; lng: number };
+  onMarkerPosChange: (pos: { lat: number; lng: number }) => void;
+}) {
+  const map = useMap();
 
-  // Pan to marker if it is changed externally (like from search)
   useEffect(() => {
-    if (markerPos) {
-      map.flyTo([markerPos.lat, markerPos.lng], 16, { animate: true });
+    if (map && markerPos) {
+      map.panTo(markerPos);
     }
-  }, [markerPos, map]);
-
-  return <Marker position={[markerPos.lat, markerPos.lng]} />;
-}
-
-export default function MapComponent({ center, markerPos, onMarkerPosChange, language = "en" }: MapComponentProps) {
-  // Use CartoDB Voyager for English (better global labels) and standard OSM for local (Arabic) labels
-  const tileUrl = language === "en" 
-    ? "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-
-  const attribution = language === "en"
-    ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    : '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+  }, [map, markerPos]);
 
   return (
-    <MapContainer 
-      center={[center.lat, center.lng]} 
-      zoom={13} 
-      scrollWheelZoom={true} 
-      style={{ height: "100%", width: "100%", zIndex: 0 }}
-      zoomControl={false}
+    <AdvancedMarker
+      position={markerPos}
+      draggable={true}
+      onDragEnd={(e: google.maps.MapMouseEvent) => {
+        if (e.latLng) {
+          onMarkerPosChange({
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng(),
+          });
+        }
+      }}
     >
-      <TileLayer
-        attribution={attribution}
-        url={tileUrl}
+      <Pin
+        background="#000000"
+        borderColor="#ffffff"
+        glyphColor="#ffffff"
+        scale={1.2}
       />
-      <LocationUpdater markerPos={markerPos} setMarkerPos={onMarkerPosChange} />
-    </MapContainer>
+    </AdvancedMarker>
+  );
+}
+
+function MapContent({ center, markerPos, onMarkerPosChange }: MapComponentProps) {
+  const isLoaded = useApiIsLoaded();
+
+  if (!isLoaded) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-50 dark:bg-slate-900">
+        <Loader2 className="animate-spin text-primary mb-2" size={32} />
+        <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Initializing Map...</span>
+      </div>
+    );
+  }
+
+  return (
+    <Map
+      defaultCenter={center}
+      defaultZoom={15}
+      mapId={process.env.NEXT_PUBLIC_GOOGLE_MAP_ID || "DEMO_MAP_ID"}
+      gestureHandling="greedy"
+      disableDefaultUI={true}
+      onClick={(e) => {
+        if (e.detail.latLng) {
+          onMarkerPosChange(e.detail.latLng);
+        }
+      }}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <MapMarker
+        markerPos={markerPos}
+        onMarkerPosChange={onMarkerPosChange}
+      />
+    </Map>
+  );
+}
+
+export default function MapComponent(props: MapComponentProps) {
+  const apiKey = (process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "").trim();
+
+  if (!apiKey) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-100 dark:bg-slate-900 p-8 text-center text-zinc-500">
+        <AlertTriangle className="text-amber-500 mb-2" size={24} />
+        <p className="text-xs font-bold uppercase tracking-widest">Maps API Key Missing</p>
+      </div>
+    );
+  }
+
+  return (
+    <APIProvider 
+      apiKey={apiKey} 
+      libraries={['marker', 'maps']}
+    >
+      <MapContent {...props} />
+    </APIProvider>
   );
 }

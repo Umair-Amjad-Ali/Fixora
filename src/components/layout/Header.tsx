@@ -126,14 +126,14 @@ export function Header() {
                           <User size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
                           <span className="text-sm font-black uppercase tracking-tight">My Profile</span>
                         </Link>
-                        {/* <Link 
+                        <Link 
                         href="/orders" 
                         onClick={() => setShowProfileMenu(false)}
                         className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-colors group"
                       >
                         <LayoutDashboard size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
                         <span className="text-sm font-black uppercase tracking-tight">My Bookings</span>
-                      </Link> */}
+                      </Link>
                         
                         <button 
                           onClick={handleLogout}
