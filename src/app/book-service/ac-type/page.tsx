@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 import { Button } from "@/components/ui/Button";
-import { AC_TYPES } from "@/lib/constants";
+import { AC_TYPES, AC_TYPE_ISSUES_MAP, SPLIT_AC_ISSUES } from "@/lib/constants";
 import { Snowflake, ArrowLeft, ArrowRight, CheckCircle2, MoreHorizontal } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -24,10 +24,15 @@ export default function ACTypePage() {
 
   const handleNext = () => {
     if (selectedAC) {
-      updateService({ issue: { ...bookingData.service.issue, type: selectedAC as any, label: selectedAC } });
+      updateService({ 
+        serviceSubType: selectedAC as any,
+        issue: { ...bookingData.service.issue, type: selectedAC as any, label: selectedAC } 
+      });
       router.push("/book-service/issue");
     }
   };
+
+  const currency = bookingData.service.currency || "SAR";
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -43,6 +48,11 @@ export default function ACTypePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {AC_TYPES.map((unit, i) => {
             const isSelected = selectedAC === unit.slug;
+            
+            // Get starting price for this unit type
+            const unitIssues = AC_TYPE_ISSUES_MAP[unit.slug as keyof typeof AC_TYPE_ISSUES_MAP] || SPLIT_AC_ISSUES;
+            const minPrice = Math.min(...unitIssues.filter(u => u.price).map(u => u.price || 0));
+
             return (
               <motion.button
                 key={unit.slug}
@@ -61,15 +71,23 @@ export default function ACTypePage() {
                 <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center text-2xl mb-4 transition-all
                    ${isSelected ? "bg-white/20 border-white" : "bg-zinc-50 dark:bg-slate-800 border-zinc-200 dark:border-slate-700 group-hover:scale-110 group-hover:bg-primary/5 group-hover:text-primary"}
                 `}>
-                   {unit.slug === "window_ac" ? "🔲" : i === 1 ? "🧊" : i === 2 ? "⭕" : "📦"}
+                   {unit.slug === "window_ac" ? "🔲" : unit.slug === "split_ac" ? "🧊" : "⭕"}
                 </div>
 
                 <h3 className={`text-lg font-black mb-1 ${isSelected ? "text-white" : "text-foreground group-hover:text-primary"} transition-colors`}>
                   {unit.name}
                 </h3>
-                <p className={`text-[10px] font-black uppercase tracking-widest ${isSelected ? "text-white/70" : "text-zinc-400 opacity-0 group-hover:opacity-100 transition-opacity"}`}>
-                  {unit.description}
-                </p>
+                
+                <div className="flex flex-col items-center gap-1.5">
+                   <p className={`text-[10px] font-black uppercase tracking-widest ${isSelected ? "text-white/70" : "text-zinc-400 group-hover:text-primary/70"} transition-colors`}>
+                     {unit.description}
+                   </p>
+                   {minPrice !== Infinity && (
+                      <span className={`text-[10px] font-black px-2.5 py-1 rounded-full ${isSelected ? "bg-white/20 text-white" : "bg-primary/10 text-primary border border-primary/20"}`}>
+                        Starts from {minPrice} {currency}
+                      </span>
+                   )}
+                </div>
 
                 {isSelected && (
                   <div className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white text-primary flex items-center justify-center shadow-lg">

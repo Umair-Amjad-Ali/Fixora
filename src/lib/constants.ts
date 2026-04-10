@@ -14,10 +14,10 @@ export interface ServiceCategory {
 }
 
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
-  { slug: "ac", name: "AC Maintenance", icon: "Wind", description: "AC repair, servicing & installation", hasSubTypes: true, startingPrice: 100 },
+  { slug: "ac", name: "AC Maintenance", icon: "Wind", description: "Expert servicing, repairs, and deep duct cleaning", hasSubTypes: true, startingPrice: 100 },
   { slug: "washing_machine", name: "Washing Machine", icon: "WashingMachine", description: "Automatic & semi-auto repair", hasSubTypes: false },
-  { slug: "refrigerator", name: "Refrigerator", icon: "Refrigerator", description: "Cooling repair & gas refill", hasSubTypes: false, startingPrice: 150 },
-  { slug: "electrical", name: "Electrical", icon: "Zap", description: "Wiring, switches & fixtures", hasSubTypes: false, startingPrice: 120 },
+  { slug: "refrigerator", name: "Refrigerator", icon: "Refrigerator", description: "Cooling repair & gas refill", hasSubTypes: false,},
+  { slug: "electrical", name: "Electrical", icon: "Zap", description: "Wiring, switches & fixtures", hasSubTypes: false, },
   { slug: "plumbing", name: "Plumbing", icon: "Droplets", description: "Pipes, leaks & fixtures", hasSubTypes: false },
   { slug: "painting", name: "Painting", icon: "PaintBucket", description: "Interior & exterior painting", hasSubTypes: false },
   { slug: "tile", name: "Tile / Stone Work", icon: "Square", description: "Tile repair & installation", hasSubTypes: false },
@@ -37,10 +37,9 @@ export interface ACTypeOption {
 }
 
 export const AC_TYPES: ACTypeOption[] = [
-  { slug: "window_ac", name: "Window AC", description: "Wall-mounted window units", hasIssues: false },
-  { slug: "split_ac", name: "Split AC", description: "Wall-mounted split systems", hasIssues: true },
-  { slug: "cassette_ac", name: "Cassette AC", description: "Ceiling-mounted cassette units", hasIssues: false },
-  { slug: "package_ac", name: "Package AC", description: "Large floor-standing package units", hasIssues: false },
+  { slug: "split_ac", name: "Split AC", description: "Standard wall-mounted unit", hasIssues: true },
+  { slug: "central_ac", name: "Central Air Conditioning", description: "Duct & ceiling systems", hasIssues: true },
+  { slug: "window_ac", name: "Window AC", description: "Wall-mounted window units", hasIssues: true },
 ];
 
 // ==========================================
@@ -51,16 +50,54 @@ export interface IssueOption {
   slug: IssueType;
   label: string;
   description: string;
+  price?: number;
 }
 
-export const AC_ISSUES: IssueOption[] = [
-  { slug: "not_cooling", label: "Not Cooling", description: "AC running but not cooling properly" },
-  { slug: "gas_leak", label: "Gas Leakage", description: "Refrigerant leak suspected" },
-  { slug: "noise", label: "Strange Noise", description: "Unusual sounds from the unit" },
-  { slug: "water_leak", label: "Water Leaking", description: "Water dripping from indoor unit" },
-  { slug: "not_turning_on", label: "Not Turning On", description: "Unit won't power on" },
-  { slug: "others", label: "Others", description: "Describe your issue" },
+// ==========================================
+// AC ISSUES BY TYPE (Based on Client Pricing Sheets)
+// ==========================================
+
+export const SPLIT_AC_ISSUES: IssueOption[] = [
+  { slug: "cleaning", label: "Air Conditioner Cleaning", description: "Professional cleaning of the split unit", price: 89 },
+  { slug: "repairing_leaks", label: "Reparing leaks", description: "Fixing water or gas leaks", price: 128 },
+  { slug: "full_refill", label: "Cleaning All Units + Freon Refill", description: "Full maintenance and gas refill", price: 170 },
+  { slug: "installation", label: "Installing New Air Condiner", description: "New split unit installation", price: 244 },
+  { slug: "disassembly_outside", label: "Diassamblya nd Assembly Outsdiie", description: "Relocation outside the property", price: 361 },
+  { slug: "board_work", label: "Disassembly and Assembly Elector Board", description: "Electronic board maintenance", price: 146 },
+  { slug: "fan_work", label: "Diaammablya nd Assembly an Oytdoor Fan", description: "External fan unit service", price: 156 },
+  { slug: "dynamo_change", label: "Changing the External Dymanno", description: "Compressor dynamo replacement", price: 146 },
+  { slug: "others", label: "Others / Not Listed", description: "Describe your specific problem (Price quoted on-site)" },
 ];
+
+export const WINDOW_AC_ISSUES: IssueOption[] = [
+  { slug: "cleaning", label: "AC Cleaning", description: "Standard window unit cleaning", price: 55 },
+  { slug: "repairing", label: "Reparinig", description: "General window AC repair", price: 150 },
+  { slug: "installation", label: "Installing New Air Conditioner", description: "Setup of a new window unit", price: 78 },
+  { slug: "disassembly", label: "Disassembly and Assembly (Indoe the Hosue)", description: "Inside house relocation", price: 87 },
+  { slug: "drain_cleaning", label: "Drain Cleaning", description: "Fixing clogged water drainage", price: 97 },
+  { slug: "dynamo_change", label: "Changing the Dynamo", description: "Unit motor dynamo replacement", price: 113 },
+  { slug: "others", label: "Others / Not Listed", description: "Describe your specific problem (Price quoted on-site)" },
+];
+
+export const CENTRAL_AC_ISSUES: IssueOption[] = [
+  { slug: "cabinet_install", label: "Installations of a Cabnit Air Conditioner", description: "Cabinet unit setup", price: 403 },
+  { slug: "board_work", label: "Electronic Board Installation and Removal", description: "PCB board maintenance", price: 250 },
+  { slug: "fan_work", label: "Installoling and Removing an Outdoor Fan", description: "External fan unit service", price: 207 },
+  { slug: "cassette_install", label: "Cassette Air Condition Installation", description: "Ceiling unit installation", price: 782 },
+  { slug: "interior_crystal", label: "Chnage the Split Interior Crystal", description: "Internal cooling element service", price: 230 },
+  { slug: "internal_dynamo", label: "Changing the Internal Engine Dynamo", description: "Core motor maintenance", price: 184 },
+  { slug: "coil_battery", label: "Changing the Coil - Coil - Battery", description: "Critical coil replacement", price: 104 },
+  { slug: "contactor_install", label: "Chaniginh and Installing Contarctir", description: "Electrical contactor service", price: 115 },
+  { slug: "others", label: "Others / Not Listed", description: "Describe your specific problem (Price quoted on-site)" },
+];
+
+export const AC_TYPE_ISSUES_MAP: Record<string, IssueOption[]> = {
+  split_ac: SPLIT_AC_ISSUES,
+  window_ac: WINDOW_AC_ISSUES,
+  central_ac: CENTRAL_AC_ISSUES,
+};
+
+export const AC_ISSUES: IssueOption[] = SPLIT_AC_ISSUES; // Fallback
 
 export const ELECTRICAL_ISSUES: IssueOption[] = [
   { slug: "power_outage", label: "Power Outage", description: "Sudden power trip or loss in home" },
@@ -162,12 +199,12 @@ export const SUB_SERVICES_MAP: Record<string, SubService[]> = {
     { id: "general_service", name: "General AC Servicing", description: "Filter cleaning, chemical wash of drain tray, and overall health check.", features: ["30 Day Warranty", "Chemical Wash", "Gas Check"], startingPrice: 100 },
     { id: "ac_repair", name: "AC Repair & Breakdown", description: "Emergency repair for non-cooling, noise, or power issues.", features: ["Express Arrival", "Certified Technicians", "6 Month Warranty"], startingPrice: 150 },
     { id: "duct_cleaning", name: "Duct & Coil Cleaning", description: "Deep sterilization of ducts and sanitization of coils.", features: ["Breathe Clean Air", "Removes Allergens", "2 Year Guarantee"], startingPrice: 300 },
-    { id: "installation", name: "New Unit Installation", description: "Professional installation of new AC units with copper piping.", features: ["Certified Installers", "Testing & Balancing", "Full Setup"], startingPrice: 400 },
+    { id: "installation", name: "New Unit Installation", description: "Professional installation of new AC units with copper piping.", features: ["Certified Installers", "Testing & Balancing", "Full Setup"], startingPrice: 350 },
   ],
   electrical: [
-    { id: "lights_fix", name: "Lighting & Fixtures", description: "Repairing or replacing light fixtures, LEDs, dimmers, and switches.", features: ["Safety First", "Material Included Option", "Expert Routing"], startingPrice: 120 },
-    { id: "socket_repair", name: "Sockets & Wiring", description: "Fixing burnt sockets and faulty residential wiring.", features: ["DEWA Approved Pros", "Safe Wiring Check"], startingPrice: 150 },
-    { id: "db_panel", name: "DB Panel & Breakers", description: "Troubleshooting frequent fuse tripping, overloaded breakers, and main boards.", features: ["Full Diagnostics", "Same Day Fix"], startingPrice: 200 },
+    { id: "lights_fix", name: "Lighting & Fixtures", description: "Repairing or replacing light fixtures, LEDs, dimmers, and switches.", features: ["Safety First", "Material Included Option", "Expert Routing"]},
+    { id: "socket_repair", name: "Sockets & Wiring", description: "Fixing burnt sockets and faulty residential wiring.", features: ["DEWA Approved Pros", "Safe Wiring Check"]},
+    { id: "db_panel", name: "DB Panel & Breakers", description: "Troubleshooting frequent fuse tripping, overloaded breakers, and main boards.", features: ["Full Diagnostics", "Same Day Fix"]},
   ],
   plumbing: [
     { id: "leakage", name: "Leak Detection & Repair", description: "Fixing visible and hidden leaks in bathrooms, ceilings, or kitchens.", features: ["Advanced Equipment", "No Mess Guaranteed", "Pipe Sealing"] },
@@ -195,8 +232,8 @@ export const SUB_SERVICES_MAP: Record<string, SubService[]> = {
     { id: "wm_install", name: "Installation & Setup", description: "Professional installation and plumbing connection for new units.", features: ["Testing & Calibration", "Leak-Proof Setup"] },
   ],
   refrigerator: [
-    { id: "fridge_repair", name: "Refrigerator Repair", description: "Fixing cooling issues, gas leakage, and compressor problems.", features: ["Certified Gas Refill", "Genuine Parts"], startingPrice: 150 },
-    { id: "fridge_service", name: "General Maintenance", description: "Internal cleaning, gasket replacement, and overall performance check.", features: ["Energy Save Check", "Deep Interior Clean"], startingPrice: 120 },
+    { id: "fridge_repair", name: "Refrigerator Repair", description: "Fixing cooling issues, gas leakage, and compressor problems.", features: ["Certified Gas Refill", "Genuine Parts"]},
+    { id: "fridge_service", name: "General Maintenance", description: "Internal cleaning, gasket replacement, and overall performance check.", features: ["Energy Save Check", "Deep Interior Clean"]},
   ],
   contractor: [
     { id: "civil_works", name: "Civil & Structural Works", description: "Concrete repairs, wall removals, and masonry work.", features: ["Engineered Solutions", "Permit Assistance"] },
@@ -298,11 +335,11 @@ export const PRIVACY_SECTIONS = [
   },
   {
     title: "How We Use Your Data",
-    content: "Your data is used solely to provide and improve Fixora's services, including connecting you with technicians, processing bookings, and sending service updates. We do not sell your personal data to third parties."
+    content: "Your data is used solely to provide and improve Dammam Home care pro's services, including connecting you with technicians, processing bookings, and sending service updates. We do not sell your personal data to third parties."
   },
   {
     title: "Location Privacy",
-    content: "Because Fixora is a location-based service, we use geolocation data to ensure technicians arrive at the correct address. We only access this data when you are actively using the platform to book or track a service."
+    content: "Because Dammam Home care pro is a location-based service, we use geolocation data to ensure technicians arrive at the correct address. We only access this data when you are actively using the platform to book or track a service."
   },
   {
     title: "Security Measures",

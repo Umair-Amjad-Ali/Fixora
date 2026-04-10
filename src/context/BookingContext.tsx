@@ -19,8 +19,8 @@ interface BookingContextType {
 
 const BookingContext = createContext<BookingContextType | undefined>(undefined);
 
-const STORAGE_KEY = "fixora_booking_data";
-const REGION_STORAGE_KEY = "fixora_selected_region";
+const STORAGE_KEY = "dammam_booking_data";
+const REGION_STORAGE_KEY = "dammam_selected_region";
 
 export function BookingProvider({ children }: { children: ReactNode }) {
   const [bookingData, setBookingData] = useState<BookingData>(DEFAULT_BOOKING_DATA as BookingData);

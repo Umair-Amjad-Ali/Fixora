@@ -17,12 +17,16 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Fixora | Home Services Platform",
+  title: "Dammam Home care pro | Home Services Platform",
   description: "Expert home services and electronics maintenance platform in Dubai and Saudi Arabia.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 import { BookingProvider } from "@/context/BookingContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { OrderProvider } from "@/context/OrderContext";
 
 export default function RootLayout({
   children,
@@ -36,15 +40,17 @@ export default function RootLayout({
     >
       <body className="font-sans min-h-full flex flex-col">
         <AuthProvider>
-          <BookingProvider>
-            <Header />
-            <RegionSelector />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <Footer />
-            <Toaster position="top-center" richColors />
-          </BookingProvider>
+          <OrderProvider>
+            <BookingProvider>
+              <Header />
+              <RegionSelector />
+              <main className="min-h-screen">
+                {children}
+              </main>
+              <Footer />
+              <Toaster position="top-center" richColors />
+            </BookingProvider>
+          </OrderProvider>
         </AuthProvider>
       </body>
     </html>

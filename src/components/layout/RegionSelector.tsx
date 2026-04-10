@@ -18,8 +18,15 @@ export function RegionSelector() {
 
   const handleSelect = (country: any) => {
     const countryCode = country === "KSA" ? "+966" : "+971";
-    updateLocation({ country });
-    updateBookingData({ user: { ...bookingData.user, countryCode } });
+    const currency = country === "KSA" ? "SAR" : "AED";
+    
+    // Update multiple parts of the context simultaneously
+    updateBookingData({
+      location: { ...bookingData.location, country },
+      user: { ...bookingData.user, countryCode },
+      service: { ...bookingData.service, currency }
+    });
+    
     setRegionModalOpen(false);
   };
 
@@ -61,7 +68,7 @@ export function RegionSelector() {
                 <Globe size={12} />
                 Select Your Region
               </motion.div>
-              <h2 className="text-2xl font-black text-foreground tracking-tight mb-2">Welcome to Fixora</h2>
+              <h2 className="text-2xl font-black text-foreground tracking-tight mb-2">Welcome to Dammam Home care pro</h2>
               <p className="text-zinc-500 font-medium text-[13px]">Choose your location for local pricing.</p>
             </div>
 

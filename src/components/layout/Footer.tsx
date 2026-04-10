@@ -14,7 +14,7 @@ export function Footer() {
               <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
                 <Wrench size={18} />
               </div>
-              <span className="font-bold text-lg">Fixora</span>
+              <span className="font-bold text-sm">Dammam Home care pro</span>
             </Link>
             <p className="text-sm text-zinc-500 mb-6">
               Expert home services and electronics maintenance platform serving Dubai and Saudi Arabia.
@@ -52,16 +52,16 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-foreground">Contact</h4>
             <ul className="space-y-2 text-sm text-zinc-500">
-              <li>🇦🇪 +971 800 FIXORA</li>
-              <li>🇸🇦 +966 9200 FIXORA</li>
-              <li>support@fixora.com</li>
+              <li>🇦🇪 +971 800 3456788</li>
+              <li>🇸🇦 +966 9200 6786588</li>
+              <li>support@dammamhomecarepro.com</li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row items-center justify-between">
           <p className="text-sm text-zinc-500">
-            &copy; {currentYear} Fixora. All rights reserved.
+            &copy; {currentYear} Dammam Home care pro. All rights reserved.
           </p>
           <div className="text-sm font-medium mt-4 md:mt-0 flex gap-4 text-zinc-400">
             <span>🇦🇪 Dubai</span>

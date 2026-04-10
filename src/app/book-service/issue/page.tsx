@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 import { Button } from "@/components/ui/Button";
-import { CATEGORY_ISSUES_MAP } from "@/lib/constants";
+import { CATEGORY_ISSUES_MAP, AC_TYPE_ISSUES_MAP, SPLIT_AC_ISSUES } from "@/lib/constants";
 import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, HelpCircle, Wrench, Droplet, Zap, Paintbrush, Loader2, Sparkles, LayoutGrid, Snowflake, HardHat } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -18,7 +18,12 @@ export default function IssuePage() {
   const [customBrief, setCustomBrief] = useState(bookingData.service.issue?.customDescription || "");
 
   const serviceType = bookingData.service.serviceType || "ac";
-  const issues = CATEGORY_ISSUES_MAP[serviceType as keyof typeof CATEGORY_ISSUES_MAP] || [];
+  const acType = bookingData.service.serviceSubType || "split_ac";
+  
+  // Use specialized AC issues if applicable, otherwise fallback to category map
+  const issues = serviceType === "ac" 
+    ? (AC_TYPE_ISSUES_MAP[acType] || SPLIT_AC_ISSUES)
+    : (CATEGORY_ISSUES_MAP[serviceType as keyof typeof CATEGORY_ISSUES_MAP] || []);
 
   // Dynamic Content Mapping
   const contentMap = {
@@ -47,15 +52,18 @@ export default function IssuePage() {
   };
 
   const handleNext = () => {
-    const selectedLabels = issues
-      .filter(i => selectedIssues.includes(i.slug))
-      .map(i => i.label);
+    const selectedOptions = issues.filter(i => selectedIssues.includes(i.slug));
+    const selectedLabels = selectedOptions.map(i => i.label);
+    
+    // Calculate total price if prices exist
+    const totalPrice = selectedOptions.reduce((sum, opt) => sum + (opt.price || 0), 0);
     
     updateService({ 
+      estimatedPrice: totalPrice > 0 ? totalPrice : (bookingData.service.estimatedPrice || 0),
       issue: { 
         ...bookingData.service.issue,
         selectedIssues: selectedIssues,
-        type: selectedIssues[0] || "custom", // Keep first one as primary type
+        type: selectedIssues[0] || "custom", 
         label: selectedLabels.length > 0 ? selectedLabels.join(", ") : "Custom",
         customDescription: customBrief
       } 
@@ -63,14 +71,18 @@ export default function IssuePage() {
     router.push("/book-service/user-details");
   };
 
+  const currency = bookingData.service.currency || "SAR";
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8 text-left">
-        <h2 className="text-2xl font-black mb-1.5 flex items-center gap-3">
+        <h2 className="text-2xl font-black mb-1.5 flex items-center gap-3 text-foreground">
           <AlertTriangle size={22} className="text-primary" />
           What's wrong?
         </h2>
-        <p className="text-sm text-zinc-500 font-medium">Select symptoms that best describe the issue.</p>
+        <p className="text-sm text-zinc-500 font-medium whitespace-pre-wrap">
+          {serviceType === "ac" && acType ? `Showing options for ${acType.replace("_", " ").toUpperCase()}` : "Select symptoms that best describe the issue."}
+        </p>
       </div>
 
       <div className="space-y-8">
@@ -84,7 +96,7 @@ export default function IssuePage() {
                 key={issue.slug}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
                 onClick={() => toggleIssue(issue.slug)}
                 className={`group flex items-center p-4.5 rounded-2xl border transition-all duration-300 relative text-left
                   ${isSelected 
@@ -99,11 +111,32 @@ export default function IssuePage() {
                     <CategoryIcon size={20} />
                  </div>
                  
-                 <div className="flex-1">
-                    <h3 className={`font-black uppercase tracking-tight text-[13px] ${isSelected ? "text-primary" : "text-foreground"}`}>
-                      {issue.label}
-                    </h3>
-                    <p className="text-[11px] text-zinc-500 font-medium line-clamp-1">{issue.description}</p>
+                 <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <h3 className={`font-black uppercase tracking-tight text-[12px] sm:text-[13px] leading-tight flex-1 ${isSelected ? "text-primary" : "text-foreground"}`}>
+                        {issue.label}
+                      </h3>
+                      {issue.price ? (
+                        <div className={`shrink-0 px-2.5 py-1 rounded-lg border text-[10px] font-black transition-all shadow-sm
+                          ${isSelected 
+                            ? "bg-primary text-white border-white/20 shadow-primary/20" 
+                            : "bg-zinc-100/80 dark:bg-slate-800 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-slate-700"
+                          }
+                        `}>
+                           {issue.price} <span className="opacity-70">{currency}</span>
+                        </div>
+                      ) : (
+                        <div className={`shrink-0 px-2.5 py-1 rounded-lg border border-dashed text-[9px] font-black transition-all
+                          ${isSelected 
+                            ? "bg-white/10 text-white border-white/30" 
+                            : "bg-zinc-50 dark:bg-slate-900 text-zinc-400 border-zinc-200 dark:border-slate-800"
+                          }
+                        `}>
+                           QUOTE ON-SITE
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-zinc-500 font-medium line-clamp-1 opacity-80">{issue.description}</p>
                  </div>
 
                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ml-3 transition-all

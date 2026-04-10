@@ -9,6 +9,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useBooking } from "@/context/BookingContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
+import { Tag } from "lucide-react";
 
 export function Header() {
   const { user, logout, loading } = useAuth();
@@ -58,9 +59,14 @@ export function Header() {
           <div className="bg-primary text-white p-2 rounded-2xl shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform duration-500">
             <Wrench size={22} strokeWidth={2.5} />
           </div>
-          <span className="font-black text-2xl tracking-tighter text-foreground">
-            FIXORA
-          </span>
+          <div className="flex flex-col -gap-1">
+            <span className="font-black text-2xl tracking-tighter text-foreground leading-none">
+              DHCP
+            </span>
+            <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary opacity-80">
+              Home Care
+            </span>
+          </div>
         </Link>
 
         {/* Navigation */}
@@ -73,6 +79,15 @@ export function Header() {
               `}
             >
               Services
+            </Link>
+            <Link 
+              href="/pricing"
+              className={`text-sm font-black uppercase tracking-widest transition-colors flex items-center gap-2
+                ${pathname === "/pricing" ? "text-primary" : "text-zinc-500 hover:text-foreground"}
+              `}
+            >
+              <Tag size={14} className="text-secondary" />
+              Check Prices
             </Link>
           </nav>
 
@@ -192,6 +207,14 @@ export function Header() {
                   className="text-lg font-black uppercase tracking-widest text-foreground py-2 border-b border-zinc-100 dark:border-slate-900"
                 >
                   Services
+                </Link>
+                <Link 
+                  href="/pricing" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-lg font-black uppercase tracking-widest text-foreground py-2 border-b border-zinc-100 dark:border-slate-900 flex items-center gap-3 text-left"
+                >
+                  <Tag size={18} className="text-primary" />
+                  Check Prices
                 </Link>
               </nav>
 

@@ -76,7 +76,7 @@ export function PromotionBanner() {
                    <ShieldCheck size={24} />
                 </div>
 
-                <h3 className="text-lg font-black text-white mb-4">Why Fixora?</h3>
+                <h3 className="text-lg font-black text-white mb-4">Why DHCP?</h3>
                 
                 <ul className="space-y-3">
                   {[

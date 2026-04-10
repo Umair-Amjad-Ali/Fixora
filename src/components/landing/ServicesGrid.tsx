@@ -188,7 +188,7 @@ export function ServicesGrid() {
                         
                         {service.startingPrice && (
                           <div className="flex flex-col items-end">
-                            <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 opacity-60">Price Estimates</span>
+                            <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 opacity-60">Average Price</span>
                             <span className="text-base font-black text-foreground">{getCurrency(bookingData.location.country || "UAE")} {service.startingPrice}</span>
                           </div>
                         )}

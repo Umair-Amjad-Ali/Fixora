@@ -7,7 +7,7 @@ import { Timestamp } from "firebase/firestore";
 export type ServiceStatus = "pending" | "in_progress" | "completed" | "cancelled";
 
 export type ServiceType = "ac" | "electrical" | "plumbing" | "painting" | "tile" | "cleaning" | "washing_machine" | "refrigerator" | "contractor";
-export type ACType = "window_ac" | "split_ac" | "cassette_ac" | "package_ac";
+export type ACType = "window_ac" | "split_ac" | "central_ac";
 export type IssueType = 
   | "not_cooling" | "gas_leak" | "noise" | "water_leak" | "not_turning_on" 
   | "power_outage" | "short_circuit" | "faulty_socket" | "light_fixing" | "db_trouble"

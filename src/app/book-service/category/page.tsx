@@ -77,15 +77,27 @@ export function CategoryPageContent() {
                })()}
             </div>
 
-            <h3 className="relative z-10 text-[15px] font-black text-foreground group-hover:text-primary transition-colors leading-tight mb-1">
+            <h3 className="relative z-10 text-[16px] font-black text-foreground group-hover:text-primary transition-colors leading-tight mb-1.5">
               {category.name}
             </h3>
-            <p className="relative z-10 text-[10px] font-bold text-zinc-400 uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">
-              View Specific Services
-            </p>
             
-            <div className="absolute bottom-5 right-5 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-               <ChevronRight size={16} className="text-primary" />
+            <p className="relative z-10 text-[11px] text-zinc-500 font-medium mb-4 line-clamp-2 px-2 opacity-80 group-hover:opacity-100 transition-opacity">
+              {category.description}
+            </p>
+
+            {category.startingPrice && (
+              <div className="relative z-10 mt-auto pt-3 border-t border-zinc-100 dark:border-slate-800 w-full flex flex-col items-center">
+                <span className="text-[8px] font-black uppercase tracking-widest text-zinc-400 mb-0.5">Starting From</span>
+                <span className="text-[13px] font-black text-primary">
+                  {bookingData.location.country === "KSA" ? "SAR" : "AED"} {category.startingPrice}
+                </span>
+              </div>
+            )}
+            
+            <div className="absolute bottom-4 right-4 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                 <ChevronRight size={14} />
+               </div>
             </div>
           </motion.button>
         ))}
