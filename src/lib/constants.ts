@@ -196,10 +196,10 @@ export interface SubService {
 
 export const SUB_SERVICES_MAP: Record<string, SubService[]> = {
   ac: [
-    { id: "general_service", name: "General AC Servicing", description: "Filter cleaning, chemical wash of drain tray, and overall health check.", features: ["30 Day Warranty", "Chemical Wash", "Gas Check"], startingPrice: 100 },
-    { id: "ac_repair", name: "AC Repair & Breakdown", description: "Emergency repair for non-cooling, noise, or power issues.", features: ["Express Arrival", "Certified Technicians", "6 Month Warranty"], startingPrice: 150 },
-    { id: "duct_cleaning", name: "Duct & Coil Cleaning", description: "Deep sterilization of ducts and sanitization of coils.", features: ["Breathe Clean Air", "Removes Allergens", "2 Year Guarantee"], startingPrice: 300 },
-    { id: "installation", name: "New Unit Installation", description: "Professional installation of new AC units with copper piping.", features: ["Certified Installers", "Testing & Balancing", "Full Setup"], startingPrice: 350 },
+    { id: "general_service", name: "General AC Servicing", description: "Filter cleaning, chemical wash of drain tray, and overall health check.", features: ["30 Day Warranty", "Chemical Wash", "Gas Check"]},
+    { id: "ac_repair", name: "AC Repair & Breakdown", description: "Emergency repair for non-cooling, noise, or power issues.", features: ["Express Arrival", "Certified Technicians", "1 Month Warranty"]},
+    { id: "duct_cleaning", name: "Duct & Coil Cleaning", description: "Deep sterilization of ducts and sanitization of coils.", features: ["Breathe Clean Air", "Removes Allergens", "1 Month Guarantee"]},
+    { id: "installation", name: "New Unit Installation", description: "Professional installation of new AC units with copper piping.", features: ["Certified Installers", "Testing & Balancing", "Full Setup"]},
   ],
   electrical: [
     { id: "lights_fix", name: "Lighting & Fixtures", description: "Repairing or replacing light fixtures, LEDs, dimmers, and switches.", features: ["Safety First", "Material Included Option", "Expert Routing"]},

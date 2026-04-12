@@ -1,12 +1,14 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import { Wrench, ShieldCheck, Zap, Users, Star } from "lucide-react";
+import { Wrench, ShieldCheck, Zap, Star } from "lucide-react";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export function Hero() {
+  const t = useTranslations("hero");
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -53,37 +55,37 @@ export function Hero() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-3xl text-left"
+            className="max-w-3xl text-left rtl:text-right"
           > 
              <motion.div 
                variants={itemVariants}
                className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 rounded-full text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-6 border border-emerald-500/20"
              >
                <ShieldCheck size={12} />
-               1-Month Service Warranty Included
+               {t("warrantyBadge")}
              </motion.div>
 
              <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-5 leading-[1.15]">
-               Premium Home Services, <br />
+               {t("titleLine1")} <br />
                <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-500">
-                 Delivered Instantly.
+                 {t("titleLine2")}
                </span>
              </motion.h1>
              
              <motion.p variants={itemVariants} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 mb-8 max-w-lg">
-               Dubai & Saudi Arabia&apos;s top-rated maintenance platform. From sudden AC breakdowns to emergency plumbing, our vetted experts arrive at your doorstep in record time.
+               {t("description")}
              </motion.p>
              
              {/* href="/book-service/category" */}
              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4">
                <Link href="/book-service/category" className="w-full sm:w-auto">
                  <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base hover:-translate-y-1 transition-all rounded-xl">
-                   Book a Technician
+                   {t("bookTechnician")}
                  </Button>
                </Link>
                <Link href="#services" className="w-full sm:w-auto">
                  <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-base bg-background/50 backdrop-blur-md rounded-xl hover:-translate-y-1 transition-all">
-                   View All Services
+                   {t("viewAllServices")}
                  </Button>
                </Link>
              </motion.div>
@@ -95,8 +97,8 @@ export function Hero() {
                    <Star size={20} fill="currentColor" />
                  </div>
                  <div className="flex flex-col">
-                   <span className="text-xl font-black text-foreground leading-none">4.9/5</span>
-                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">10k+ Reviews</span>
+                   <span className="text-xl font-black text-foreground leading-none">{t("ratingValue")}</span>
+                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">{t("ratingLabel")}</span>
                  </div>
                </div>
 
@@ -106,8 +108,8 @@ export function Hero() {
                    <ShieldCheck size={20} fill="currentColor" />
                  </div>
                  <div className="flex flex-col">
-                   <span className="text-xl font-black text-foreground leading-none">30 Day</span>
-                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">Work Warranty</span>
+                   <span className="text-xl font-black text-foreground leading-none">{t("warrantyValue")}</span>
+                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">{t("warrantyLabel")}</span>
                  </div>
                </div>
 
@@ -117,8 +119,8 @@ export function Hero() {
                    <Zap size={20} fill="currentColor" />
                  </div>
                  <div className="flex flex-col">
-                   <span className="text-xl font-black text-foreground leading-none">Fast</span>
-                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">Arrival Time</span>
+                   <span className="text-xl font-black text-foreground leading-none">{t("speedValue")}</span>
+                   <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-1">{t("speedLabel")}</span>
                  </div>
                </div>
              </motion.div>
@@ -142,9 +144,9 @@ export function Hero() {
                   <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500">
                     <Wrench size={24} />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-sm">AC Maintenance</h4>
-                    <p className="text-xs text-zinc-500">Technician on the way</p>
+                  <div className="rtl:text-right">
+                    <h4 className="font-bold text-sm">{t("acMaintenance")}</h4>
+                    <p className="text-xs text-zinc-500">{t("technicianOnWay")}</p>
                   </div>
                 </div>
                 <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-1.5 overflow-hidden">
@@ -170,13 +172,13 @@ export function Hero() {
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-background" />
                   </div>
-                  <div>
+                  <div className="rtl:text-right">
                     <h4 className="font-bold text-sm flex items-center gap-2">
                       Ahmed K. 
-                      <span className="bg-emerald-100 text-emerald-700 text-[10px] px-2 py-0.5 rounded-full font-bold">VERIFIED</span>
+                      <span className="bg-emerald-100 text-emerald-700 text-[10px] px-2 py-0.5 rounded-full font-bold">{t("verifiedBadge")}</span>
                     </h4>
                     <p className="text-xs text-zinc-500 flex items-center mt-1">
-                      <Star size={12} className="text-amber-400 mr-1" /> 4.9 (420 jobs)
+                      <Star size={12} className="text-amber-400 mr-1" /> {t("technicianJobs")}
                     </p>
                   </div>
                 </div>

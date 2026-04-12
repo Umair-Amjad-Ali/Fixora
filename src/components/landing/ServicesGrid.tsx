@@ -1,22 +1,23 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion, Variants, useMotionValue, useMotionTemplate } from "framer-motion";
 import { SERVICE_CATEGORIES } from "@/lib/constants";
 import * as LucideIcons from "lucide-react";
-import { ArrowRight, Sparkles, Navigation } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useBooking } from "@/context/BookingContext";
 import { getCurrency } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
-// Mock premium data mapping
-const premiumData: Record<string, { tag?: string }> = {
-  ac: { tag: "Most Popular" },
+// Mock premium data mapping with translation keys
+const premiumData: Record<string, { tagKey?: string }> = {
+  ac: { tagKey: "mostPopular" },
   electrical: {},
-  plumbing: { tag: "Emergency" },
+  plumbing: { tagKey: "emergency" },
   painting: {},
   tile: {},
-  cleaning: { tag: "Trending" },
+  cleaning: { tagKey: "trending" },
 };
 
 function BentoCard({ children, href, isWide }: { children: React.ReactNode, href: string, isWide: boolean }) {
@@ -63,6 +64,8 @@ function BentoCard({ children, href, isWide }: { children: React.ReactNode, href
 }
 
 export function ServicesGrid() {
+  const t = useTranslations("servicesGrid");
+  const tConstants = useTranslations("constants");
   const { bookingData } = useBooking();
 
   const containerVariants: Variants = {
@@ -96,8 +99,8 @@ export function ServicesGrid() {
         >
           <div className="max-w-xl">
             <h2 className="text-3xl md:text-5xl font-black tracking-tighter leading-tight text-foreground">
-              Solve any issue <br/>
-              <span className="text-zinc-400">with zero friction.</span>
+              {t("titleLine1")} <br/>
+              <span className="text-zinc-400">{t("titleLine2")}</span>
             </h2>
           </div>
         </motion.div>
@@ -137,14 +140,14 @@ export function ServicesGrid() {
                     {!isWide && service.startingPrice && (
                       <div className="px-2 py-1 rounded-xl bg-zinc-100/10 dark:bg-white/5 border border-zinc-200/50 dark:border-white/5 
                         flex flex-col items-end backdrop-blur-sm group-hover:bg-primary/5 transition-colors">
-                        <span className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5 opacity-50">Starts</span>
+                        <span className="text-[7px] font-black text-zinc-400 uppercase tracking-tighter mb-0.5 opacity-50">{t("starts")}</span>
                         <span className="text-[10px] font-black text-primary">{getCurrency(bookingData.location.country || "UAE")} {service.startingPrice}</span>
                       </div>
                     )}
 
-                    {extraData.tag && !isWide && !service.startingPrice && (
+                    {extraData.tagKey && !isWide && !service.startingPrice && (
                       <div className="bg-primary/5 dark:bg-primary/20 text-primary text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border border-primary/10 w-fit">
-                        {extraData.tag}
+                        {t(extraData.tagKey)}
                       </div>
                     )}
                   </div>
@@ -153,24 +156,26 @@ export function ServicesGrid() {
                   <div className={`flex flex-col ${isWide ? 'sm:w-3/4 justify-center' : 'flex-1'}`}>
                     <div className="flex items-center justify-between mb-2">
                       <h3 className={`font-black tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 ${isWide ? 'text-2xl' : 'text-lg'}`}>
-                        {service.name}
+                        {tConstants(`services.${service.slug}.name`)}
                       </h3>
-                      {extraData.tag && isWide && (
+                      {extraData.tagKey && isWide && (
                         <div className="bg-primary/5 dark:bg-primary/20 text-primary text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border border-primary/10">
-                          {extraData.tag}
+                          {t(extraData.tagKey)}
                         </div>
                       )}
                     </div>
                     
                     <p className={`text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed ${isWide ? 'text-sm pr-8' : 'text-[12px] mb-4'}`}>
-                      {service.description}
+                      {tConstants(`services.${service.slug}.description`)}
                     </p>
 
                     {/* Footer Interaction elements */}
                     {!isWide && (
                       <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-white/5">
-                        <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">Book Expert</span>
-                        <div className="w-7 h-7 rounded-full bg-zinc-50 dark:bg-white/5 flex items-center justify-center text-zinc-300 dark:text-slate-700 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                        <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">
+                          {t("bookExpert")}
+                        </span>
+                        <div className="w-7 h-7 rounded-full bg-zinc-50 dark:bg-white/5 flex items-center justify-center text-zinc-300 dark:text-slate-700 group-hover:bg-primary group-hover:text-white transition-all duration-500 rtl:rotate-180">
                           <ArrowRight size={12} />
                         </div>
                       </div>
@@ -180,15 +185,15 @@ export function ServicesGrid() {
                       <div className="mt-6 flex items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
                           <div className="h-8 w-8 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20 
-                            transition-all group-hover:bg-slate-900 dark:group-hover:bg-white dark:group-hover:text-slate-900">
+                            transition-all group-hover:bg-slate-900 dark:group-hover:bg-white dark:group-hover:text-slate-900 rtl:rotate-180">
                             <ArrowRight size={14} />
                           </div>
-                          <span className="text-xs font-black uppercase tracking-widest">Book Now</span>
+                          <span className="text-xs font-black uppercase tracking-widest">{t("bookNow")}</span>
                         </div>
                         
                         {service.startingPrice && (
                           <div className="flex flex-col items-end">
-                            <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 opacity-60">Average Price</span>
+                            <span className="text-[8px] font-black text-zinc-400 uppercase tracking-widest mb-0.5 opacity-60">{t("priceEstimates")}</span>
                             <span className="text-base font-black text-foreground">{getCurrency(bookingData.location.country || "UAE")} {service.startingPrice}</span>
                           </div>
                         )}

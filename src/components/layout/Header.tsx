@@ -1,17 +1,20 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import { Wrench, LogIn, UserPlus, LogOut, LayoutDashboard, ChevronDown, User, Menu, X } from "lucide-react";
+import { Link, useRouter, usePathname } from "@/i18n/routing";
+import { Wrench, LogIn, UserPlus, LogOut, LayoutDashboard, ChevronDown, User, Menu, X, Tag } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/context/AuthContext";
 import { useBooking } from "@/context/BookingContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { Tag } from "lucide-react";
+
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
+  const t = useTranslations("header");
+  const tc = useTranslations("common");
   const { user, logout, loading } = useAuth();
   const { bookingData, updateLocation, setRegionModalOpen } = useBooking();
   const router = useRouter();
@@ -37,10 +40,10 @@ export function Header() {
   const handleLogout = async () => {
     try {
       await logout();
-      toast.success("Signed out successfully");
+      toast.success(t("signedOutSuccess"));
       router.push("/");
     } catch (error) {
-      toast.error("Logout failed");
+      toast.error(t("logoutFailed"));
     }
   };
 
@@ -78,7 +81,7 @@ export function Header() {
                 ${pathname === "/#services" ? "text-primary" : "text-zinc-500 hover:text-foreground"}
               `}
             >
-              Services
+              {t("services")}
             </Link>
             <Link 
               href="/pricing"
@@ -87,7 +90,7 @@ export function Header() {
               `}
             >
               <Tag size={14} className="text-secondary" />
-              Check Prices
+              {tc("checkPrices") || "Check Prices"}
             </Link>
           </nav>
 
@@ -102,9 +105,11 @@ export function Header() {
             >
               <span className="text-base lg:text-lg leading-none mt-0.5">{bookingData.location.country === "KSA" ? "🇸🇦" : "🇦🇪"}</span>
               <span className="text-[9px] lg:text-[11px] font-black uppercase tracking-tight lg:tracking-widest text-zinc-500 group-hover:text-primary transition-colors">
-                {bookingData.location.country || "Region"}
+                {bookingData.location.country || tc("region")}
               </span>
             </button>
+
+            <LanguageSwitcher />
 
             {!isAuthPage && (
               loading ? (
@@ -130,32 +135,32 @@ export function Header() {
                         className="absolute top-full right-0 mt-3 w-56 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden p-2 z-60"
                       >
                         <div className="px-4 py-3 border-b border-zinc-100 dark:border-slate-900 mb-2">
-                          <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Active Account</p>
+                          <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{t("activeAccount")}</p>
                           <p className="text-xs font-bold truncate text-foreground">{user.email}</p>
                         </div>
                         <Link 
                           href="/profile" 
                           onClick={() => setShowProfileMenu(false)}
-                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-colors group"
+                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-all group rtl:text-right"
                         >
                           <User size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
-                          <span className="text-sm font-black uppercase tracking-tight">My Profile</span>
+                          <span className="text-sm font-black uppercase tracking-tight">{t("myProfile")}</span>
                         </Link>
                         <Link 
                         href="/orders" 
                         onClick={() => setShowProfileMenu(false)}
-                        className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-colors group"
+                        className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-all group rtl:text-right"
                       >
                         <LayoutDashboard size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
-                        <span className="text-sm font-black uppercase tracking-tight">My Bookings</span>
+                        <span className="text-sm font-black uppercase tracking-tight">{t("myBookings")}</span>
                       </Link>
                         
                         <button 
                           onClick={handleLogout}
-                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 transition-colors group"
+                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 transition-all group rtl:text-right"
                         >
                           <LogOut size={18} className="group-hover:scale-110 transition-transform" />
-                          <span className="text-sm font-black uppercase tracking-tight">Sign Out</span>
+                          <span className="text-sm font-black uppercase tracking-tight">{tc("signOut")}</span>
                         </button>
                       </motion.div>
                     )}
@@ -166,13 +171,13 @@ export function Header() {
                   <Link href="/auth/login" className="hidden lg:block">
                     <Button variant="ghost" size="sm" className="h-10 px-5 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2">
                       <LogIn size={15} />
-                      Sign In
+                      {tc("signIn")}
                     </Button>
                   </Link>
                   <Link href="/auth/signup" className="hidden sm:block">
                     <Button size="sm" className="h-10 px-5 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2 shadow-lg shadow-primary/20">
                       <UserPlus size={15} />
-                      Sign Up
+                      {tc("signUp")}
                     </Button>
                   </Link>
                 </div>
@@ -206,7 +211,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-lg font-black uppercase tracking-widest text-foreground py-2 border-b border-zinc-100 dark:border-slate-900"
                 >
-                  Services
+                  {t("services")}
                 </Link>
                 <Link 
                   href="/pricing" 
@@ -214,7 +219,7 @@ export function Header() {
                   className="text-lg font-black uppercase tracking-widest text-foreground py-2 border-b border-zinc-100 dark:border-slate-900 flex items-center gap-3 text-left"
                 >
                   <Tag size={18} className="text-primary" />
-                  Check Prices
+                  {tc("checkPrices") || "Check Prices"}
                 </Link>
               </nav>
 
@@ -223,13 +228,13 @@ export function Header() {
                   <Link href="/auth/login" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button variant="outline" className="w-full h-14 rounded-2xl font-black uppercase tracking-widest text-xs gap-3">
                       <LogIn size={18} />
-                      Sign In
+                      {tc("signIn")}
                     </Button>
                   </Link>
                   <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button className="w-full h-14 rounded-2xl font-black uppercase tracking-widest text-xs gap-3 shadow-xl shadow-primary/20">
                       <UserPlus size={18} />
-                      Sign Up
+                      {tc("signUp")}
                     </Button>
                   </Link>
                 </div>
