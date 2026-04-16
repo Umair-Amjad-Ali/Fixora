@@ -21,7 +21,11 @@
     "region": "المنطقة",
     "viewDetails": "عرض التفاصيل",
     "checkPrices": "تحقق من الأسعار",
-    "processing": "جاري المعالجة..."
+    "processing": "جاري المعالجة...",
+    "menu": "القائمة",
+    "settings": "الإعدادات",
+    "language": "اللغة",
+    "getStarted": "ابدأ الآن"
   },
   "header": {
     "services": "الخدمات",

@@ -21,7 +21,11 @@
     "region": "Region",
     "viewDetails": "View Details",
     "checkPrices": "Check Prices",
-    "processing": "Processing..."
+    "processing": "Processing...",
+    "menu": "Menu",
+    "settings": "Settings",
+    "language": "Language",
+    "getStarted": "Get Started"
   },
   "header": {
     "services": "Services",
