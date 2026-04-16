@@ -113,7 +113,7 @@ export default function ProfilePage() {
                    {userProfile?.name ? userProfile.name[0].toUpperCase() : user.email?.[0].toUpperCase()}
                 </div>
               </motion.div>
-              <div className="text-center md:text-left">
+              <div className="text-center md:text-start rtl:text-right">
                 <motion.h1 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -132,6 +132,7 @@ export default function ProfilePage() {
                    </span>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

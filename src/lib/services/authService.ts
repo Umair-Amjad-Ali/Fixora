@@ -8,9 +8,6 @@ import {
 import { auth, db } from "@/lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 
-/**
- * Friendly error messages for Firebase Authentication codes.
- */
 export const getAuthErrorMessage = (errorCode: string) => {
   switch (errorCode) {
     // Login errors
@@ -38,26 +35,18 @@ export const getAuthErrorMessage = (errorCode: string) => {
   }
 };
 
-/**
- * Logic for signing in a user with email and password.
- */
 export const loginUser = async (email: string, password: string) => {
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
-/**
- * Logic for creating a new user account, updating profile, and creating a Firestore user document.
- */
 export const registerUser = async ({ name, email, phone, password }: any) => {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
 
-  // 1. Update Profile Display Name
   await updateProfile(user, {
     displayName: name,
   });
 
-  // 2. Create User Document in Firestore
   await setDoc(doc(db, "users", user.uid), {
     uid: user.uid,
     name,
@@ -69,14 +58,9 @@ export const registerUser = async ({ name, email, phone, password }: any) => {
     createdAt: serverTimestamp(),
   });
 
-  // 3. Significance: newly created users are logged in by default in Firebase Client SDK.
-  // We opt-out of auto-login for safety or redirect flow if needed.
   return user;
 };
 
-/**
- * Logic for signing out the current user.
- */
 export const logoutUser = async () => {
   return await signOut(auth);
 };

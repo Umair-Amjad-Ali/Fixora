@@ -97,11 +97,11 @@ export function Header() {
           <div className="h-6 w-px bg-zinc-200 dark:bg-slate-800 hidden md:block" />
 
           {/* Auth Actions & Mobile Toggle */}
-          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
             {/* Region Switcher */}
             <button 
               onClick={() => setRegionModalOpen(true)}
-              className="flex items-center justify-center gap-1.5 h-10 px-2 lg:px-4 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl hover:border-primary/40 transition-all mr-1 lg:mr-2 group"
+              className="flex items-center justify-center gap-1.5 h-10 px-2 lg:px-4 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl hover:border-primary/40 transition-all me-1 lg:me-2 group"
             >
               <span className="text-base lg:text-lg leading-none mt-0.5">{bookingData.location.country === "KSA" ? "🇸🇦" : "🇦🇪"}</span>
               <span className="text-[9px] lg:text-[11px] font-black uppercase tracking-tight lg:tracking-widest text-zinc-500 group-hover:text-primary transition-colors">
@@ -118,7 +118,7 @@ export function Header() {
                 <div className="relative">
                   <button 
                     onClick={() => setShowProfileMenu(!showProfileMenu)}
-                    className="flex items-center gap-2 p-1.5 pr-3 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-2xl hover:border-primary/40 transition-all active:scale-95"
+                    className="flex items-center gap-2 p-1.5 pe-3 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-2xl hover:border-primary/40 transition-all active:scale-95"
                   >
                     <div className="w-8 h-8 rounded-xl bg-primary text-white flex items-center justify-center font-black text-xs">
                       {user.email?.[0].toUpperCase()}
@@ -132,40 +132,41 @@ export function Header() {
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        className="absolute top-full right-0 mt-3 w-56 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden p-2 z-60"
+                        className="absolute top-full right-0 rtl:right-auto rtl:left-0 mt-3 w-56 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden p-2 z-60"
                       >
-                        <div className="px-4 py-3 border-b border-zinc-100 dark:border-slate-900 mb-2">
+                        <div className="px-4 py-3 border-b border-zinc-100 dark:border-slate-900 mb-2 rtl:text-right">
                           <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{t("activeAccount")}</p>
                           <p className="text-xs font-bold truncate text-foreground">{user.email}</p>
                         </div>
                         <Link 
                           href="/profile" 
                           onClick={() => setShowProfileMenu(false)}
-                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-all group rtl:text-right"
+                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-all group"
                         >
                           <User size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
-                          <span className="text-sm font-black uppercase tracking-tight">{t("myProfile")}</span>
+                          <span className="text-sm font-black uppercase tracking-tight flex-1 rtl:text-right">{t("myProfile")}</span>
                         </Link>
                         <Link 
                         href="/orders" 
                         onClick={() => setShowProfileMenu(false)}
-                        className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-all group rtl:text-right"
+                        className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-zinc-50 dark:hover:bg-slate-900 text-foreground transition-all group"
                       >
                         <LayoutDashboard size={18} className="text-zinc-400 group-hover:text-primary transition-colors" />
-                        <span className="text-sm font-black uppercase tracking-tight">{t("myBookings")}</span>
+                        <span className="text-sm font-black uppercase tracking-tight flex-1 rtl:text-right">{t("myBookings")}</span>
                       </Link>
                         
                         <button 
                           onClick={handleLogout}
-                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 transition-all group rtl:text-right"
+                          className="flex items-center gap-3 w-full px-4 py-3 rounded-2xl hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 transition-all group"
                         >
                           <LogOut size={18} className="group-hover:scale-110 transition-transform" />
-                          <span className="text-sm font-black uppercase tracking-tight">{tc("signOut")}</span>
+                          <span className="text-sm font-black uppercase tracking-tight flex-1 rtl:text-right">{tc("signOut")}</span>
                         </button>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
+
               ) : (
                 <div className="flex items-center gap-2">
                   <Link href="/auth/login" className="hidden lg:block">
