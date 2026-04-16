@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "sonner";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { RegionSelector } from "@/components/layout/RegionSelector";
@@ -30,7 +29,7 @@ import { routing } from '@/i18n/routing';
 import { BookingProvider } from "@/context/BookingContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { OrderProvider } from "@/context/OrderContext";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { ClientProviders } from "@/components/providers/ClientProviders";
 
 export default async function RootLayout({
   children,
@@ -66,11 +65,11 @@ export default async function RootLayout({
                 <Header />
                 <RegionSelector />
                 <main className="min-h-screen">
-                  {children}
+                  <ClientProviders>
+                    {children}
+                  </ClientProviders>
                 </main>
                 <Footer />
-                <WhatsAppButton />
-                <Toaster position="top-center" richColors />
               </BookingProvider>
             </OrderProvider>
           </AuthProvider>

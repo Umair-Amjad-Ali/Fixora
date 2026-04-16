@@ -27,8 +27,9 @@ export function Hero() {
   };
 
   return (
-    <section className="relative flex flex-col justify-center overflow-hidden bg-background border-b border-border pt-20 pb-16">
+    <section className="relative flex flex-col justify-center overflow-hidden bg-background border-b border-border section-padding">
       {/* Animated Background Gradients */}
+      {/* ... keeping motion divs ... */}
       <motion.div 
         animate={{ 
           scale: [1, 1.2, 1],
@@ -48,7 +49,7 @@ export function Hero() {
         className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none" 
       />
 
-      <div className="container mx-auto pt-10 px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+      <div className="container-tight relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           <motion.div 

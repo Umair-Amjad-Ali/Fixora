@@ -131,12 +131,12 @@ export default function ProfileDashboard() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-[#030712]">
       {/* Hero Banner */}
-      <div className="pt-28 pb-20 bg-zinc-950 overflow-hidden relative border-b border-white/5">
+      <div className="pt-24 pb-20 bg-zinc-950 overflow-hidden relative border-b border-white/5">
         <div className="absolute inset-0 bg-linear-to-r from-primary/10 to-emerald-500/10" />
         <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 -right-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-[80px]" />
 
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+        <div className="container-tight relative z-10">
           <Link 
             href="/" 
             className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-4 w-fit group"
@@ -156,11 +156,11 @@ export default function ProfileDashboard() {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl -mt-8 relative z-20 pb-24">
+      <div className="container-tight -mt-8 relative z-20 pb-24">
         
         {/* Filter & Tab Bar */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 p-1.5 rounded-2xl w-full lg:w-fit overflow-x-auto shadow-sm">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+          <div className="grid grid-cols-2 lg:flex lg:flex-row items-center gap-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 p-1.5 rounded-2xl w-full lg:w-fit shadow-sm">
             {TAB_OPTIONS.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -168,13 +168,13 @@ export default function ProfileDashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all font-black text-xs whitespace-nowrap ${
+                  className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all font-black text-[10px] sm:text-xs whitespace-nowrap border ${
                     isActive
-                      ? "bg-primary text-white shadow-lg shadow-primary/20"
-                      : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+                      ? "bg-primary border-primary text-white shadow-lg shadow-primary/20 scale-[1.02]"
+                      : "bg-zinc-50 dark:bg-slate-800/50 border-zinc-100 dark:border-slate-800/50 text-zinc-500 hover:text-primary hover:bg-primary/5 hover:border-primary/20"
                   }`}
                 >
-                  <Icon size={14} />
+                  <Icon size={14} className={isActive ? "text-white" : "text-primary/70"} />
                   {t(tab.labelKey)}
                 </button>
               );

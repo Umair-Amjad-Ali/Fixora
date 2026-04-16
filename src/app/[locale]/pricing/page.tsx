@@ -6,8 +6,31 @@ import {
   Tag, 
   Info, 
   ShieldCheck,
-  ArrowRight
+  ArrowRight,
+  Wrench,
+  Snowflake,
+  Droplets,
+  Zap,
+  Paintbrush,
+  Layers,
+  Smartphone,
+  ClipboardCheck,
+  Utensils
 } from "lucide-react";
+
+const IconMap: Record<string, any> = {
+  Wrench,
+  Snowflake,
+  Droplets,
+  Zap,
+  Paintbrush,
+  Layers,
+  Smartphone,
+  ClipboardCheck,
+  ShieldCheck,
+  Utensils
+};
+
 import { 
   SERVICE_CATEGORIES, 
   AC_TYPE_ISSUES_MAP, 
@@ -16,7 +39,7 @@ import {
   IssueOption
 } from "@/lib/constants";
 import { ServiceType, ACType } from "@/types";
-import * as LucideIcons from "lucide-react";
+
 import { useRouter } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 import { useTranslations, useLocale } from "next-intl";
@@ -56,13 +79,13 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#030712] pt-24 pb-16">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container-tight">
         {/* Page Header */}
         <div className="mb-8">
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col md:flex-row md:items-end justify-between gap-4"
+            className="flex flex-col md:flex-row md:items-end justify-between gap-6"
           >
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -82,7 +105,7 @@ export default function PricingPage() {
             </div>
 
             {/* Region Switcher */}
-            <div className="flex p-1 bg-zinc-100 dark:bg-slate-900 rounded-xl border border-zinc-200 dark:border-slate-800 w-fit">
+            <div className="flex p-1 bg-zinc-100 dark:bg-slate-900 rounded-xl border border-zinc-200 dark:border-slate-800 w-fit shrink-0">
               <button 
                 onClick={() => setRegion("UAE")}
                 className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all
@@ -103,60 +126,64 @@ export default function PricingPage() {
           </motion.div>
         </div>
 
-        {/* Main Content Layout */}
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* Sidebar - Category Navigator */}
-          <aside className="lg:w-64 shrink-0">
-            <div className="sticky top-28 space-y-1">
-              {SERVICE_CATEGORIES.map((cat) => {
-                const Icon = (LucideIcons as any)[cat.icon] || LucideIcons.Wrench;
-                const isActive = activeCategory === cat.slug;
-                return (
-                  <motion.button
-                    key={cat.slug}
-                    onClick={() => setActiveCategory(cat.slug)}
-                    className={`flex items-center justify-between w-full px-4 py-2.5 rounded-xl transition-all group
-                      ${isActive 
-                        ? "bg-primary text-white shadow-md shadow-primary/10" 
-                        : "bg-transparent text-zinc-500 hover:bg-zinc-50 dark:hover:bg-slate-900"
-                      }
-                    `}
-                  >
-                    <div className="flex items-center gap-3">
-                      <Icon size={16} className={isActive ? "text-white" : "group-hover:text-primary transition-colors"} />
-                      <span className="text-[11px] font-black uppercase tracking-tight">
-                        {t(`constants.services.${cat.slug}.name`)}
-                      </span>
-                    </div>
-                  </motion.button>
-                );
-              })}
-            </div>
-          </aside>
+        {/* Categories Tab Bar - Optimized for all devices */}
+        <div className="mb-8 overflow-x-auto no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0">
+          <div className="flex lg:flex-wrap items-center gap-2 pb-2">
+            {SERVICE_CATEGORIES.map((cat) => {
+              const Icon = IconMap[cat.icon] || Wrench;
+              const isActive = activeCategory === cat.slug;
+              return (
+                <button
+                  key={cat.slug}
+                  onClick={() => setActiveCategory(cat.slug)}
+                  className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl transition-all whitespace-nowrap border shrink-0
+                    ${isActive 
+                      ? "bg-primary border-primary text-white shadow-lg shadow-primary/15 scale-[1.02]" 
+                      : "bg-white dark:bg-slate-900 border-zinc-200 dark:border-slate-800 text-zinc-500 hover:bg-zinc-50 dark:hover:bg-slate-800"
+                    }
+                  `}
+                >
+                  <Icon size={16} className={isActive ? "text-white" : "text-zinc-400"} />
+                  <span className="text-[11px] font-black uppercase tracking-tight">
+                    {t(`constants.services.${cat.slug}.name`)}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
+        {/* Main Content Layout */}
+        <div className="flex flex-col gap-6">
           {/* Pricing Grid Area */}
           <main className="flex-1 min-w-0">
-            {/* Context bar (Filters) */}
-            <div className="bg-zinc-50 dark:bg-slate-900/50 border border-zinc-200 dark:border-slate-800 rounded-2xl p-4 mb-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                   <div className="w-2 h-2 rounded-full bg-primary" />
-                   <span className="text-[11px] font-black uppercase tracking-widest text-foreground">
-                     {t(`constants.services.${activeCategory}.name`)} 
-                     {activeCategory === "ac" && ` / ${t(`constants.acTypes.${activeACType}.name`)}`}
-                   </span>
+            {/* Context bar (Filters) - Enhanced UI */}
+            <div className="bg-zinc-50 dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 mb-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                   <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                   <div className="flex flex-col">
+                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-0.5">
+                       {t(`pricingPage.showingResults`)}
+                     </span>
+                     <span className="text-xs sm:text-sm font-black text-foreground">
+                       {t(`constants.services.${activeCategory}.name`)} 
+                       {activeCategory === "ac" && <span className="text-primary mx-1">/</span>}
+                       {activeCategory === "ac" && <span className="text-primary">{t(`constants.acTypes.${activeACType}.name`)}</span>}
+                     </span>
+                   </div>
                 </div>
 
                 {activeCategory === "ac" && (
-                  <div className="flex gap-1 p-1 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-xl">
+                  <div className="flex gap-1.5 p-1.5 bg-zinc-100 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-2xl w-full sm:w-auto overflow-x-auto no-scrollbar">
                     {AC_TYPES.map((type) => (
                       <button
                         key={type.slug}
                         onClick={() => setActiveACType(type.slug)}
-                        className={`px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all
+                        className={`px-4 py-2 rounded-xl text-[10px] sm:text-[11px] font-black uppercase tracking-wider transition-all whitespace-nowrap
                         ${activeACType === type.slug 
-                          ? "bg-primary text-white" 
-                          : "text-zinc-400 hover:text-zinc-600"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20" 
+                          : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 hover:bg-white/50 dark:hover:bg-slate-800"
                         }
                         `}
                       >

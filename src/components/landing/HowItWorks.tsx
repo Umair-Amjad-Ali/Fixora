@@ -166,12 +166,12 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="py-32 bg-white dark:bg-[#030712] relative overflow-hidden" ref={containerRef}>
+    <section id="how-it-works" className="bg-white dark:bg-[#030712] relative overflow-hidden section-padding" ref={containerRef}>
       {/* Background Decor - Large Soft Orbs */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+      <div className="container-tight relative z-10">
         
         <div className={`flex flex-col md:flex-row md:items-end justify-between gap-12 mb-32 ${isRtl ? 'md:flex-row-reverse' : ''}`}>
           <div className={`max-w-2xl ${isRtl ? 'text-right' : 'text-left'}`}>

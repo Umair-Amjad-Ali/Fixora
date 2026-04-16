@@ -71,11 +71,11 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-[#030712] pb-20 overflow-x-hidden">
       {/* Top Banner Decoration */}
-      <div className="pt-28 pb-16 bg-zinc-950 overflow-hidden relative border-b border-white/5">
+      <div className="pt-24 pb-16 bg-zinc-950 overflow-hidden relative border-b border-white/5">
         <div className="absolute inset-0 bg-linear-to-r from-primary/10 to-secondary/10" />
         <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
         <div className="absolute top-10 -right-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-[80px]" />
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+        <div className="container-tight relative z-10">
           <Link 
             href="/" 
             className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-4 w-fit group"
@@ -87,10 +87,8 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
             const isCategoryStep = pathname === "/book-service/category";
             const selectedCategory = SERVICE_CATEGORIES.find(c => c.slug === bookingData.service.serviceType);
             
-            // If we are on the first step (category selection) or no category is picked yet,
-            // we show the default "Configure Your Service" title.
             return (
-              <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-8">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight mb-8">
                 {(isCategoryStep || !selectedCategory) 
                   ? t("configureService") 
                   : t("configure", { name: tServices(`${selectedCategory.slug}.name`) })}
@@ -100,7 +98,7 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 max-w-5xl -mt-12 relative z-20">
+      <div className="container mx-auto px-4 max-w-5xl -mt-12 relative z-20">
         <div className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-2xl sm:rounded-[2.5rem] shadow-2xl p-4 sm:p-6 md:p-12">
           {/* Progress Section */}
           <div className="mb-10 border-b border-zinc-100 dark:border-slate-800 pb-8">

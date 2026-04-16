@@ -10,8 +10,8 @@ export default function ContactPage() {
   const t = useTranslations('contactPage');
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
+    <div className="min-h-screen pt-24 pb-20">
+      <div className="container-tight">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -47,9 +47,49 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on header height */
+  overflow-x: hidden; /* Prevent horizontal overflow from background orbs */
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@layer utilities {
+  .container-tight {
+    @apply container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Fluid Typography / Heading adjustments for smaller screens */
+@media (max-width: 640px) {
+  h1 { @apply !text-3xl; }
+  h2 { @apply !text-2xl; }
+  .section-padding { @apply !pt-28 !pb-16; } /* Increased top padding for 80px fixed header */
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  h1 { @apply !text-4xl; }
+  h2 { @apply !text-3xl; }
+  .section-padding { @apply !pt-32 !pb-20; }
+}
+
+@media (min-width: 1025px) {
+  .section-padding { @apply !pt-36 !pb-28; }
 }
 
 h1, h2, h3, h4, h5, h6 {

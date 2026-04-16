@@ -4,8 +4,34 @@ import React from "react";
 import { Link } from "@/i18n/routing";
 import { motion, Variants, useMotionValue, useMotionTemplate } from "framer-motion";
 import { SERVICE_CATEGORIES } from "@/lib/constants";
-import * as LucideIcons from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { 
+  ArrowRight,
+  Wrench,
+  Snowflake,
+  Droplets,
+  Zap,
+  Paintbrush,
+  Layers,
+  Sparkles,
+  ClipboardCheck,
+  Smartphone,
+  ShieldCheck,
+  Utensils
+} from "lucide-react";
+
+// Mapping string names to components for tree-shaking
+const IconMap: Record<string, any> = {
+  Wrench,
+  Snowflake,
+  Droplets,
+  Zap,
+  Paintbrush,
+  Layers,
+  Smartphone,
+  ClipboardCheck,
+  ShieldCheck,
+  Utensils
+};
 import { useBooking } from "@/context/BookingContext";
 import { getCurrency } from "@/lib/utils";
 import { useTranslations } from "next-intl";
@@ -85,12 +111,12 @@ export function ServicesGrid() {
   };
 
   return (
-    <section id="services" className="py-20 bg-white dark:bg-[#020617] relative overflow-hidden">
+    <section id="services" className="bg-white dark:bg-[#020617] relative overflow-hidden section-padding">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+      <div className="container-tight relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -130,7 +156,7 @@ export function ServicesGrid() {
                     <div className="relative">
                       <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-border/50 flex items-center justify-center group-hover:text-primary transition-all duration-500 shadow-sm relative z-10 overflow-hidden text-2xl group-hover:scale-105">
                         {(() => {
-                          const IconComponent = (LucideIcons as any)[service.icon] || LucideIcons.Wrench;
+                          const IconComponent = IconMap[service.icon] || Wrench;
                           return <IconComponent size={28} strokeWidth={1.5} className="z-10 group-hover:-rotate-6 transition-transform duration-500" />;
                         })()}
                       </div>

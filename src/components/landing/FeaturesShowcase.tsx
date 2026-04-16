@@ -9,13 +9,13 @@ export function FeaturesShowcase() {
   const t = useTranslations("featuresShowcase");
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="bg-background relative overflow-hidden section-padding">
       {/* Abstract Background Elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-border to-transparent" />
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] translate-y-1/4 translate-x-1/4" />
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+      <div className="container-tight relative z-10">
         <div className="text-start max-w-6xl mx-auto mb-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

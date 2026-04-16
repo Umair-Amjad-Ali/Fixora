@@ -61,6 +61,7 @@ export function Header() {
   };
 
   return (
+    <>
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b
         ${scrolled 
@@ -210,10 +211,11 @@ export function Header() {
           </div>
         </div>
       </div>
+    </header>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
+    {/* Mobile Menu Overlay */}
+    <AnimatePresence>
+      {isMobileMenuOpen && (
           <motion.div
             initial={{ x: "100%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -222,7 +224,7 @@ export function Header() {
             className="fixed inset-0 z-50 lg:hidden bg-white dark:bg-[#030712] flex flex-col"
           >
             {/* Mobile Header */}
-            <div className={`flex items-center justify-between px-6 h-20 border-b border-zinc-100 dark:border-white/5 ${scrolled ? "bg-white/80 dark:bg-[#030712]/80 backdrop-blur-md" : ""}`}>
+            <div className="flex items-center justify-between px-6 h-20 border-b border-zinc-100 dark:border-white/5 bg-white dark:bg-[#030712]">
               <div className="flex items-center gap-2">
                 <div className="bg-primary text-white p-2 rounded-xl shadow-lg shadow-primary/20">
                   <Wrench size={20} strokeWidth={2.5} />
@@ -424,9 +426,8 @@ export function Header() {
               )}
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-
-    </header>
+      )}
+    </AnimatePresence>
+    </>
   );
 }

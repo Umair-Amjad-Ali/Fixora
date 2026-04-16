@@ -91,12 +91,12 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#030712]">
       {/* Hero Banner */}
-      <div className="pt-28 pb-20 bg-zinc-950 overflow-hidden relative border-b border-white/5">
+      <div className="pt-24 pb-20 bg-zinc-950 overflow-hidden relative border-b border-white/5">
         <div className="absolute inset-0 bg-linear-to-r from-primary/10 to-blue-500/10" />
         <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-[80px]" />
 
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+        <div className="container-tight relative z-10">
           <Link href="/" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-6 w-fit group font-bold">
             <ChevronLeft size={16} className="group-hover:-translate-x-1 rtl:group-hover:translate-x-1 rtl:rotate-180 transition-transform" />
             <span className="text-[10px] uppercase tracking-widest">{t("returnHome")}</span>
