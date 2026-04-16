@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { db } from "@/lib/firebase";
-import { collection, query, where, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, query, where, onSnapshot, orderBy, limit } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
 import { isSameDay } from "date-fns";
 
@@ -52,7 +52,9 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     setFetching(true);
     const q = query(
       collection(db, "orders"),
-      where("userId", "==", user.uid)
+      where("userId", "==", user.uid),
+      orderBy("createdAt", "desc"),
+      limit(50)
     );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -61,13 +63,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         fetchedOrders.push({ id: doc.id, ...doc.data() } as Order);
       });
 
-      // Sort by createdAt descending
-      fetchedOrders.sort((a, b) => {
-        const aTime = a.createdAt?.seconds ?? 0;
-        const bTime = b.createdAt?.seconds ?? 0;
-        return bTime - aTime;
-      });
-
+      // Already sorted by Firestore via orderBy("createdAt", "desc")
       setOrders(fetchedOrders);
       setFetching(false);
     }, (error) => {

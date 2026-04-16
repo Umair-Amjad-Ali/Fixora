@@ -25,6 +25,7 @@ function LoginPageContent() {
     password: "",
   });
   
+  const [error, setError] = useState<string | null>(null);
   const { user } = useAuth(); 
 
   useEffect(() => {
@@ -36,14 +37,15 @@ function LoginPageContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
     try {
       await loginUser(formData.email, formData.password);
       toast.success(t("welcomeToast"));
       router.push(callbackUrl as any);
-    } catch (error: any) {
-      console.error("Login error:", error);
-      const friendlyMessage = getAuthErrorMessage(error.code);
+    } catch (err: any) {
+      const friendlyMessage = getAuthErrorMessage(err.code);
+      setError(friendlyMessage);
       toast.error(friendlyMessage);
     } finally {
       setLoading(false);
@@ -167,6 +169,19 @@ function LoginPageContent() {
                       </button>
                     </div>
                   </div>
+
+                  {error && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      className="p-3 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl flex items-center gap-3"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                      <p className="text-[11px] font-bold text-red-600 dark:text-red-400 leading-none">
+                        {error}
+                      </p>
+                    </motion.div>
+                  )}
 
                   <div className="pt-2">
                     <Button 

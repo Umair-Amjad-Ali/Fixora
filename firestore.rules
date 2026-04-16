@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // IMPORTANT: This allows Admins to see ALL data for the dashboard
+    function isAdmin() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/admin/$(request.auth.uid));
+    }
+
+    // Orders Collection
+    match /orders/{orderId} {
+      allow read, write: if isAdmin(); // Admin can see everything
+      
+      // Customer can see only their own
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Technicians Collection
+    match /technicians/{techId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Admin Verification (Required for the login cycle)
+    match /admin/{adminId} {
+      allow read: if request.auth != null && request.auth.uid == adminId;
+    }
+    
+    // Users Collection
+    match /users/{userId} {
+      allow read, write: if isAdmin() || (request.auth != null && request.auth.uid == userId);
+    }
+  }
+}
