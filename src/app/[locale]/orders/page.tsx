@@ -87,7 +87,8 @@ export default function ProfileDashboard() {
   );
 
   const StatusBadge = ({ status }: { status: string }) => {
-    switch (status) {
+    const normalizedStatus = (status || "").replace(/-/g, "_");
+    switch (normalizedStatus) {
       case "pending":
         return <span className="px-3 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-lg text-xs font-black uppercase tracking-tight">{t("status.pending")}</span>;
       case "in_progress":
@@ -97,7 +98,7 @@ export default function ProfileDashboard() {
       case "cancelled":
         return <span className="px-3 py-1 bg-red-500/10 text-red-500 border border-red-500/20 rounded-lg text-xs font-black uppercase tracking-tight">{t("status.cancelled")}</span>;
       default:
-        return <span className="px-3 py-1 bg-zinc-500/10 text-zinc-500 border border-zinc-500/20 rounded-lg text-xs font-black uppercase tracking-tight">{status}</span>;
+        return <span className="px-3 py-1 bg-zinc-500/10 text-zinc-500 border border-zinc-500/20 rounded-lg text-xs font-black uppercase tracking-tight">{normalizedStatus}</span>;
     }
   };
 

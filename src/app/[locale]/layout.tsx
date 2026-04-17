@@ -55,6 +55,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={direction}
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="font-sans min-h-full flex flex-col">

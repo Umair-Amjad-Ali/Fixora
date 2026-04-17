@@ -99,7 +99,11 @@ export default function OrderDetailPage() {
       if (!user || !orderId) return;
       try {
         const snap = await getDoc(doc(db, "orders", orderId));
-        if (snap.exists()) setOrder({ id: snap.id, ...snap.data() } as Order);
+        if (snap.exists()) {
+          const data = snap.data();
+          if (data.status) data.status = data.status.replace(/-/g, "_");
+          setOrder({ id: snap.id, ...data } as Order);
+        }
       } catch (err) {
         console.error("Error fetching order:", err);
       } finally {
