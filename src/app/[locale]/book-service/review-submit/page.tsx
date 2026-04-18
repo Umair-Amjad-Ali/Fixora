@@ -79,7 +79,7 @@ export default function ReviewSubmitPage() {
 
            let label = "";
            if (bookingData.service.serviceType === "ac") {
-              const acType = bookingData.service.issue?.type || "split_ac";
+              const acType = bookingData.service.serviceSubType || "split_ac";
               // Validate acType is clean before lookup
               if (/^[a-z0-9_-]+$/.test(acType)) {
                  label = safeTranslate(`issues.ac.${acType}.${slug}.label`);
