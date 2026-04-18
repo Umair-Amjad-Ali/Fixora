@@ -405,6 +405,6 @@ export const DEFAULT_BOOKING_DATA = {
   user: { name: "", phone: "", countryCode: "+971", email: "" },
   location: { lat: null, lng: null, formattedAddress: "", buildingDetails: "", city: "", area: "", country: "" as const },
   schedule: { preferredDate: "", preferredTimeSlot: "" as const, timeRange: "" },
-  service: { serviceType: "" as const, serviceSubType: "" as const, estimatedPrice: 0, currency: "", issue: { selectedIssues: [], type: "", label: "", customDescription: "" } },
+  service: { serviceType: "" as const, serviceSubType: "" as const, estimatedPrice: 0, currency: "", issue: { selectedIssues: [], label: "", customDescription: "" } },
   currentStep: 1,
 };

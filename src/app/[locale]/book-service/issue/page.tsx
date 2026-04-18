@@ -76,7 +76,6 @@ export default function IssuePage() {
       issue: { 
         ...bookingData.service.issue,
         selectedIssues: selectedIssues,
-        type: acType || serviceType, 
         label: selectedLabels.length > 0 ? selectedLabels.join(", ") : "Custom",
         customDescription: customBrief
       } 

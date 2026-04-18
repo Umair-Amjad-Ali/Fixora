@@ -14,7 +14,7 @@ export default function ACTypePage() {
   const router = useRouter();
   const { bookingData, updateService, setCurrentStep } = useBooking();
   
-  const [selectedAC, setSelectedAC] = useState<string>(bookingData.service.issue?.type || "");
+  const [selectedAC, setSelectedAC] = useState<string>(bookingData.service?.serviceSubType || "");
 
   useEffect(() => {
     setCurrentStep(3);
@@ -28,7 +28,7 @@ export default function ACTypePage() {
     if (selectedAC) {
       updateService({ 
         serviceSubType: selectedAC as any,
-        issue: { ...bookingData.service.issue, type: selectedAC as any, label: selectedAC } 
+        issue: { ...bookingData.service.issue, label: selectedAC } 
       });
       router.push("/book-service/issue");
     }

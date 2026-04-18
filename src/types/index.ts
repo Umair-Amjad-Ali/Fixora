@@ -44,7 +44,6 @@ export interface ScheduleInfo {
 
 export interface IssueInfo {
   selectedIssues: string[];
-  type: string; // Keep for compatibility if needed, but we'll use selectedIssues
   label: string;
   customDescription?: string;
 }
@@ -156,7 +155,6 @@ export interface BookingData {
       currency: string;
       issue: {
         selectedIssues: string[];
-        type: string;
         label: string;
         customDescription: string;
       };
