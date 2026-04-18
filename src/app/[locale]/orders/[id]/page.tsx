@@ -37,6 +37,10 @@ type Order = {
   schedule: any;
   location: any;
   userDetails: any;
+  assignedTechId?: string;
+  assignedTechName?: string;
+  assignedTechPhone?: string;
+  assignedAt?: any;
 };
 
 const statusConfig: Record<string, { color: string; bg: string; border: string; label: string; icon: React.ReactNode }> = {
@@ -399,7 +403,7 @@ export default function OrderDetailPage() {
                 )}
               </div>
             </motion.div>
-
+            
             {/* Status Timeline */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl shadow-zinc-200/20 dark:shadow-none"
@@ -446,6 +450,67 @@ export default function OrderDetailPage() {
 
           </div>
         </div>
+
+        {/* Technician Card (if assigned) */}
+        {order.assignedTechId && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.35 }}
+            className="mt-6 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl shadow-zinc-200/20 dark:shadow-none overflow-hidden relative"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+              <div className="flex items-center gap-4 sm:gap-6">
+                <div className="relative">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-emerald-500 text-white flex items-center justify-center font-black text-2xl sm:text-3xl shadow-2xl shadow-emerald-500/30">
+                    {(order.assignedTechName || "T")[0].toUpperCase()}
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-white dark:bg-slate-900 rounded-full flex items-center justify-center border-2 border-emerald-500 text-emerald-500">
+                    <Shield size={12} fill="currentColor" fillOpacity={0.2} />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-xl sm:text-2xl font-black text-foreground">{order.assignedTechName || "N/A"}</h3>
+                    <span className="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[8px] font-black uppercase tracking-widest rounded-full border border-emerald-500/20">
+                      {t("assignedTech")}
+                    </span>
+                  </div>
+                  <div className="text-xs sm:text-sm text-zinc-400 font-medium flex items-center flex-wrap gap-2">
+                    {t("technician")}
+                    {order.assignedAt && (
+                      <div className="flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full bg-zinc-700 hidden sm:block" />
+                        <span className="text-[10px] sm:text-xs">
+                          {t("assignedOn")} {order.assignedAt?.toDate ? format(order.assignedAt.toDate(), "MMM dd, yyyy", { locale: activeLocale }) : ""} {t("at")} {order.assignedAt?.toDate ? format(order.assignedAt.toDate(), "hh:mm a", { locale: activeLocale }) : ""}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                {order.assignedTechPhone && (
+                  <a 
+                    href={`tel:${order.assignedTechPhone}`} 
+                    dir="ltr"
+                    className="flex-1 md:flex-none flex items-center justify-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-black text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95 group"
+                  >
+                    <Phone size={18} className="group-hover:rotate-12 transition-transform" />
+                    <span>{order.assignedTechPhone}</span>
+                  </a>
+                )}
+                {/* <button className="flex-1 md:flex-none flex items-center justify-center gap-3 bg-zinc-100 dark:bg-slate-800 hover:bg-zinc-200 dark:hover:bg-slate-700 text-zinc-600 dark:text-zinc-300 px-6 py-4 rounded-2xl font-black text-sm transition-all active:scale-95">
+                  <Mail size={18} />
+                  <span>Message</span>
+                </button> */}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );

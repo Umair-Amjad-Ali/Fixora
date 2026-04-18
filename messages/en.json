@@ -375,6 +375,12 @@
     "customer": "Customer",
     "progress": "Progress",
     "timeline": "Timeline",
+    "technician": "Assigned Technician",
+    "assignedTech": "Vetted Expert",
+    "assignedOn": "Assigned on",
+    "at": "at",
+    "name": "Name",
+    "phone": "Phone",
     "labels": {
       "serviceType": "Service Type",
       "subType": "Sub Type",
