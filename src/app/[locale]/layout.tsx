@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Dammam Home care pro | Home Services Platform",
+  title: "Dammam Home Service | Home Services Platform",
   description: "Expert home services and electronics maintenance platform in Dubai and Saudi Arabia.",
 };
 

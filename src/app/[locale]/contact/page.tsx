@@ -73,7 +73,7 @@ export default function ContactPage() {
                  </div>
                  <div>
                     <p className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">{t('phone')}</p>
-                    <p className="font-bold text-foreground">+966 9200 67868</p>
+                    <p className="font-bold text-foreground">+966 0569633654</p>
                  </div>
               </div>
               <div className="flex items-center gap-4 group">
@@ -92,7 +92,7 @@ export default function ContactPage() {
         {/* Support Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
            {[
-             { icon: Mail, title: t('emailsTitle'), detail: "support@dammamhomecarepro.com", label: t('emailReply') },
+             { icon: Mail, title: t('emailsTitle'), detail: "dammamhomecarepro@gmail.com", label: t('emailReply') },
              { icon: Clock, title: t('hoursTitle'), detail: t('hours247'), label: t('emergencyUnits') },
            ].map((item, i) => (
              <div key={i} className="p-6 rounded-3xl border border-zinc-100 dark:border-slate-800">

@@ -57,7 +57,7 @@ export default function PrivacyPage() {
                 <p className="text-zinc-400 font-medium text-sm">{t('privacyPage.dpoDesc')}</p>
               </div>
               <a href="mailto:privacy@fixora.com" className="bg-white text-black px-6 py-3 rounded-xl font-black text-sm whitespace-nowrap hover:bg-primary hover:text-white transition-all">
-                 support@dammamhomecarepro.com
+                dammamhomecarepro@gmail.com
               </a>
            </div>
         </div>

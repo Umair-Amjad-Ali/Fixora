@@ -78,10 +78,10 @@ export function Header() {
           </div>
           <div className="flex flex-col -gap-1">
             <span className="font-black text-2xl tracking-tighter text-foreground leading-none">
-              DHCP
+              DHS
             </span>
             <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary opacity-80">
-              Home Care
+              Home Service
             </span>
           </div>
         </Link>
@@ -230,8 +230,8 @@ export function Header() {
                   <Wrench size={20} strokeWidth={2.5} />
                 </div>
                 <div className="flex flex-col -gap-1">
-                  <span className="font-black text-xl tracking-tighter text-foreground leading-none">DHCP</span>
-                  <span className="text-[7px] font-black uppercase tracking-[0.2em] text-primary opacity-80">Home Care</span>
+                  <span className="font-black text-xl tracking-tighter text-foreground leading-none">DHS</span>
+                  <span className="text-[7px] font-black uppercase tracking-[0.2em] text-primary opacity-80">Home Service</span>
                 </div>
               </div>
               <button

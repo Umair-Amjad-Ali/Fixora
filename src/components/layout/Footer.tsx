@@ -56,13 +56,13 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-zinc-500">
               <li className="flex items-center gap-2">
                 <span>🇦🇪</span>
-                <span dir="ltr">+971 800 3456788</span>
+                <span dir="ltr">+966 0569633654</span>
               </li>
               <li className="flex items-center gap-2">
                 <span>🇸🇦</span>
-                <span dir="ltr">+966 9200 6786588</span>
+                <span dir="ltr">+966 0569633654</span>
               </li>
-              <li>support@dammamhomecarepro.com</li>
+              <li>dammamhomecarepro@gmail.com</li>
             </ul>
           </div>
         </div>

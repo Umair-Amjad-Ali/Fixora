@@ -43,3 +43,5 @@ next-env.d.ts
 
 # Scalability Analysis
 SCALABILITY_REPORT.md
+
+.vercel

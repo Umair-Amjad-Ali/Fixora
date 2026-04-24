@@ -126,7 +126,7 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
              <div className="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
                 <span className="text-lg font-black italic">!</span>
              </div>
-             <span>{t("urgentHelp")} <span className="text-foreground font-bold" dir="ltr">+971 4 000 0000</span></span>
+             <span>{t("urgentHelp")} <span className="text-foreground font-bold" dir="ltr">+966 0569633654</span></span>
           </div>
           {/* <div className="flex items-center gap-8">
              <span className="hover:text-primary transition-colors cursor-pointer">Support</span>

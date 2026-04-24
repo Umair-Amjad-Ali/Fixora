@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
 export function WhatsAppButton() {
-  const phoneNumber = "923106980786";
+  const phoneNumber = "966569633654";
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
   return (

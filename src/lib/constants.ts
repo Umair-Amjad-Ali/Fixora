@@ -14,7 +14,7 @@ export interface ServiceCategory {
 }
 
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
-  { slug: "ac", name: "AC Maintenance", icon: "Wind", description: "Expert servicing, repairs, and deep duct cleaning", hasSubTypes: true, startingPrice: 100 },
+  { slug: "ac", name: "AC Maintenance", icon: "Wind", description: "Expert servicing, repairs, and deep duct cleaning", hasSubTypes: true,},
   { slug: "washing_machine", name: "Washing Machine", icon: "WashingMachine", description: "Automatic & semi-auto repair", hasSubTypes: false },
   { slug: "refrigerator", name: "Refrigerator", icon: "Refrigerator", description: "Cooling repair & gas refill", hasSubTypes: false,},
   { slug: "electrical", name: "Electrical", icon: "Zap", description: "Wiring, switches & fixtures", hasSubTypes: false, },
@@ -335,11 +335,11 @@ export const PRIVACY_SECTIONS = [
   },
   {
     title: "How We Use Your Data",
-    content: "Your data is used solely to provide and improve Dammam Home care pro's services, including connecting you with technicians, processing bookings, and sending service updates. We do not sell your personal data to third parties."
+    content: "Your data is used solely to provide and improve Dammam Home Service's services, including connecting you with technicians, processing bookings, and sending service updates. We do not sell your personal data to third parties."
   },
   {
     title: "Location Privacy",
-    content: "Because Dammam Home care pro is a location-based service, we use geolocation data to ensure technicians arrive at the correct address. We only access this data when you are actively using the platform to book or track a service."
+    content: "Because Dammam Home Service is a location-based service, we use geolocation data to ensure technicians arrive at the correct address. We only access this data when you are actively using the platform to book or track a service."
   },
   {
     title: "Security Measures",

@@ -51,7 +51,7 @@ export default function TermsPage() {
            </div>
            <div>
               <p className="text-sm font-bold text-foreground">{t('termsPage.clarification')}</p>
-              <p className="text-xs text-zinc-500 font-medium">{t('termsPage.clarificationDesc')} <span className="text-primary font-black">support@dammamhomecarepro.com</span></p>
+              <p className="text-xs text-zinc-500 font-medium">{t('termsPage.clarificationDesc')} <span className="text-primary font-black">dammamhomecarepro@gmail.com</span></p>
            </div>
         </div>
       </div>

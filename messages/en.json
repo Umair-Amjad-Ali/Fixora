@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "DHCP | Home Services Platform",
+    "title": "DHS | Home Services Platform",
     "description": "Expert home services and electronics maintenance platform in Dubai and Saudi Arabia."
   },
   "common": {
@@ -38,7 +38,7 @@
 
   "regionSelector": {
     "badge": "Select Your Region",
-    "title": "Welcome to Dammam Home care pro",
+    "title": "Welcome to Dammam Home Service",
     "subtitle": "Choose your location for local pricing.",
     "verifiedLabel": "Verified experts available in both regions"
   },
@@ -130,7 +130,7 @@
     "bookFirstBtn": "Book Your First Service"
   },
   "footer": {
-    "companyName": "Dammam Home care pro",
+    "companyName": "Dammam Home Service",
     "companyDesc": "Expert home services and electronics maintenance platform serving Dubai and Saudi Arabia.",
     "sectionServices": "Services",
     "sectionCompany": "Company",
