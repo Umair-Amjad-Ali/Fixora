@@ -21,45 +21,12 @@ export default function ContactPage() {
           <p className="text-zinc-500 font-medium text-lg">{t('subtitle')}</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {/* Dubai Office */}
+        <div className="grid grid-cols-1 max-w-2xl mx-auto mb-16">
+          {/* Saudi Office */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="p-8 bg-zinc-50 dark:bg-slate-900 rounded-[2.5rem] border border-zinc-200 dark:border-slate-800"
-          >
-            <div className="flex items-center gap-3 mb-6">
-               <span className="text-2xl">🇦🇪</span>
-               <h2 className="text-2xl font-black">{t('uaeSupport')}</h2>
-            </div>
-            <div className="space-y-6">
-              <div className="flex items-center gap-4 group">
-                 <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 border border-zinc-200 dark:border-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                    <Phone size={18} />
-                 </div>
-                 <div>
-                    <p className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">{t('tollFree')}</p>
-                    <p className="font-bold text-foreground">800-FIXORA (349672)</p>
-                 </div>
-              </div>
-              <div className="flex items-center gap-4 group">
-                 <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 border border-zinc-200 dark:border-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                    <MapPin size={18} />
-                 </div>
-                 <div>
-                    <p className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">{t('location')}</p>
-                    <p className="font-bold text-foreground">{t('uaeLocation')}</p>
-                 </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Riyadh Office */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
             className="p-8 bg-zinc-50 dark:bg-slate-900 rounded-[2.5rem] border border-zinc-200 dark:border-slate-800"
           >
             <div className="flex items-center gap-3 mb-6">
@@ -72,7 +39,7 @@ export default function ContactPage() {
                     <Phone size={18} />
                  </div>
                  <div>
-                    <p className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">{t('phone')}</p>
+                    <p className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">{t('callNumber')}</p>
                     <p className="font-bold text-foreground">+966 0569633654</p>
                  </div>
               </div>
@@ -82,7 +49,13 @@ export default function ContactPage() {
                  </div>
                  <div>
                     <p className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">{t('location')}</p>
-                    <p className="font-bold text-foreground">{t('ksaLocation')}</p>
+                    <p className="font-medium text-foreground">
+                      {t.rich('locationDetailed', {
+                        dammam: (chunks) => <span className="text-primary font-black bg-primary/10 px-1 rounded">{chunks}</span>,
+                        khobar: (chunks) => <span className="text-primary font-black bg-primary/10 px-1 rounded">{chunks}</span>,
+                        dhahran: (chunks) => <span className="text-primary font-black bg-primary/10 px-1 rounded">{chunks}</span>
+                      })}
+                    </p>
                  </div>
               </div>
             </div>

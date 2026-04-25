@@ -157,7 +157,7 @@
     "emailAddress": "البريد الإلكتروني",
     "password": "كلمة المرور",
     "forgotPassword": "هل نسيت كلمة المرور؟",
-    "newToFixora": "جديد في فيكسورا؟",
+    "newToDHS": "جديد في دي إتش سي برو؟",
     "createAccount": "أنشئ حساباً",
     "welcomeToast": "مرحباً بعودتك!"
   },
@@ -436,6 +436,8 @@
     "subtitle": "نحن هنا لمساعدتك على مدار الساعة. تواصل معنا عبر أي قناة.",
     "uaeSupport": "دعم الإمارات",
     "ksaSupport": "دعم السعودية",
+    "callNumber": "رقم الاتصال",
+    "locationDetailed": "المملكة العربية السعودية، مدن <dammam>الدمام</dammam>، <khobar>الخبر</khobar> و <dhahran>الظهران</dhahran>",
     "tollFree": "الرقم المجاني",
     "phone": "الهاتف",
     "location": "الموقع",

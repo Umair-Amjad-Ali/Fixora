@@ -20,7 +20,7 @@ export default function HomePage() {
       const testCollection = collection(db, "test_connection");
       const docRef = await addDoc(testCollection, {
         timestamp: new Date().toISOString(),
-        message: "Hello from Fixora!"
+        message: "Hello from DHS!"
       });
 
       // 2. Try to read the documents back

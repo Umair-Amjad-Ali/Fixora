@@ -358,11 +358,11 @@ export const PRIVACY_SECTIONS = [
 export const TERMS_SECTIONS = [
   {
     title: "1. Acceptance of Terms",
-    content: "By accessing or using the Fixora platform, you agree to be bound by these Terms of Service. If you do not agree to all of the terms and conditions of this agreement, you should not access the website or use any of our services."
+    content: "By accessing or using the DHS platform, you agree to be bound by these Terms of Service. If you do not agree to all of the terms and conditions of this agreement, you should not access the website or use any of our services."
   },
   {
     title: "2. Service Scope",
-    content: "Fixora provides a platform connecting users with certified home service professionals. While we vet all technicians, the final agreement for work performed is between the user and the professional, backed by our Quality Guarantee."
+    content: "DHS provides a platform connecting users with certified home service professionals. While we vet all technicians, the final agreement for work performed is between the user and the professional, backed by our Quality Guarantee."
   },
   {
     title: "3. User Responsibilities",
@@ -370,7 +370,7 @@ export const TERMS_SECTIONS = [
   },
   {
     title: "4. Pricing & Payments",
-    content: "Final pricing is determined on-site based on the actual scope of work. Payments are made directly to the technician or via the platform as specified during booking. Fixora reserves the right to charge a cancellation fee for appointments cancelled less than 2 hours before the slot."
+    content: "Final pricing is determined on-site based on the actual scope of work. Payments are made directly to the technician or via the platform as specified during booking. DHS reserves the right to charge a cancellation fee for appointments cancelled less than 2 hours before the slot."
   },
   {
     title: "5. Region Specifics",

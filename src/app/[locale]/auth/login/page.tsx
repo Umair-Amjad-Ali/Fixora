@@ -200,7 +200,7 @@ function LoginPageContent() {
 
                 <div className="mt-8 text-center">
                   <p className="text-xs font-bold text-zinc-500">
-                    {t("newToFixora")}{" "}
+                    {t("newToDHS")}{" "}
                     <Link href="/auth/signup" className="text-foreground border-b-2 border-zinc-200 dark:border-slate-800 hover:text-primary hover:border-primary transition-colors pb-0.5">
                       {t("createAccount")}
                     </Link>

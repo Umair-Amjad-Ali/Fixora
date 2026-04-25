@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Link, useRouter, usePathname } from "@/i18n/routing";
-import { Wrench, LogIn, UserPlus, LogOut, LayoutDashboard, ChevronDown, User, Menu, X, Tag, Globe } from "lucide-react";
+import { Wrench, LogIn, UserPlus, LogOut, LayoutDashboard, ChevronDown, User, Menu, X, Tag, Globe, Home, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/context/AuthContext";
 import { useBooking } from "@/context/BookingContext";
@@ -71,17 +72,27 @@ export function Header() {
       `}
     >
       <div className="container h-full mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between max-w-7xl">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group transition-transform hover:scale-[0.98] active:scale-95">
-          <div className="bg-primary text-white p-2 rounded-2xl shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform duration-500">
-            <Wrench size={22} strokeWidth={2.5} />
+        {/* Clean & Premium Dammam Home Care Logo */}
+        <Link href="/" className="flex items-center gap-3 group transition-all duration-300 hover:opacity-90 active:scale-95">
+          {/* Logo Icon */}
+          <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl shadow-lg shadow-primary/20 border border-zinc-200 dark:border-slate-800 overflow-hidden bg-white">
+            <Image 
+              src="/images/dhc-logo.png" 
+              alt="Dammam Home Care Logo" 
+              width={44} 
+              height={44} 
+              className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+            />
           </div>
-          <div className="flex flex-col -gap-1">
-            <span className="font-black text-2xl tracking-tighter text-foreground leading-none">
-              DHS
-            </span>
-            <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary opacity-80">
-              Home Service
+
+          {/* Typography */}
+          <div className="flex flex-col justify-center">
+            <div className="font-black text-2xl tracking-tight leading-none flex items-baseline">
+              <span className="text-foreground">DHS</span>
+             
+            </div>
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mt-1">
+              Home Services
             </span>
           </div>
         </Link>

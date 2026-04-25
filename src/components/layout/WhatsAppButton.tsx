@@ -24,22 +24,22 @@ export function WhatsAppButton() {
         <motion.div 
           animate={{ scale: [1, 1.2, 1.05, 1], opacity: [0, 0.2, 0.25, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
-          className="absolute inset-0 bg-primary rounded-full blur-xl"
+          className="absolute inset-0 bg-[#25D366] rounded-full blur-xl"
         />
         <motion.div 
           animate={{ scale: [1, 1.4, 1.1, 1], opacity: [0, 0.1, 0.15, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
-          className="absolute inset-0 bg-primary/60 rounded-full blur-2xl"
+          className="absolute inset-0 bg-[#25D366]/60 rounded-full blur-2xl"
         />
 
-        {/* The Button Body - Using Website Primary Color */}
-        <div className="relative w-14 h-14 sm:w-16 sm:h-16 bg-linear-to-br from-primary to-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white border-2 border-white/20 overflow-hidden">
+        {/* The Button Body - Using WhatsApp Official Color */}
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-linear-to-br from-[#25D366] to-[#128C7E] rounded-full shadow-2xl flex items-center justify-center text-white border-2 border-white/20 overflow-hidden">
           <motion.div
             initial={{ y: 0 }}
             animate={{ y: [-1, 1, -1] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <MessageCircle size={28} strokeWidth={2.5} className="sm:w-8 sm:h-8" />
+            <MessageCircle size={32} strokeWidth={2.5} className="sm:w-10 sm:h-10" />
           </motion.div>
           
           {/* Glass Shine Effect */}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@/i18n/routing";
-import { Wrench } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 export function Footer() {
@@ -12,9 +12,15 @@ export function Footer() {
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-start rtl:text-right">
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
-                <Wrench size={18} />
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
+              <div className="relative w-8 h-8 rounded-lg overflow-hidden shadow-sm border border-zinc-200 dark:border-slate-800 bg-white group-hover:scale-105 transition-transform">
+                <Image 
+                  src="/images/dhc-logo.png" 
+                  alt="Dammam Home Care Logo" 
+                  width={32} 
+                  height={32} 
+                  className="object-cover w-full h-full"
+                />
               </div>
               <span className="font-bold text-sm">{t("companyName")}</span>
             </Link>

@@ -262,7 +262,7 @@ export default function ProfileDashboard() {
                     },
                     {
                       step: "03",
-                      title: "Fixora Certified",
+                      title: "DHS Certified",
                       description: "Vetted experts with service warranty.",
                       icon: Sparkles,
                       color: "bg-emerald-500/10 text-emerald-500",

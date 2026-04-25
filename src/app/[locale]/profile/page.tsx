@@ -119,7 +119,7 @@ export default function ProfilePage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-3xl md:text-4xl font-black text-white tracking-tight mb-2"
                 >
-                  {userProfile?.name || "Fixora User"}
+                  {userProfile?.name || "DHS User"}
                 </motion.h1>
                 <div className="flex items-center justify-center md:justify-start gap-3">
                    <span className="text-xs font-bold text-zinc-400 flex items-center gap-1.5">

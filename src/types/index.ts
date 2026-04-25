@@ -79,21 +79,7 @@ export interface ServiceRequest {
   activityLog: ActivityLogEntry[];
 }
 
-// ==========================================
-// TECHNICIAN
-// ==========================================
 
-export interface Technician {
-  id: string;
-  name: string;
-  phone: string;
-  skills: ServiceType[];
-  status: "active" | "inactive";
-  activeJobCount: number;
-  notes?: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
-}
 
 // ==========================================
 // USER
@@ -111,17 +97,7 @@ export interface User {
   lastOrderAt?: Timestamp;
 }
 
-// ==========================================
-// ADMIN
-// ==========================================
 
-export interface AdminUser {
-  id: string;
-  name: string;
-  email: string;
-  role: "super_admin" | "admin";
-  createdAt: Timestamp;
-}
 
 // ==========================================
 // BOOKING CONTEXT (client-side state)
