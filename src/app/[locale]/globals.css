@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@plugin "../../../node_modules/@tailwindcss/typography";
+
+
 
 :root {
   --background: #f8fafc;

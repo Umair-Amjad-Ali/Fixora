@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams, usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { db } from "@/lib/firebase";
-import { doc, getDoc, updateDoc, increment } from "firebase/firestore";
+import { doc, getDoc, updateDoc, increment, setDoc, collection, serverTimestamp } from "firebase/firestore";
 import { format } from "date-fns";
 import { enUS, ar } from "date-fns/locale";
 import { motion } from "framer-motion";
@@ -26,6 +26,7 @@ import {
   Shield,
   Copy,
   ExternalLink,
+  Star,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -65,6 +66,13 @@ export default function OrderDetailPage() {
   const [fetching, setFetching] = useState(true);
   const [isCancelling, setIsCancelling] = useState(false);
   
+  // Review State
+  const [existingReview, setExistingReview] = useState<any>(null);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [hoveredRating, setHoveredRating] = useState(0);
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+  
   const t = useTranslations("orderDetailPage");
   const tCommon = useTranslations("common");
   const tServices = useTranslations("constants.services");
@@ -94,6 +102,33 @@ export default function OrderDetailPage() {
     }
   };
 
+  const handleSubmitReview = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user || !order || rating === 0) return;
+    
+    setIsSubmittingReview(true);
+    try {
+      const reviewData = {
+        orderId,
+        userId: user.uid,
+        userName: order.userDetails?.name || "Anonymous",
+        rating,
+        comment,
+        technicianId: order.assignedTechId || null,
+        createdAt: serverTimestamp(),
+      };
+      
+      await setDoc(doc(db, "reviews", orderId), reviewData);
+      setExistingReview(reviewData);
+      toast.success(locale === 'ar' ? "شكراً لتقييمك!" : "Thank you for your feedback!");
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      toast.error(locale === 'ar' ? "فشل تقديم التقييم" : "Failed to submit review");
+    } finally {
+      setIsSubmittingReview(false);
+    }
+  };
+
   useEffect(() => {
     if (!loading && !user) router.push("/auth/login");
   }, [user, loading, router]);
@@ -107,9 +142,17 @@ export default function OrderDetailPage() {
           const data = snap.data();
           if (data.status) data.status = data.status.replace(/-/g, "_");
           setOrder({ id: snap.id, ...data } as Order);
+          
+          // Fetch existing review if completed
+          if (data.status === "completed") {
+            const reviewSnap = await getDoc(doc(db, "reviews", orderId));
+            if (reviewSnap.exists()) {
+              setExistingReview(reviewSnap.data());
+            }
+          }
         }
       } catch (err) {
-        console.error("Error fetching order:", err);
+        console.error("Error fetching order/review:", err);
       } finally {
         setFetching(false);
       }
@@ -509,6 +552,92 @@ export default function OrderDetailPage() {
                 </button> */}
               </div>
             </div>
+          </motion.div>
+        )}
+
+        {/* Review Section */}
+        {order.status === "completed" && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.4 }}
+            className="mt-6 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl shadow-zinc-200/20 dark:shadow-none"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-11 h-11 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                <Star size={20} fill={existingReview ? "currentColor" : "none"} />
+              </div>
+              <div>
+                <h3 className="font-black text-lg">{locale === 'ar' ? "تقييم الخدمة" : "Rate Your Experience"}</h3>
+                <p className="text-xs text-zinc-400 font-medium">
+                  {existingReview 
+                    ? (locale === 'ar' ? "شكراً لتقديم تقييمك" : "Thank you for sharing your feedback")
+                    : (locale === 'ar' ? "أخبرنا برأيك في جودة الخدمة" : "Let us know how we did")}
+                </p>
+              </div>
+            </div>
+
+            {existingReview ? (
+              <div className="bg-zinc-50 dark:bg-slate-950 p-6 rounded-2xl border border-zinc-100 dark:border-slate-800/50">
+                <div className="flex items-center gap-1 mb-3">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star 
+                      key={star} 
+                      size={18} 
+                      className={star <= existingReview.rating ? "text-amber-500" : "text-zinc-200 dark:text-zinc-800"} 
+                      fill={star <= existingReview.rating ? "currentColor" : "none"}
+                    />
+                  ))}
+                </div>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 italic">"{existingReview.comment || (locale === 'ar' ? "بدون تعليق" : "No comment")}"</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmitReview} className="space-y-6">
+                <div>
+                  <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-3">{locale === 'ar' ? "التقييم العام" : "Overall Rating"}</p>
+                  <div className="flex items-center gap-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setRating(star)}
+                        onMouseEnter={() => setHoveredRating(star)}
+                        onMouseLeave={() => setHoveredRating(0)}
+                        className="transition-transform active:scale-90"
+                      >
+                        <Star 
+                          size={32} 
+                          className={star <= (hoveredRating || rating) ? "text-amber-500" : "text-zinc-200 dark:text-zinc-800"} 
+                          fill={star <= (hoveredRating || rating) ? "currentColor" : "none"}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-3">{locale === 'ar' ? "رأيك (اختياري)" : "Your Feedback (Optional)"}</p>
+                  <textarea
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder={locale === 'ar' ? "كيف كانت الخدمة؟..." : "How was the service?..."}
+                    className="w-full bg-zinc-50 dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-2xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all min-h-[100px] resize-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={rating === 0 || isSubmittingReview}
+                  className="w-full sm:w-auto px-8 py-3.5 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary/90 transition-all active:scale-95 disabled:opacity-50 disabled:grayscale flex items-center justify-center gap-2"
+                >
+                  {isSubmittingReview ? (
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    locale === 'ar' ? "ارسال التقييم" : "Submit Review"
+                  )}
+                </button>
+              </form>
+            )}
           </motion.div>
         )}
       </div>

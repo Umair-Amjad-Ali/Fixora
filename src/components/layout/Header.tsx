@@ -87,8 +87,8 @@ export function Header() {
 
           {/* Typography */}
           <div className="flex flex-col justify-center">
-            <div className="font-black text-2xl tracking-tight leading-none flex items-baseline">
-              <span className="text-foreground">DHS</span>
+            <div className="font-black text-2xl tracking-tighter leading-none flex items-baseline">
+              <span className="text-foreground">DHC</span>
              
             </div>
             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mt-1">
@@ -107,6 +107,14 @@ export function Header() {
               `}
             >
               {t("services")}
+            </Link>
+            <Link 
+              href="/blog" 
+              className={`text-sm font-black uppercase tracking-widest transition-colors
+                ${pathname === "/blog" ? "text-primary" : "text-zinc-500 hover:text-foreground"}
+              `}
+            >
+              {t("blog")}
             </Link>
             <Link 
               href="/pricing"
@@ -241,7 +249,7 @@ export function Header() {
                   <Wrench size={20} strokeWidth={2.5} />
                 </div>
                 <div className="flex flex-col -gap-1">
-                  <span className="font-black text-xl tracking-tighter text-foreground leading-none">DHS</span>
+                  <span className="font-black text-xl tracking-tighter text-foreground leading-none">DHC Pro</span>
                   <span className="text-[7px] font-black uppercase tracking-[0.2em] text-primary opacity-80">Home Service</span>
                 </div>
               </div>
@@ -324,7 +332,20 @@ export function Header() {
                     </div>
                   </Link>
                 </motion.div>
+                <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.35 }}>
+                  <Link 
+                    href="/blog" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-transparent hover:border-primary/20 transition-all group"
+                  >
+                    <span className="text-base font-black uppercase tracking-wider">{t("blog")}</span>
+                    <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-950 flex items-center justify-center text-zinc-400 group-hover:text-primary transition-all border border-zinc-100 dark:border-white/5">
+                      <ChevronDown size={14} className="-rotate-90 rtl:rotate-90" />
+                    </div>
+                  </Link>
+                </motion.div>
               </div>
+
 
               {/* Region & Language Section */}
               <div className="flex flex-col gap-4">

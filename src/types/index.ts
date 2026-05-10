@@ -137,3 +137,24 @@ export interface BookingData {
     };
   currentStep: number;
 }
+
+// ==========================================
+// REVIEW
+// ==========================================
+
+export interface Review {
+  id?: string;
+  orderId: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  technicianId?: string;
+  createdAt: Timestamp;
+}
+
+// ==========================================
+// BLOG
+// ==========================================
+
+export * from "./blog";

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "DHS | منصة الخدمات المنزلية",
+    "title": "Dammam Home Care | منصة الخدمات المنزلية",
     "description": "منصة خبراء الخدمات المنزلية وصيانة الإلكترونيات في دبي والمملكة العربية السعودية."
   },
   "common": {
@@ -32,7 +32,9 @@
     "activeAccount": "الحساب النشط",
     "myProfile": "ملفي الشخصي",
     "myBookings": "حجوزاتي",
+    "blog": "Blog",
     "signedOutSuccess": "تم تسجيل الخروج بنجاح",
+
     "logoutFailed": "فشل تسجيل الخروج"
   },
 
@@ -163,7 +165,7 @@
   },
   "signup": {
     "createAccount": "أنشئ حساباً",
-    "joinCommunity": "انضم إلى مجتمع فيكسورا",
+    "joinCommunity": "انضم إلى مجتمع دي إتش سي برو",
     "fullName": "الاسم الكامل",
     "emailAddress": "البريد الإلكتروني",
     "phoneNumber": "رقم الهاتف",
@@ -690,5 +692,15 @@
   "languageSwitcher": {
     "en": "EN",
     "ar": "عربي"
+  },
+  "blog": {
+    "title": "Dammam Home Care Insights",
+    "description": "Expert advice, maintenance tips, and industry insights to keep your home running perfectly.",
+    "readMore": "Read More",
+    "noPosts": "No articles found.",
+    "backToBlog": "Back to Blog",
+    "by": "By",
+    "publishedOn": "Published on"
   }
 }
+

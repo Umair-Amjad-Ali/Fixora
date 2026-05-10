@@ -31,5 +31,17 @@ service cloud.firestore {
     match /users/{userId} {
       allow read, write: if isAdmin() || (request.auth != null && request.auth.uid == userId);
     }
+
+    // Reviews Collection (linked by Order ID)
+    match /reviews/{orderId} {
+      // Allow read if Admin or if the Order belongs to the User
+      allow read: if isAdmin() || (request.auth != null && get(/databases/$(database)/documents/orders/$(orderId)).data.userId == request.auth.uid);
+      
+      // Allow create only once, and only if the Order belongs to the User
+      allow create: if request.auth != null && 
+                    request.resource.data.userId == request.auth.uid && 
+                    get(/databases/$(database)/documents/orders/$(orderId)).data.userId == request.auth.uid &&
+                    !exists(/databases/$(database)/documents/reviews/$(orderId));
+    }
   }
 }
