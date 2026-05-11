@@ -31,11 +31,9 @@ export default function BlogIndexPage() {
 
   return (
     <div className="bg-background min-h-screen" dir="ltr">
-      {/* Hero Section */}
       <section className="relative pt-20 pb-12 overflow-hidden bg-slate-900 text-white">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
         
-        {/* Decorative Gradients */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/2" />
 
@@ -89,7 +87,7 @@ export default function BlogIndexPage() {
                 >
                   <Link 
                     href={`/blog/${post.slug}`}
-                    className="group block h-full flex flex-col bg-white dark:bg-slate-900 rounded-[32px] md:rounded-[40px] border border-border/50 overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500"
+                    className="group block h-full flex-col bg-white dark:bg-slate-900 rounded-[32px] md:rounded-[40px] border border-border/50 overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500"
                   >
                     <div className="aspect-video relative overflow-hidden">
                       {post.coverImage ? (
@@ -103,7 +101,7 @@ export default function BlogIndexPage() {
                           <BookOpen className="text-slate-300" size={48} />
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                      <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
                          <span className="text-white font-bold flex items-center gap-2">
                            {t("readMore")} <ArrowRight size={18} />
                          </span>

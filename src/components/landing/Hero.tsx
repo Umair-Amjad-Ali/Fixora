@@ -28,8 +28,6 @@ export function Hero() {
 
   return (
     <section className="relative flex flex-col justify-center overflow-hidden bg-background border-b border-border section-padding">
-      {/* Animated Background Gradients */}
-      {/* ... keeping motion divs ... */}
       <motion.div 
         animate={{ 
           scale: [1, 1.2, 1],
@@ -92,7 +90,6 @@ export function Hero() {
              </motion.div>
 
              <motion.div variants={itemVariants} className="mt-12 flex flex-wrap gap-4 md:gap-8 pt-8 border-t border-border/50">
-               {/* Rating Card */}
                <div className="flex items-center gap-4 group cursor-default">
                  <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
                    <Star size={20} fill="currentColor" />
@@ -103,7 +100,6 @@ export function Hero() {
                  </div>
                </div>
 
-               {/* Warranty Card */}
                <div className="flex items-center gap-4 group cursor-default">
                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
                    <ShieldCheck size={20} fill="currentColor" />
@@ -114,7 +110,6 @@ export function Hero() {
                  </div>
                </div>
 
-               {/* Speed Card */}
                <div className="flex items-center gap-4 group cursor-default">
                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                    <Zap size={20} fill="currentColor" />
@@ -127,7 +122,6 @@ export function Hero() {
              </motion.div>
           </motion.div>
 
-          {/* Floating UI Elements / Abstract Visuals */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -135,7 +129,6 @@ export function Hero() {
             className="hidden lg:block relative h-full w-full"
           >
             <div className="relative w-full aspect-square">
-              {/* Glass Card 1 */}
               <motion.div 
                 animate={{ y: [0, -20, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -160,7 +153,6 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              {/* Glass Card 2 */}
               <motion.div 
                 animate={{ y: [0, 20, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
@@ -185,7 +177,6 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              {/* Central Abstract Ring */}
               <div className="absolute inset-0 m-auto w-72 h-72 border border-primary/20 rounded-full flex items-center justify-center">
                 <motion.div 
                   animate={{ rotate: 360 }} 

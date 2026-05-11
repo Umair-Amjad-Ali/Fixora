@@ -1,9 +1,5 @@
 import { Timestamp } from "firebase/firestore";
 
-// ==========================================
-// SERVICE REQUEST
-// ==========================================
-
 export type ServiceStatus = "pending" | "in_progress" | "completed" | "cancelled";
 
 export type ServiceType = "ac" | "electrical" | "plumbing" | "painting" | "tile" | "cleaning" | "washing_machine" | "refrigerator" | "contractor";
@@ -79,12 +75,6 @@ export interface ServiceRequest {
   activityLog: ActivityLogEntry[];
 }
 
-
-
-// ==========================================
-// USER
-// ==========================================
-
 export interface User {
   id: string;
   name: string;
@@ -97,11 +87,6 @@ export interface User {
   lastOrderAt?: Timestamp;
 }
 
-
-
-// ==========================================
-// BOOKING CONTEXT (client-side state)
-// ==========================================
 
 export interface BookingData {
   user: {
@@ -138,10 +123,6 @@ export interface BookingData {
   currentStep: number;
 }
 
-// ==========================================
-// REVIEW
-// ==========================================
-
 export interface Review {
   id?: string;
   orderId: string;
@@ -152,9 +133,5 @@ export interface Review {
   technicianId?: string;
   createdAt: Timestamp;
 }
-
-// ==========================================
-// BLOG
-// ==========================================
 
 export * from "./blog";

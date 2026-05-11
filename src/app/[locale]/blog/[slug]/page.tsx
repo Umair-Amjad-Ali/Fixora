@@ -27,11 +27,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
 
   return (
     <article className="bg-background min-h-screen pb-20" dir="ltr">
-      {/* Article Header */}
       <header className="relative py-20 md:py-32 bg-[#020617] text-white overflow-hidden">
          <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
          
-         {/* Decorative Gradients */}
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/2" />
 
@@ -76,7 +74,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
          </div>
       </header>
 
-      {/* Main Content */}
       <div className="container-tight -mt-8 md:-mt-12 relative z-20">
         <div className="bg-white dark:bg-slate-900 rounded-[32px] md:rounded-[40px] border border-border/50 shadow-2xl p-6 md:p-16 lg:p-20">
           {post.coverImage && (

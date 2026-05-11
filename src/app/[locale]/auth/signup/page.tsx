@@ -34,9 +34,7 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsRedirectDisabled(true); // Disable automatic redirect to home
-    
-    // Frontend Validation
+    setIsRedirectDisabled(true); 
     if (formData.password.length < 6) {
       toast.error(t("passwordError"));
       return;
@@ -57,7 +55,6 @@ export default function SignupPage() {
         password: formData.password
       });
 
-      // Firebase automatically logs in a newly created user
       await logoutUser();
 
       toast.success(t("successToast"));
@@ -76,15 +73,11 @@ export default function SignupPage() {
       <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
         <div className="w-full flex flex-col lg:flex-row rounded-3xl lg:rounded-[2.5rem] overflow-hidden border border-zinc-100 dark:border-slate-800 shadow-2xl bg-white dark:bg-zinc-950">
           
-          {/* LEFT: Cinematic Visual Panel (Hidden on Mobile) */}
           <div className="hidden lg:flex lg:w-5/12 relative overflow-hidden items-center justify-center p-10 bg-zinc-950">
-            {/* Abstract Glowing Background */}
             <div className="absolute inset-0 z-0">
               <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[100px] mix-blend-screen animate-pulse" />
               <div className="absolute inset-0 bg-linear-to-t from-[#030712] via-transparent to-transparent" />
             </div>
-
-            {/* Content Overlay */}
             <div className="relative z-10 w-full flex flex-col justify-center gap-8 h-full">
               <div>
                 <motion.h1 
@@ -102,7 +95,6 @@ export default function SignupPage() {
                 </p>
               </div>
 
-              {/* Compact Testimonial */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -122,7 +114,6 @@ export default function SignupPage() {
             </div>
           </div>
 
-          {/* RIGHT: Form Panel */}
           <div className="w-full lg:w-7/12 flex items-center justify-center p-6 sm:p-10 md:p-12 bg-white dark:bg-[#030712]">
             <div className="w-full max-w-sm mx-auto">
               <motion.div
@@ -134,7 +125,6 @@ export default function SignupPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-4">
-                    {/* Floating Label Name Input */}
                     <div className="relative group">
                       <input
                         type="text"
@@ -157,7 +147,6 @@ export default function SignupPage() {
                       </label>
                     </div>
 
-                    {/* Floating Label Email Input */}
                     <div className="relative group">
                       <input
                         type="email"
@@ -180,7 +169,6 @@ export default function SignupPage() {
                       </label>
                     </div>
 
-                    {/* Floating Label Phone Input */}
                     <div className="relative group">
                       <input
                         type="tel"
@@ -203,7 +191,6 @@ export default function SignupPage() {
                       </label>
                     </div>
 
-                    {/* Floating Label Password Input */}
                     <div className="relative group">
                       <input
                         type={showPassword ? "text" : "password"}

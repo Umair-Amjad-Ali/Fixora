@@ -55,8 +55,7 @@ export default function SchedulePage() {
       </div>
 
       <div className="space-y-10">
-        
-        {/* Date Selection Grid */}
+
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <label className="text-xs font-black uppercase tracking-widest text-zinc-400">{t("selectDate")}</label>
@@ -95,8 +94,6 @@ export default function SchedulePage() {
             })}
           </div>
         </div>
-
-        {/* Time Slot Selection */}
         <div className="space-y-5">
           <label className="text-xs font-black uppercase tracking-widest text-zinc-400 block">{t("selectArrivalWindow")}</label>
           
@@ -148,7 +145,6 @@ export default function SchedulePage() {
           
         </div>
 
-        {/* Footer Actions */}
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <Button 
             variant="outline" 

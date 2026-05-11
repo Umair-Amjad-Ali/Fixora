@@ -33,7 +33,6 @@ const Step = ({ step, title, description, icon, gradient, index, details }: Step
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       className={`flex flex-col ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 mb-32 last:mb-0`}
     >
-      {/* Visual Content (Mockup/Graphic) */}
       <div className="flex-1 w-full relative">
         <div className={`absolute inset-0 bg-linear-to-br ${gradient} opacity-10 blur-[100px] rounded-full`} />
         
@@ -41,15 +40,12 @@ const Step = ({ step, title, description, icon, gradient, index, details }: Step
           whileHover={{ scale: 1.02 }}
           className="relative bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-4 shadow-2xl overflow-hidden group"
         >
-          {/* Mockup Header */}
           <div className="flex items-center gap-2 mb-4 border-b border-zinc-100 dark:border-slate-800 pb-3 px-2 rtl:flex-row-reverse">
             <div className="w-3 h-3 rounded-full bg-red-400/50" />
             <div className="w-3 h-3 rounded-full bg-amber-400/50" />
             <div className="w-3 h-3 rounded-full bg-emerald-400/50" />
             <div className="h-4 w-32 bg-zinc-100 dark:bg-slate-800 rounded-md mx-auto" />
           </div>
-
-          {/* Dynamic Content based on step */}
           <div className="aspect-16/10 bg-zinc-50 dark:bg-slate-950 rounded-xl relative overflow-hidden flex items-center justify-center">
             {index === 0 && (
               <div className={`w-full h-full p-6 flex flex-col gap-4 ${isRtl ? 'items-end' : 'items-start'}`}>
@@ -84,14 +80,10 @@ const Step = ({ step, title, description, icon, gradient, index, details }: Step
                  <div className="h-3 w-48 bg-zinc-100 dark:bg-slate-800 rounded-md" />
               </div>
             )}
-
-            {/* Hover Shine Effect */}
             <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </div>
         </motion.div>
       </div>
-
-      {/* Text Content */}
       <div className={`flex-1 space-y-6 ${isRtl ? 'text-right' : 'text-left'}`}>
         <div className={`flex items-center gap-4 ${isRtl ? 'flex-row-reverse' : ''}`}>
           <span className={`text-5xl font-black text-transparent bg-clip-text bg-linear-to-br ${gradient} opacity-50`}>
@@ -167,7 +159,6 @@ export function HowItWorks() {
 
   return (
     <section id="how-it-works" className="bg-white dark:bg-[#030712] relative overflow-hidden section-padding" ref={containerRef}>
-      {/* Background Decor - Large Soft Orbs */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
 
@@ -198,8 +189,6 @@ export function HowItWorks() {
             <Step key={i} index={i} {...step} />
           ))}
         </div>
-
-        {/* Call to action footer of section */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -224,8 +213,6 @@ export function HowItWorks() {
     </section>
   );
 }
-
-// Sub components used for mockup icons
 const Navigation2 = ({ size }: { size: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
 );

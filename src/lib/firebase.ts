@@ -21,7 +21,6 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 
-// Initialize Analytics conditionally (client-side only)
 let analytics;
 if (typeof window !== "undefined") {
   isSupported().then((supported) => {

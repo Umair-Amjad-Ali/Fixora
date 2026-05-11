@@ -27,10 +27,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [isRegionModalOpen, setIsRegionModalOpen] = useState(false);
 
-  // Load from sessionStorage on mount
   useEffect(() => {
     try {
-      // 1. Load general booking data
       const saved = sessionStorage.getItem(STORAGE_KEY);
       let data = DEFAULT_BOOKING_DATA as BookingData;
       
@@ -38,7 +36,6 @@ export function BookingProvider({ children }: { children: ReactNode }) {
         data = JSON.parse(saved);
       }
 
-      // 2. Load and override country from persistent localStorage if exists
       const savedRegion = localStorage.getItem(REGION_STORAGE_KEY);
       if (savedRegion) {
         data = {
@@ -52,28 +49,22 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       
       setBookingData(data);
 
-      // Auto open modal if no region is saved
       if (!savedRegion) {
         setTimeout(() => setIsRegionModalOpen(true), 1000);
       }
     } catch {
-      // Storage not available
     }
     setIsHydrated(true);
   }, []);
-
-  // Save to sessionStorage on change
   useEffect(() => {
     if (isHydrated) {
       try {
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify(bookingData));
         
-        // Also persist the region choice to localStorage
         if (bookingData.location.country) {
           localStorage.setItem(REGION_STORAGE_KEY, bookingData.location.country);
         }
       } catch {
-        // Storage not available
       }
     }
   }, [bookingData, isHydrated]);
@@ -100,7 +91,6 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
   const setCurrentStep = useCallback((step: number) => {
     setBookingData((prev) => {
-      // Skip update if the step is already the same
       if (prev.currentStep === step) return prev;
       return { ...prev, currentStep: step };
     });
@@ -111,7 +101,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       ...(DEFAULT_BOOKING_DATA as BookingData),
       location: {
         ...(DEFAULT_BOOKING_DATA as BookingData).location,
-        country: prev.location.country // Preserve country even on reset
+        country: prev.location.country 
       }
     }));
     try {

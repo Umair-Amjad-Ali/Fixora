@@ -9,8 +9,6 @@ import { BOOKING_STEPS } from "@/lib/constants";
 export function StepProgressBar() {
   const { bookingData } = useBooking();
   const currentStepNum = bookingData.currentStep;
-
-  // Filter out conditional steps (AC Type, Issue) if they don't apply
   const visibleSteps = BOOKING_STEPS.filter((step) => {
     if (!step.conditional) return true;
     if (step.number === 3) return bookingData.service.serviceType === "ac";
@@ -21,7 +19,6 @@ export function StepProgressBar() {
   return (
     <div className="w-full relative py-2 sm:py-4 px-0 sm:px-4 flex justify-center overflow-x-auto scrollbar-hide">
       <div className="flex items-center justify-between w-full max-w-4xl relative min-w-0">
-        {/* Connection Background Line */}
         <div className="absolute top-[16px] sm:top-[20px] left-[16px] sm:left-[20px] right-[16px] sm:right-[20px] h-[2px] bg-zinc-100 dark:bg-slate-800 z-0" />
         
         {visibleSteps.map((step) => {

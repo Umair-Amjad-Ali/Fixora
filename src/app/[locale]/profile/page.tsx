@@ -34,7 +34,6 @@ export default function ProfilePage() {
 
   const ProfileSkeleton = () => (
     <div className="min-h-screen bg-white dark:bg-[#030712] animate-pulse">
-      {/* Hero Banner Skeleton */}
       <div className="pt-28 pb-20 bg-zinc-900 overflow-hidden relative border-b border-white/5">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="h-4 w-32 bg-zinc-800 rounded-lg mb-6" />
@@ -48,8 +47,6 @@ export default function ProfilePage() {
         </div>
         <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
       </div>
-
-      {/* Content Skeleton */}
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl -mt-8 relative z-20 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-3 space-y-6">
@@ -90,7 +87,6 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#030712]">
-      {/* Hero Banner */}
       <div className="pt-24 pb-20 bg-zinc-950 overflow-hidden relative border-b border-white/5">
         <div className="absolute inset-0 bg-linear-to-r from-primary/10 to-blue-500/10" />
         <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
@@ -137,12 +133,8 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-
-      {/* Content */}
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl -mt-8 relative z-20 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
-          {/* Main Info - Now span full width */}
           <div className="lg:col-span-3 space-y-6">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -164,8 +156,6 @@ export default function ProfilePage() {
                   <InfoCell label={t("accessLevel")} value={t("standardClient")} icon={<ShieldCheck size={14} />} />
                </div>
             </motion.div>
-
-            {/* Account Quick Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                <StatCard 
                 label={t("totalOrders")} 

@@ -61,11 +61,8 @@ export default function PricingPage() {
     }
     return CATEGORY_ISSUES_MAP[activeCategory] || [];
   };
-
-  const issues = getIssues();
+const issues = getIssues();
   const filteredIssues = issues;
-
-  // Helper to get localized issue data
   const getLocalizedIssue = (issue: IssueOption) => {
     const baseKey = activeCategory === "ac" 
       ? `constants.issues.ac.${activeACType}.${issue.slug}`
@@ -80,7 +77,6 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#030712] pt-24 pb-16">
       <div className="container-tight">
-        {/* Page Header */}
         <div className="mb-8">
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
@@ -103,8 +99,6 @@ export default function PricingPage() {
                 {t('pricingPage.subtitle')}
               </p>
             </div>
-
-            {/* Region Switcher */}
             <div className="flex p-1 bg-zinc-100 dark:bg-slate-900 rounded-xl border border-zinc-200 dark:border-slate-800 w-fit shrink-0">
               <button 
                 onClick={() => setRegion("UAE")}
@@ -125,8 +119,6 @@ export default function PricingPage() {
             </div>
           </motion.div>
         </div>
-
-        {/* Categories Tab Bar - Optimized for all devices */}
         <div className="mb-8 overflow-x-auto no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0">
           <div className="flex lg:flex-wrap items-center gap-2 pb-2">
             {SERVICE_CATEGORIES.map((cat) => {
@@ -152,12 +144,8 @@ export default function PricingPage() {
             })}
           </div>
         </div>
-
-        {/* Main Content Layout */}
         <div className="flex flex-col gap-6">
-          {/* Pricing Grid Area */}
           <main className="flex-1 min-w-0">
-            {/* Context bar (Filters) - Enhanced UI */}
             <div className="bg-zinc-50 dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 mb-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
@@ -194,8 +182,6 @@ export default function PricingPage() {
                 )}
               </div>
             </div>
-
-            {/* Price Cards Grid */}
             <AnimatePresence mode="wait">
               <motion.div 
                 key={activeCategory + activeACType}
@@ -260,8 +246,6 @@ export default function PricingPage() {
                 )}
               </motion.div>
             </AnimatePresence>
-
-            {/* Disclaimer Bar */}
             <div className="mt-8 p-4 bg-zinc-50 dark:bg-slate-900 rounded-2xl border border-zinc-200 dark:border-slate-800 flex items-start gap-3">
                <Info size={16} className="text-primary shrink-0" />
                <p className="text-[10px] text-zinc-500 font-medium leading-relaxed">

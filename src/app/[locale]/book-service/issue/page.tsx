@@ -22,12 +22,10 @@ export default function IssuePage() {
   const serviceType = bookingData.service.serviceType || "ac";
   const acType = bookingData.service.serviceSubType || "split_ac";
   
-  // Use specialized AC issues if applicable, otherwise fallback to category map
   const issues = serviceType === "ac" 
     ? (AC_TYPE_ISSUES_MAP[acType as keyof typeof AC_TYPE_ISSUES_MAP] || SPLIT_AC_ISSUES)
     : (CATEGORY_ISSUES_MAP[serviceType as keyof typeof CATEGORY_ISSUES_MAP] || []);
 
-  // Auto-sanitize state to remove stale or corrupted data from previous versions
   useEffect(() => {
     if (selectedIssues.length > 0) {
       const validSlugs = issues.map(i => i.slug);
@@ -36,9 +34,8 @@ export default function IssuePage() {
         setSelectedIssues(sanitized);
       }
     }
-  }, [issues]); // Only run when valid issues change
+  }, [issues]);
 
-  // Dynamic Content Mapping
   const contentMap = {
     ac: { icon: Snowflake, placeholder: "e.g., AC is making a clicking sound twice every hour..." },
     electrical: { icon: Zap, placeholder: "e.g., The main DB trips whenever I turn on the water heater..." },
@@ -68,7 +65,6 @@ export default function IssuePage() {
     const selectedOptions = issues.filter(i => selectedIssues.includes(i.slug));
     const selectedLabels = selectedOptions.map(i => i.label);
     
-    // Calculate total price if prices exist
     const totalPrice = selectedOptions.reduce((sum, opt) => sum + (opt.price || 0), 0);
     
     updateService({ 
@@ -99,7 +95,6 @@ export default function IssuePage() {
 
       <div className="space-y-8">
         
-        {/* Predefined Issues Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {issues.map((issue, i) => {
             const isSelected = selectedIssues.includes(issue.slug);
@@ -161,7 +156,6 @@ export default function IssuePage() {
           })}
         </div>
 
-        {/* Custom Input Section */}
         <div className="space-y-4">
            <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-400">
               <MessageCircle size={14} className="text-primary" />
@@ -180,7 +174,6 @@ export default function IssuePage() {
            </div>
         </div>
 
-        {/* Footer Actions */}
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <Button 
             variant="outline" 

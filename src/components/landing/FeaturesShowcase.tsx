@@ -10,7 +10,6 @@ export function FeaturesShowcase() {
 
   return (
     <section className="bg-background relative overflow-hidden section-padding">
-      {/* Abstract Background Elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-border to-transparent" />
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] translate-y-1/4 translate-x-1/4" />
@@ -37,11 +36,7 @@ export function FeaturesShowcase() {
             <span className="text-zinc-400">{t("titleLine2")}</span>
           </motion.h2>
         </div>
-
-        {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
-          
-          {/* Card 1: Workmanship */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -61,8 +56,6 @@ export function FeaturesShowcase() {
                  {t("qualityGuaranteed")}
                </div>
             </div>
-            
-            {/* Visual Decoration */}
             <div className="absolute -right-10 rtl:right-auto rtl:-left-10 bottom-0 w-2/3 h-4/5 bg-white dark:bg-slate-950 border border-border shadow-2xl rounded-tl-2xl rtl:rounded-tl-none rtl:rounded-tr-2xl p-8 hidden lg:block transform group-hover:-translate-x-2 rtl:group-hover:translate-x-2 transition-transform duration-500">
                <div className="w-full h-full space-y-6">
                   <div className="flex items-center gap-4">
@@ -95,8 +88,6 @@ export function FeaturesShowcase() {
                </div>
             </div>
           </motion.div>
-
-          {/* Card 2: 1-Month Warranty */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -126,8 +117,6 @@ export function FeaturesShowcase() {
                </div>
              </div>
           </motion.div>
-
-          {/* Card 3: Dynamic Scheduling */}
            <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -150,8 +139,6 @@ export function FeaturesShowcase() {
                 </div>
               </div>
            </motion.div>
-
-          {/* Card 4: Verified Network */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

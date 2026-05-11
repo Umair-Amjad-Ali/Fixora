@@ -22,7 +22,6 @@ export default function ContactPage() {
         </motion.div>
 
         <div className="grid grid-cols-1 max-w-2xl mx-auto mb-16">
-          {/* Saudi Office */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,8 +60,6 @@ export default function ContactPage() {
             </div>
           </motion.div>
         </div>
-
-        {/* Support Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
            {[
              { icon: Mail, title: t('emailsTitle'), detail: "dammamhomecarepro@gmail.com", label: t('emailReply') },

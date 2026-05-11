@@ -8,14 +8,8 @@ export interface CreateBookingParams {
   bookingData: BookingData;
 }
 
-/**
- * Handles the logic for creating a new booking in Firestore and updating user statistics.
- * Uses an atomic batch write — if any part fails, nothing gets committed.
- */
 export const createBooking = async ({ userId, userEmail, bookingData }: CreateBookingParams) => {
   const batch = writeBatch(db);
-
-  // 1. Prepare Order Data
   const orderRef = doc(collection(db, "orders"));
   const orderData = {
     userId,
@@ -29,18 +23,14 @@ export const createBooking = async ({ userId, userEmail, bookingData }: CreateBo
     updatedAt: serverTimestamp(),
   };
   batch.set(orderRef, orderData);
-
-  // 2. Update User Stats (atomic with order creation)
   const userRef = doc(db, "users", userId);
   batch.update(userRef, {
     totalOrders: increment(1)
   });
 
-  // 3. Commit both operations atomically
   await batch.commit();
 
   try {
-    // Send push notification to admins
     const adminApiUrl = process.env.NEXT_PUBLIC_ADMIN_API_URL || 'http://localhost:3000';
     const orderId = orderRef.id;
 
@@ -48,7 +38,6 @@ export const createBooking = async ({ userId, userEmail, bookingData }: CreateBo
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Pass the API key to prove this is an authorized request
         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_NOTIFICATION_API_KEY}`
       },
       body: JSON.stringify({

@@ -13,7 +13,6 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pt-24 pb-20">
       <div className="container-tight">
-        {/* Hero Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,8 +25,6 @@ export default function AboutPage() {
             {t('heroDesc')}
           </p>
         </motion.div>
-
-        {/* Vision & Mission */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -60,7 +57,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
 
-        {/* Core Values */}
         <div className="mb-20">
           <h2 className="text-3xl font-black mb-10 tracking-tight">{t('whySetsApart')}</h2>
           <div className="space-y-6">
@@ -87,8 +83,6 @@ export default function AboutPage() {
              ))}
           </div>
         </div>
-
-        {/* CTA */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}

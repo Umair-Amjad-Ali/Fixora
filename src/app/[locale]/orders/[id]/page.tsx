@@ -66,7 +66,6 @@ export default function OrderDetailPage() {
   const [fetching, setFetching] = useState(true);
   const [isCancelling, setIsCancelling] = useState(false);
   
-  // Review State
   const [existingReview, setExistingReview] = useState<any>(null);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -86,8 +85,7 @@ export default function OrderDetailPage() {
     setIsCancelling(true);
     try {
       await updateDoc(doc(db, "orders", orderId), { status: "cancelled" });
-      
-      // Update User Stats
+
       await updateDoc(doc(db, "users", user.uid), {
         cancelledOrders: increment(1)
       });
@@ -142,8 +140,6 @@ export default function OrderDetailPage() {
           const data = snap.data();
           if (data.status) data.status = data.status.replace(/-/g, "_");
           setOrder({ id: snap.id, ...data } as Order);
-          
-          // Fetch existing review if completed
           if (data.status === "completed") {
             const reviewSnap = await getDoc(doc(db, "reviews", orderId));
             if (reviewSnap.exists()) {
@@ -162,7 +158,6 @@ export default function OrderDetailPage() {
 
   const DetailSkeleton = () => (
     <div className="min-h-screen bg-white dark:bg-[#030712] animate-pulse">
-      {/* Hero Banner Skeleton */}
       <div className="pt-28 pb-20 bg-zinc-900 overflow-hidden relative border-b border-white/5">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="h-4 w-32 bg-zinc-800 rounded-lg mb-6" />
@@ -176,12 +171,9 @@ export default function OrderDetailPage() {
         </div>
         <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
       </div>
-
-      {/* Content Skeleton */}
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl -mt-8 relative z-20 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
-            {/* Service Details Skeleton */}
             <div className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 relative overflow-hidden">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-11 h-11 rounded-2xl bg-zinc-100 dark:bg-slate-800" />
@@ -200,8 +192,6 @@ export default function OrderDetailPage() {
               </div>
               <div className="absolute inset-0 bg-linear-to-r from-transparent via-zinc-100/10 dark:via-white/3 to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
             </div>
-
-            {/* Grid for Schedule/Location */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[1, 2].map(i => (
                 <div key={i} className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 relative overflow-hidden">
@@ -215,8 +205,6 @@ export default function OrderDetailPage() {
               ))}
             </div>
           </div>
-
-          {/* Sidebar Skeleton */}
           <div className="space-y-6">
             {[1, 2].map(i => (
               <div key={i} className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 relative overflow-hidden">
@@ -268,7 +256,6 @@ export default function OrderDetailPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#030712]">
-      {/* Hero Banner */}
       <div className="pt-28 pb-20 bg-zinc-950 overflow-hidden relative border-b border-white/5">
         <div className="absolute inset-0 bg-linear-to-r from-primary/10 to-emerald-500/10" />
         <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
@@ -328,14 +315,10 @@ export default function OrderDetailPage() {
         </div>
       </div>
 
-      {/* Content */}
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl -mt-8 relative z-20 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* Left Column — Main Details */}
           <div className="lg:col-span-2 space-y-6">
-
-            {/* Service Details */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
               className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl shadow-zinc-200/20 dark:shadow-none"
             >
@@ -369,9 +352,7 @@ export default function OrderDetailPage() {
               </div>
             </motion.div>
 
-            {/* Schedule & Location — Side by Side on Desktop */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Schedule */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
                 className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl shadow-zinc-200/20 dark:shadow-none"
               >
@@ -391,7 +372,6 @@ export default function OrderDetailPage() {
                 </div>
               </motion.div>
 
-              {/* Location */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                 className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl shadow-zinc-200/20 dark:shadow-none"
               >
@@ -413,10 +393,8 @@ export default function OrderDetailPage() {
             </div>
           </div>
 
-          {/* Right Column — Sidebar */}
           <div className="space-y-6">
 
-            {/* Customer Card */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
               className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl shadow-zinc-200/20 dark:shadow-none"
             >
@@ -446,8 +424,7 @@ export default function OrderDetailPage() {
                 )}
               </div>
             </motion.div>
-            
-            {/* Status Timeline */}
+
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl p-6 shadow-xl shadow-zinc-200/20 dark:shadow-none"
             >
@@ -494,7 +471,6 @@ export default function OrderDetailPage() {
           </div>
         </div>
 
-        {/* Technician Card (if assigned) */}
         {order.assignedTechId && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
@@ -555,7 +531,6 @@ export default function OrderDetailPage() {
           </motion.div>
         )}
 
-        {/* Review Section */}
         {order.status === "completed" && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 

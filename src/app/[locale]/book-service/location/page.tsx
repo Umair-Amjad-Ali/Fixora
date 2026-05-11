@@ -77,8 +77,6 @@ export default function LocationPage() {
     setCurrentStep(6);
   }, [setCurrentStep]);
 
-  // --- Refactored using LocationService ---
-
   const reverseGeocode = async (lat: number, lng: number) => {
     try {
       const data = await LocationService.reverseGeocode(lat, lng, mapLanguage);
@@ -148,15 +146,12 @@ export default function LocationPage() {
     }
   };
 
-  // Handle marker moving on the map (click or drag)
   const handleMarkerChange = (pos: { lat: number; lng: number }) => {
     setMarkerPos(pos);
     setValue("lat", pos.lat);
     setValue("lng", pos.lng);
     reverseGeocode(pos.lat, pos.lng);
   };
-
-  // Re-geocode current marker position when language changes
   useEffect(() => {
     if (markerPos) {
       reverseGeocode(markerPos.lat, markerPos.lng);
@@ -190,7 +185,6 @@ export default function LocationPage() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:h-[550px]">
           
-          {/* Map Column */}
           <div className="lg:col-span-3 space-y-3">
             
             <div className="relative z-50">
@@ -212,7 +206,6 @@ export default function LocationPage() {
                 />
                 
                 <div className="absolute right-2 rtl:right-auto rtl:left-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                  {/* Language Toggle */}
                   <div className="flex bg-zinc-100 dark:bg-slate-900 p-1 rounded-xl mr-2">
                     <button 
                       type="button"
@@ -240,8 +233,6 @@ export default function LocationPage() {
                   </Button>
                 </div>
               </div>
-
-              {/* Search Results Dropdown */}
               <AnimatePresence>
                 {searchResults.length > 0 && (
                   <motion.div 
@@ -265,7 +256,6 @@ export default function LocationPage() {
               </AnimatePresence>
             </div>
 
-            {/* Map Rendering Area */}
             <div className="w-full h-[280px] lg:h-[calc(100%-3.5rem)] rounded-3xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl relative z-10 group">
               <MapComponent 
                 center={DEFAULT_CENTER} 
@@ -276,8 +266,6 @@ export default function LocationPage() {
               <div className="absolute inset-0 pointer-events-none rounded-3xl shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] z-20" />
             </div>
           </div>
-
-          {/* Details Column */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-zinc-50 dark:bg-slate-900/40 p-6 rounded-3xl border border-zinc-200 dark:border-slate-800 space-y-5 h-full flex flex-col justify-between">
               <div className="space-y-5">

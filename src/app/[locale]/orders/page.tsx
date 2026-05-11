@@ -79,7 +79,6 @@ export default function ProfileDashboard() {
     );
   }
 
-  // Calculate pagination
   const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
   const paginatedOrders = filteredOrders.slice(
     (currentPage - 1) * itemsPerPage,
@@ -131,7 +130,6 @@ export default function ProfileDashboard() {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-[#030712]">
-      {/* Hero Banner */}
       <div className="pt-24 pb-20 bg-zinc-950 overflow-hidden relative border-b border-white/5">
         <div className="absolute inset-0 bg-linear-to-r from-primary/10 to-emerald-500/10" />
         <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
@@ -158,8 +156,6 @@ export default function ProfileDashboard() {
       </div>
 
       <div className="container-tight -mt-8 relative z-20 pb-24">
-        
-        {/* Filter & Tab Bar */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
           <div className="grid grid-cols-2 lg:flex lg:flex-row items-center gap-2 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 p-1.5 rounded-2xl w-full lg:w-fit shadow-sm">
             {TAB_OPTIONS.map((tab) => {
@@ -224,8 +220,6 @@ export default function ProfileDashboard() {
              </div>
           </div>
         </div>
-
-        {/* Content */}
         <AnimatePresence mode="wait">
           {activeTab === "guide" ? (
               <motion.div
@@ -235,7 +229,6 @@ export default function ProfileDashboard() {
                 exit={{ opacity: 0, y: -10 }}
                 className="space-y-4"
               >
-                {/* Header Banner */}
                 <div className="bg-primary text-white rounded-3xl p-8 relative overflow-hidden shadow-2xl shadow-primary/20">
                   <div className="absolute top-0 right-0 rtl:right-auto rtl:left-0 w-80 h-80 bg-white/10 blur-[80px] rounded-full translate-x-1/2 -translate-y-1/2 rtl:-translate-x-1/2" />
                   <div className="relative z-10">
@@ -362,7 +355,6 @@ export default function ProfileDashboard() {
                       })}
                     </div>
 
-                    {/* Pagination Controls */}
                     {totalPages > 1 && (
                       <div className="flex items-center justify-center gap-2 pt-8">
                         <button

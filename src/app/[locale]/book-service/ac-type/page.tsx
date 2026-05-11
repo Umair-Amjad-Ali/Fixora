@@ -69,7 +69,6 @@ export default function ACTypePage() {
                   }
                 `}
               >
-                {/* Visual Circle */}
                 <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center text-2xl mb-4 transition-all
                    ${isSelected ? "bg-white/20 border-white" : "bg-zinc-50 dark:bg-slate-800 border-zinc-200 dark:border-slate-700 group-hover:scale-110 group-hover:bg-primary/5 group-hover:text-primary"}
                 `}>
@@ -111,7 +110,6 @@ export default function ACTypePage() {
            </div>
         </div>
 
-        {/* Footer Actions */}
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <Button 
             variant="outline" 

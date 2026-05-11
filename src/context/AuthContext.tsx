@@ -35,21 +35,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(firebaseUser);
       
       if (firebaseUser) {
-        // Fetch real-time profile data from Firestore
         const docRef = doc(db, "users", firebaseUser.uid);
         profileUnsub = onSnapshot(docRef, async (docSnap) => {
           if (docSnap.exists()) {
             setUserProfile(docSnap.data());
             setLoading(false);
           } else {
-            // Check if this is a newly created user (grace period for registration)
-            // If the account was created more than 10 seconds ago and has no profile, it's an invalid user/admin
             const creationTime = firebaseUser.metadata.creationTime;
             const now = new Date().getTime();
             const accountAge = creationTime ? now - new Date(creationTime).getTime() : 0;
 
-            if (accountAge > 10000) { // 10 seconds grace period
-              // console.log("Rejecting account: No customer profile found.");
+            if (accountAge > 10000) { 
               toast.error("Admin accounts cannot use the customer app. Please use the Admin Panel.");
               await signOut(auth);
               setUserProfile(null);

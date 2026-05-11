@@ -1,7 +1,3 @@
-/**
- * Service to handle all location-related operations including geocoding and browser geolocation.
- * Using OpenStreetMap's Nominatim API for free, non-key geocoding.
- */
 
 export interface nominatimResult {
   place_id: number;
@@ -26,9 +22,6 @@ export interface nominatimResult {
 }
 
 export const LocationService = {
-  /**
-   * Reverse geocoding: coordinates -> address
-   */
   async reverseGeocode(lat: number, lng: number, language: string = "en"): Promise<nominatimResult> {
     try {
       const res = await fetch(
@@ -42,10 +35,6 @@ export const LocationService = {
       throw error;
     }
   },
-
-  /**
-   * Forward geocoding: search query -> coordinates
-   */
   async searchLocation(query: string, countryConstraint: string, language: string = "en"): Promise<nominatimResult[]> {
     try {
       const encodedQuery = encodeURIComponent(`${query}, ${countryConstraint}`);
@@ -61,9 +50,6 @@ export const LocationService = {
     }
   },
 
-  /**
-   * Browser Geolocation wrapper
-   */
   getCurrentPosition(): Promise<GeolocationPosition> {
     return new Promise((resolve, reject) => {
       if (typeof window === "undefined" || !navigator.geolocation) {
@@ -77,10 +63,6 @@ export const LocationService = {
       });
     });
   },
-
-  /**
-   * Helper to parse messy Nominatim address objects into our standardized app format
-   */
   extractAddressDetails(data: nominatimResult, defaultCity: string = "") {
     const addr = data.address || {};
     return {

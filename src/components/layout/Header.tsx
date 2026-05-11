@@ -33,13 +33,11 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Ensure menus are closed on navigation or auth state change
   useEffect(() => {
     setShowProfileMenu(false);
     setIsMobileMenuOpen(false);
   }, [pathname, user]);
 
-  // Handle body scroll lock when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -72,9 +70,7 @@ export function Header() {
       `}
     >
       <div className="container h-full mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between max-w-7xl">
-        {/* Clean & Premium Dammam Home Care Logo */}
         <Link href="/" className="flex items-center gap-3 group transition-all duration-300 hover:opacity-90 active:scale-95">
-          {/* Logo Icon */}
           <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl shadow-lg shadow-primary/20 border border-zinc-200 dark:border-slate-800 overflow-hidden bg-white">
             <Image 
               src="/images/dhc-logo.png" 
@@ -84,8 +80,6 @@ export function Header() {
               className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
             />
           </div>
-
-          {/* Typography */}
           <div className="flex flex-col justify-center">
             <div className="font-black text-2xl tracking-tighter leading-none flex items-baseline">
               <span className="text-foreground">DHC</span>
@@ -97,7 +91,6 @@ export function Header() {
           </div>
         </Link>
 
-        {/* Navigation */}
         <div className="flex items-center gap-4 lg:gap-8">
           <nav className="hidden md:flex items-center gap-8">
             <Link 
@@ -128,10 +121,7 @@ export function Header() {
           </nav>
 
           <div className="h-6 w-px bg-zinc-200 dark:bg-slate-800 hidden md:block" />
-
-          {/* Auth Actions & Mobile Toggle */}
             <div className="flex items-center gap-2">
-            {/* Region Switcher */}
             <button 
               onClick={() => setRegionModalOpen(true)}
               className="hidden lg:flex items-center justify-center gap-1.5 h-10 px-2 lg:px-4 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl hover:border-primary/40 transition-all me-1 lg:me-2 group"
@@ -219,8 +209,6 @@ export function Header() {
                 </div>
               )
             )}
-
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 text-zinc-500 hover:text-foreground hover:bg-zinc-100 dark:hover:bg-slate-900 rounded-xl transition-colors"
@@ -231,8 +219,6 @@ export function Header() {
         </div>
       </div>
     </header>
-
-    {/* Mobile Menu Overlay */}
     <AnimatePresence>
       {isMobileMenuOpen && (
           <motion.div
@@ -242,7 +228,6 @@ export function Header() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-50 lg:hidden bg-white dark:bg-[#030712] flex flex-col"
           >
-            {/* Mobile Header */}
             <div className="flex items-center justify-between px-6 h-20 border-b border-zinc-100 dark:border-white/5 bg-white dark:bg-[#030712]">
               <div className="flex items-center gap-2">
                 <div className="bg-primary text-white p-2 rounded-xl shadow-lg shadow-primary/20">
@@ -262,7 +247,6 @@ export function Header() {
             </div>
 
             <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-8">
-              {/* Profile Section (If Logged In) */}
               {user && (
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
@@ -299,8 +283,6 @@ export function Header() {
                   </div>
                 </motion.div>
               )}
-
-              {/* Navigation Links */}
               <div className="flex flex-col gap-3">
                 <p className="px-2 text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-1">{tc("menu") || "Menu"}</p>
                 <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
@@ -347,14 +329,12 @@ export function Header() {
               </div>
 
 
-              {/* Region & Language Section */}
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between px-2 mb-1">
                   <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">{tc("settings") || "Settings"}</p>
                 </div>
                 
                 <div className="space-y-3">
-                  {/* Unified Settings Row for Region */}
                   <motion.button 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -378,8 +358,6 @@ export function Header() {
                       <ChevronDown size={14} className="-rotate-90 rtl:rotate-90" />
                     </div>
                   </motion.button>
-
-                  {/* Unified Settings Row for Language */}
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -410,7 +388,6 @@ export function Header() {
                       </div>
                     </div>
                     
-                    {/* The switcher indicator - we keep it for visual feedback but make it non-interactive to prevent double bubbling if needed */}
                     <div className="pointer-events-none scale-90 origin-right lg:scale-100">
                        <LanguageSwitcher />
                     </div>
@@ -418,7 +395,6 @@ export function Header() {
                 </div>
               </div>
 
-              {/* Auth Actions (If Not Logged In) */}
               {!user && !isAuthPage && (
                 <div className="flex flex-col gap-3 mt-auto pt-6 border-t border-zinc-100 dark:border-white/5">
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
@@ -441,7 +417,6 @@ export function Header() {
               )}
 
 
-              {/* Logout (If Logged In) */}
               {user && (
                 <div className="mt-auto pt-8">
                   <button 

@@ -69,7 +69,6 @@ export function CategoryPageContent() {
             onClick={() => handleSelectCategory(category.slug)}
             className="group relative flex flex-col items-center p-6 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all active:scale-[0.98] text-center"
           >
-            {/* Background Accent */}
             <div className="absolute -top-12 -right-12 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-all duration-700" />
             
             <div className="relative z-10 w-14 h-14 rounded-2xl bg-zinc-50 dark:bg-slate-900 border border-zinc-100 dark:border-slate-800 flex items-center justify-center text-primary mb-4 shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-500">

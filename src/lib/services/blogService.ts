@@ -14,9 +14,6 @@ import { BlogPost } from "@/types";
 const BLOGS_COLLECTION = "blogs";
 
 export const blogService = {
-  /**
-   * Fetch all blog posts
-   */
   async getAllPosts(): Promise<BlogPost[]> {
     const q = query(
       collection(db, BLOGS_COLLECTION),
@@ -29,10 +26,6 @@ export const blogService = {
       ...doc.data()
     })) as BlogPost[];
   },
-
-  /**
-   * Fetch a single blog post by slug
-   */
   async getPostBySlug(slug: string): Promise<BlogPost | null> {
     const q = query(
       collection(db, BLOGS_COLLECTION),

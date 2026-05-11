@@ -63,7 +63,6 @@ export default function UserDetailsPage() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Full Name */}
           <div className="space-y-1.5">
             <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 flex items-center gap-1.5">
               <User size={12} className="text-primary" />
@@ -81,7 +80,6 @@ export default function UserDetailsPage() {
             </div>
           </div>
 
-          {/* Email */}
           <div className="space-y-1.5">
             <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 flex items-center gap-1.5">
               <Mail size={12} className="text-primary" />
@@ -99,8 +97,6 @@ export default function UserDetailsPage() {
             </div>
           </div>
         </div>
-
-        {/* Phone Number with Region Selector */}
         <div className="space-y-1.5">
           <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 flex items-center gap-1.5">
             <Phone size={12} className="text-primary" />

@@ -20,7 +20,6 @@ export function WhatsAppButton() {
         whileTap={{ scale: 0.9 }}
         className="relative group flex items-center justify-center"
       >
-        {/* Pulsing Glow Rings - Subtler */}
         <motion.div 
           animate={{ scale: [1, 1.2, 1.05, 1], opacity: [0, 0.2, 0.25, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
@@ -31,8 +30,6 @@ export function WhatsAppButton() {
           transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
           className="absolute inset-0 bg-[#25D366]/60 rounded-full blur-2xl"
         />
-
-        {/* The Button Body - Using WhatsApp Official Color */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-linear-to-br from-[#25D366] to-[#128C7E] rounded-full shadow-2xl flex items-center justify-center text-white border-2 border-white/20 overflow-hidden">
           <motion.div
             initial={{ y: 0 }}
@@ -41,12 +38,8 @@ export function WhatsAppButton() {
           >
             <MessageCircle size={32} strokeWidth={2.5} className="sm:w-10 sm:h-10" />
           </motion.div>
-          
-          {/* Glass Shine Effect */}
           <div className="absolute top-0 left-0 w-full h-full bg-linear-to-tr from-white/20 to-transparent pointer-events-none" />
         </div>
-
-        {/* Tooltip on Hover */}
         <div className="absolute right-full mr-4 px-3 py-2 bg-slate-900 border border-slate-800 text-white text-xs font-black rounded-xl opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all shadow-xl whitespace-nowrap hidden sm:block">
           Chat with Support
         </div>

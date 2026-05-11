@@ -22,8 +22,7 @@ export function RegionSelector() {
   const handleSelect = (country: any) => {
     const countryCode = country === "KSA" ? "+966" : "+971";
     const currency = country === "KSA" ? "SAR" : "AED";
-    
-    // Update multiple parts of the context simultaneously
+  
     updateBookingData({
       location: { ...bookingData.location, country },
       user: { ...bookingData.user, countryCode },
@@ -54,7 +53,6 @@ export function RegionSelector() {
             className={`relative w-full max-w-lg bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-[2.5rem] shadow-2xl overflow-hidden p-7 md:p-9`}
             dir={isRtl ? "rtl" : "ltr"}
           >
-            {/* Close Button */}
             <button 
               onClick={() => setRegionModalOpen(false)}
               className={`absolute top-6 ${isRtl ? 'left-6' : 'right-6'} w-10 h-10 rounded-full bg-zinc-50 dark:bg-white/5 flex items-center justify-center text-zinc-400 hover:text-primary transition-colors border border-zinc-200/50 dark:border-white/5 z-20`}

@@ -1,9 +1,5 @@
 import { ServiceType, ACType, IssueType, TimeSlot } from "@/types";
 
-// ==========================================
-// SERVICE CATEGORIES
-// ==========================================
-
 export interface ServiceCategory {
   slug: ServiceType;
   name: string;
@@ -25,9 +21,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   { slug: "contractor", name: "Building Contractor", icon: "HardHat", description: "Civil works & renovations", hasSubTypes: false },
 ];
 
-// ==========================================
-// AC TYPES
-// ==========================================
 
 export interface ACTypeOption {
   slug: ACType;
@@ -42,20 +35,12 @@ export const AC_TYPES: ACTypeOption[] = [
   { slug: "window_ac", name: "Window AC", description: "Wall-mounted window units", hasIssues: true },
 ];
 
-// ==========================================
-// AC ISSUES (Split AC for v1)
-// ==========================================
-
 export interface IssueOption {
   slug: IssueType;
   label: string;
   description: string;
   price?: number;
 }
-
-// ==========================================
-// AC ISSUES BY TYPE (Based on Client Pricing Sheets)
-// ==========================================
 
 export const SPLIT_AC_ISSUES: IssueOption[] = [
   { slug: "cleaning", label: "Air Conditioner Cleaning", description: "Professional cleaning of the split unit", price: 89 },
@@ -97,7 +82,7 @@ export const AC_TYPE_ISSUES_MAP: Record<string, IssueOption[]> = {
   central_ac: CENTRAL_AC_ISSUES,
 };
 
-export const AC_ISSUES: IssueOption[] = SPLIT_AC_ISSUES; // Fallback
+export const AC_ISSUES: IssueOption[] = SPLIT_AC_ISSUES; 
 
 export const ELECTRICAL_ISSUES: IssueOption[] = [
   { slug: "power_outage", label: "Power Outage", description: "Sudden power trip or loss in home" },
@@ -182,10 +167,6 @@ export const CATEGORY_ISSUES_MAP: Record<ServiceType, IssueOption[]> = {
   contractor: CONTRACTOR_ISSUES,
 };
 
-// ==========================================
-// SUB SERVICES MAPPING
-// ==========================================
-
 export interface SubService {
   id: string;
   name: string;
@@ -241,10 +222,6 @@ export const SUB_SERVICES_MAP: Record<string, SubService[]> = {
   ],
 };
 
-// ==========================================
-// TIME SLOTS
-// ==========================================
-
 export interface TimeSlotOption {
   slug: TimeSlot;
   label: string;
@@ -259,10 +236,6 @@ export const TIME_SLOTS: TimeSlotOption[] = [
   { slug: "night", label: "Night", timeRange: "6:00 PM – 9:00 PM", icon: "🌙" },
 ];
 
-// ==========================================
-// COUNTRY CODES
-// ==========================================
-
 export interface CountryCode {
   code: string;
   country: string;
@@ -275,10 +248,6 @@ export const COUNTRY_CODES: CountryCode[] = [
   { code: "KSA", country: "Saudi Arabia", flag: "🇸🇦", phonePrefix: "+966" },
 ];
 
-// ==========================================
-// STATUS CONFIG
-// ==========================================
-
 export const STATUS_CONFIG = {
   pending: { label: "Pending", color: "#F59E0B", bgColor: "#FEF3C7", icon: "🟡" },
   in_progress: { label: "In Progress", color: "#3B82F6", bgColor: "#DBEAFE", icon: "🔵" },
@@ -286,20 +255,11 @@ export const STATUS_CONFIG = {
   cancelled: { label: "Cancelled", color: "#EF4444", bgColor: "#FEE2E2", icon: "🔴" },
 } as const;
 
-
-
-// ==========================================
-// MAP DEFAULTS
-// ==========================================
-
 export const MAP_CENTERS = {
   UAE: { lat: 25.2048, lng: 55.2708, label: "Dubai" },
   KSA: { lat: 24.7136, lng: 46.6753, label: "Riyadh" },
 } as const;
 
-// ==========================================
-// BOOKING STEPS
-// ==========================================
 
 export interface BookingStep {
   number: number;
@@ -319,14 +279,6 @@ export const BOOKING_STEPS: BookingStep[] = [
   { number: 7, label: "Schedule", path: "/book-service/schedule", icon: "📅" },
   { number: 8, label: "Review", path: "/book-service/review-submit", icon: "✅" },
 ];
-
-// ==========================================
-// DEFAULT BOOKING DATA
-// ==========================================
-
-// ==========================================
-// PRIVACY POLICY CONTENT
-// ==========================================
 
 export const PRIVACY_SECTIONS = [
   {
@@ -351,10 +303,6 @@ export const PRIVACY_SECTIONS = [
   }
 ];
 
-// ==========================================
-// TERMS OF SERVICE CONTENT
-// ==========================================
-
 export const TERMS_SECTIONS = [
   {
     title: "1. Acceptance of Terms",
@@ -377,10 +325,6 @@ export const TERMS_SECTIONS = [
     content: "This agreement is governed by the laws of the United Arab Emirates and the Kingdom of Saudi Arabia, depending on the service location."
   }
 ];
-
-// ==========================================
-// REGIONS
-// ==========================================
 
 export const REGIONS = [
   {

@@ -19,7 +19,6 @@ import {
   Utensils
 } from "lucide-react";
 
-// Mapping string names to components for tree-shaking
 const IconMap: Record<string, any> = {
   Wrench,
   Snowflake,
@@ -36,7 +35,6 @@ import { useBooking } from "@/context/BookingContext";
 import { getCurrency } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
-// Mock premium data mapping with translation keys
 const premiumData: Record<string, { tagKey?: string }> = {
   ac: { tagKey: "mostPopular" },
   electrical: {},
@@ -67,18 +65,14 @@ function BentoCard({ children, href, isWide }: { children: React.ReactNode, href
           isWide ? "flex-col sm:flex-row items-center p-6 md:p-8" : "flex-col py-5 px-6"
         }`}
       >
-        {/* Dynamic Spotlight Effect */}
         <motion.div
           className="pointer-events-none absolute -inset-px rounded-4xl opacity-0 transition duration-500 group-hover:opacity-100 z-0"
           style={{
             background: useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, rgba(37,99,235,0.08), transparent 60%)`
           }}
         />
-
-        {/* Glossy Top Edge Highlight */}
         <div className="absolute inset-x-0 top-0 h-[2px] bg-linear-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
         
-        {/* Abstract Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
 
         <div className={`relative z-10 w-full flex ${isWide ? 'flex-col sm:flex-row h-full gap-6' : 'flex-col h-full'}`}>
@@ -112,7 +106,6 @@ export function ServicesGrid() {
 
   return (
     <section id="services" className="bg-white dark:bg-[#020617] relative overflow-hidden section-padding">
-      {/* Decorative background elements */}
       <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -130,8 +123,6 @@ export function ServicesGrid() {
             </h2>
           </div>
         </motion.div>
-
-        {/* BENTO GRID LAYOUT */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -150,8 +141,6 @@ export function ServicesGrid() {
                 className={`${isWide ? 'lg:col-span-2' : 'col-span-1'} h-full`}
               >
                 <BentoCard href={`/book-service/service-type?service=${service.slug}`} isWide={isWide}>
-                  
-                  {/* Card Icon Header */}
                   <div className={`flex ${isWide ? 'flex-col justify-between sm:w-1/4' : 'items-start justify-between'} mb-4`}>
                     <div className="relative">
                       <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-border/50 flex items-center justify-center group-hover:text-primary transition-all duration-500 shadow-sm relative z-10 overflow-hidden text-2xl group-hover:scale-105">
@@ -178,7 +167,6 @@ export function ServicesGrid() {
                     )}
                   </div>
                   
-                  {/* Card Content Body */}
                   <div className={`flex flex-col ${isWide ? 'sm:w-3/4 justify-center' : 'flex-1'}`}>
                     <div className="flex items-center justify-between mb-2">
                       <h3 className={`font-black tracking-tight text-foreground group-hover:text-primary transition-colors duration-300 ${isWide ? 'text-2xl' : 'text-lg'}`}>
@@ -194,8 +182,6 @@ export function ServicesGrid() {
                     <p className={`text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed ${isWide ? 'text-sm pr-8' : 'text-[12px] mb-4'}`}>
                       {tConstants(`services.${service.slug}.description`)}
                     </p>
-
-                    {/* Footer Interaction elements */}
                     {!isWide && (
                       <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-white/5">
                         <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">

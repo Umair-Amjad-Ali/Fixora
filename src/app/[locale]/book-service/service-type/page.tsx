@@ -28,7 +28,6 @@ function ServiceTypeContent() {
       return;
     }
     
-    // Sync serviceType from URL to state if they don't match
     if (bookingData.service.serviceType !== initialCategory) {
        updateService({ serviceType: initialCategory as any });
     }
@@ -47,8 +46,7 @@ function ServiceTypeContent() {
         estimatedPrice: (sub as any)?.startingPrice || 0,
         currency: currency
       });
-      
-      // Conditional logic: If AC, go to AC-Type. Else go to Issues.
+    
       if (initialCategory === "ac") {
         router.push("/book-service/ac-type");
       } else {
@@ -90,7 +88,6 @@ function ServiceTypeContent() {
                   }
                 `}
               >
-                {/* Visual Accent */}
                 <div className={`absolute top-0 right-0 rtl:right-auto rtl:left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 rtl:-translate-x-1/2 transition-opacity ${isSelected ? "opacity-30" : "opacity-0 group-hover:opacity-10"}`} />
 
                 <div className="flex-1 pr-4 rtl:pr-0 rtl:pl-4">
@@ -138,7 +135,6 @@ function ServiceTypeContent() {
           })}
         </div>
 
-        {/* Empty state if category not implemented yet in mock */}
         {subs.length === 0 && (
            <div className="py-16 text-center border-2 border-dashed border-zinc-200 dark:border-slate-800 rounded-3xl">
               <Sparkles className="mx-auto mb-4 text-zinc-300" size={40} />
@@ -147,8 +143,6 @@ function ServiceTypeContent() {
               <Button onClick={() => setSelectedSub("custom")} className="mt-6 rounded-full h-12">{t('serviceTypePage.customQuote')}</Button>
            </div>
         )}
-
-        {/* Footer Actions */}
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <Button 
             variant="outline" 

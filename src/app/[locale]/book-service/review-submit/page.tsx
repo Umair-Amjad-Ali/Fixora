@@ -49,13 +49,10 @@ export default function ReviewSubmitPage() {
 
   const getSubTitleText = () => {
      let parts: string[] = [];
-     
-     // Robust translator that prevents raw keys from leaking to UI or crashing runtime
+   
      const safeTranslate = (key: string, fallback: string = ""): string => {
         try {
            const result = tConstants(key);
-           // next-intl returns the key itself as a fallback if missing. 
-           // We check if the result is suspiciously similar to the path.
            const isMissing = !result || result === key || result.includes(key);
            return isMissing ? fallback : result;
         } catch (e) {
@@ -74,13 +71,11 @@ export default function ReviewSubmitPage() {
      
      if (bookingData.service.issue?.selectedIssues?.length) {
         bookingData.service.issue.selectedIssues.forEach(slug => {
-           // Skip obviously malformed slugs from previous corrupted sessions
            if (!/^[a-z0-9_-]+$/.test(slug)) return;
 
            let label = "";
            if (bookingData.service.serviceType === "ac") {
               const acType = bookingData.service.serviceSubType || "split_ac";
-              // Validate acType is clean before lookup
               if (/^[a-z0-9_-]+$/.test(acType)) {
                  label = safeTranslate(`issues.ac.${acType}.${slug}.label`);
               }
@@ -91,7 +86,6 @@ export default function ReviewSubmitPage() {
            if (label) parts.push(label);
         });
         
-        // Integrity check: if we have selected issues but couldn't translate any, use the label fallback
         const issuePartCount = parts.length - (bookingData.service.serviceSubType ? 1 : 0);
         if (issuePartCount <= 0 && bookingData.service.issue.label) {
            parts.push(bookingData.service.issue.label);
@@ -102,8 +96,6 @@ export default function ReviewSubmitPage() {
      
      return parts.join(" • ");
   };
-
-  // Pricing handled manually by technicians on-site
 
   const handleBooking = async () => {
     if (!user) {
@@ -147,10 +139,8 @@ export default function ReviewSubmitPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         
-        {/* Left Column: Data Summary */}
         <div className="lg:col-span-2 space-y-4">
           
-          {/* Service & Issues */}
           <div className="bg-zinc-50 dark:bg-slate-950 p-5 rounded-3xl border border-zinc-200 dark:border-slate-800 relative overflow-hidden group">
              <div className="absolute -top-4 -right-4 text-primary/5 group-hover:scale-110 transition-transform duration-700">
                 <Zap size={80} />
@@ -184,7 +174,6 @@ export default function ReviewSubmitPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Customer Details */}
             <div className="p-5 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl text-start">
                <h3 className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-3.5 flex items-center gap-1.5">
                   <User size={10} className="text-primary" />
@@ -197,7 +186,6 @@ export default function ReviewSubmitPage() {
                </div>
             </div>
 
-            {/* Schedule Details */}
             <div className="p-5 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl text-start">
                <h3 className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-3.5 flex items-center gap-1.5">
                   <Calendar size={10} className="text-secondary" />
@@ -220,7 +208,6 @@ export default function ReviewSubmitPage() {
             </div>
           </div>
 
-          {/* Location Summary */}
           <div className="p-5 bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-3xl flex items-start gap-3.5 text-start">
              <div className="w-9 h-9 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
                 <MapPin size={18} />
@@ -233,8 +220,6 @@ export default function ReviewSubmitPage() {
                 <p className="text-zinc-500 font-normal text-[11px] mt-0.5">{bookingData.location.city}, {bookingData.location.country}</p>
              </div>
           </div>
-
-          {/* Modify Selection Card */}
           <button 
             onClick={() => router.back()}
             className="group w-full p-4 bg-zinc-50 dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl flex items-center justify-between hover:border-primary/50 transition-all active:scale-[0.99]"
@@ -252,7 +237,6 @@ export default function ReviewSubmitPage() {
           </button>
         </div>
 
-        {/* Right Column: Checkout Sidebar */}
         <div className="lg:col-span-1">
            <div className="sticky top-8 space-y-4">
               

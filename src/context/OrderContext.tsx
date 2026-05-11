@@ -63,7 +63,6 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         fetchedOrders.push({ id: doc.id, ...doc.data() } as Order);
       });
 
-      // Already sorted by Firestore via orderBy("createdAt", "desc")
       setOrders(fetchedOrders);
       setFetching(false);
     }, (error) => {
@@ -74,12 +73,9 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     return () => unsubscribe();
   }, [user]);
 
-  // Keep a manual refresh for manual triggers if needed
   const refreshOrders = async () => {
-    // This is now less necessary but kept for interface compatibility
   };
 
-  // Reset pagination when filters change
   useEffect(() => {
     setCurrentPage(1);
   }, [activeTab, filterDate]);

@@ -28,14 +28,12 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
 
   useEffect(() => {
     if (!loading && !user) {
-      // Redirect to login
       router.push("/auth/login");
     }
   }, [user, loading, router]);
 
   const serviceQuery = searchParams.get("service");
   
-  // Logic to determine if we are in an invalid booking state
   const isInvalidState = 
     !loading && 
     user && 
@@ -43,7 +41,6 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
     !bookingData.service.serviceType &&
     !(pathname === "/book-service/service-type" && serviceQuery);
 
-  // Guard: If trying to access steps without a selected service, bounce to home safely
   useEffect(() => {
     if (isInvalidState) {
        console.log("Invalid booking state detected, redirecting to home. Path:", pathname);
@@ -51,8 +48,6 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
     }
   }, [isInvalidState, router, pathname]);
 
-  // If invalid, rendering absolutely nothing (a blank background) hides the "flash"
-  // of the old booking step while the rewinding chain reaction occurs.
   if (isInvalidState) {
     return <div className="min-h-screen bg-zinc-50 dark:bg-[#030712] fixed inset-0 z-50 pointer-events-none" />;
   }
@@ -65,12 +60,10 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
     );
   }
 
-  // If not logged in, don't render children (redirect will happen)
   if (!user) return null;
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-[#030712] pb-20 overflow-x-hidden">
-      {/* Top Banner Decoration */}
       <div className="pt-24 pb-16 bg-zinc-950 overflow-hidden relative border-b border-white/5">
         <div className="absolute inset-0 bg-linear-to-r from-primary/10 to-secondary/10" />
         <div className="absolute top-0 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
@@ -100,12 +93,9 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
 
       <div className="container mx-auto px-4 max-w-5xl -mt-12 relative z-20">
         <div className="bg-white dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-2xl sm:rounded-[2.5rem] shadow-2xl p-4 sm:p-6 md:p-12">
-          {/* Progress Section */}
           <div className="mb-10 border-b border-zinc-100 dark:border-slate-800 pb-8">
             <StepProgressBar />
           </div>
-
-          {/* Page Content with Transitions */}
           <AnimatePresence mode="wait">
             <motion.div
               key={pathname}
@@ -119,8 +109,6 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
             </motion.div>
           </AnimatePresence>
         </div>
-
-        {/* Support Section Footer */}
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 px-8 text-zinc-500 text-sm font-medium">
           <div className="flex items-center gap-4">
              <div className="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
@@ -128,11 +116,6 @@ function BookingLayoutContent({ children }: BookingLayoutProps) {
              </div>
              <span>{t("urgentHelp")} <span className="text-foreground font-bold" dir="ltr">+966 0569633654</span></span>
           </div>
-          {/* <div className="flex items-center gap-8">
-             <span className="hover:text-primary transition-colors cursor-pointer">Support</span>
-             <span className="hover:text-primary transition-colors cursor-pointer">Security Policy</span>
-             <span className="hover:text-primary transition-colors cursor-pointer">FAQs</span>
-          </div> */}
         </div>
       </div>
     </div>
