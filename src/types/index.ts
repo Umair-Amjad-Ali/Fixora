@@ -135,3 +135,27 @@ export interface Review {
 }
 
 export * from "./blog";
+
+export interface ServiceDetailSection {
+  title: string;
+  content: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface ServiceDetail {
+  slug: ServiceType;
+  title: string;
+  description: string;
+  heroImage: string;
+  sections: ServiceDetailSection[];
+  faqs: FAQ[];
+  tableData?: {
+    headers: string[];
+    rows: string[][];
+  };
+}
+

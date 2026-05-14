@@ -26,7 +26,7 @@ export const LocationService = {
     try {
       const res = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=${language}`,
-        { headers: { "User-Agent": "Fixora-App" } }
+        { headers: { "User-Agent": "DHS-App" } }
       );
       if (!res.ok) throw new Error("Network response was not ok");
       return await res.json();
@@ -40,7 +40,7 @@ export const LocationService = {
       const encodedQuery = encodeURIComponent(`${query}, ${countryConstraint}`);
       const res = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodedQuery}&limit=5&addressdetails=1&accept-language=${language}`,
-        { headers: { "User-Agent": "Fixora-App" } }
+        { headers: { "User-Agent": "DHS-App" } }
       );
       if (!res.ok) throw new Error("Network response was not ok");
       return await res.json();

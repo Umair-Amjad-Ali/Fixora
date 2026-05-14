@@ -20,12 +20,19 @@
     "services": "Services",
     "region": "Region",
     "viewDetails": "View Details",
-    "checkPrices": "Check Prices",
+    "checkPrices": "Prices",
     "processing": "Processing...",
     "menu": "Menu",
     "settings": "Settings",
     "language": "Language",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "viewAllServices": "View All Services",
+    "exploreServices": "Explore Our Services",
+    "backToServices": "Back to Services",
+    "readyToExperience": "Ready to experience the future of home maintenance?",
+    "priceEstimates": "Price Estimates",
+    "reviewRating": "from 500+ reviews",
+    "support": "Support"
   },
   "header": {
     "services": "Services",
@@ -34,7 +41,7 @@
     "myBookings": "My Bookings",
     "blog": "Blog",
     "signedOutSuccess": "Signed out successfully",
-
+    "serviceArea": "Service Area",
     "logoutFailed": "Logout failed"
   },
 
@@ -480,8 +487,41 @@
     "tryDifferentSearch": "Try a different search term.",
     "disclaimer": "Final on-site quotes may vary based on specific spare parts requirement or accessibility. Inclusive of labor and basic diagnostics."
   },
+  "servicesPage": {
+    "title": "Our Professional Services",
+    "description": "Expert home maintenance and repair solutions tailored for Saudi Arabia. Choose a service to learn more about our expertise.",
+    "heroTitle": "Expert Home Care Services in Saudi Arabia",
+    "heroSubtitle": "Reliable, professional, and high-quality maintenance solutions for your home and workplace. We bring expertise to your doorstep.",
+    "aboutTitle": "The #1 Home Maintenance Experts",
+    "aboutContent1": "Looking for reliable home maintenance? Dammam Home Services Pro is your leading specialist for comprehensive property care. Our team of certified professionals is committed to simplifying your maintenance needs with efficiency and care.",
+    "aboutContent2": "Home maintenance can be stressful, but with our expert crew, it becomes effortless. We understand the unique challenges of the Saudi climate and provide solutions that last. From diagnostics to final repairs, we handle every detail.",
+    "viewDetails": "View Service Details",
+    "backHome": "Back to Home",
+    "serviceAreasTitle": "Our Service Areas",
+    "exploreTitle": "Explore Our Services",
+    "readyToBook": "Ready to book?",
+    "startBooking": "Start Booking",
+    "quickLinks": "Quick Links",
+    "premiumStandards": "Premium Quality Standards",
+    "aboutBadge": "About Our Services",
+    "stats": {
+      "clients": "Happy Clients",
+      "warranty": "Warranty",
+      "support": "Expert Support"
+    },
+    "trustedBy": "Trusted by 10,000+ Homes",
+    "features": [
+      "Expert Technicians",
+      "Premium Spare Parts",
+      "30-Day Service Warranty",
+      "Upfront Fixed Pricing",
+      "Same-Day Service Arrival",
+      "100% Satisfaction Guarantee"
+    ]
+  },
   "constants": {
     "services": {
+      "viewDetails": "View Details",
       "ac": { "name": "AC Maintenance", "description": "Expert servicing, repairs, and deep duct cleaning"},
       "washing_machine": { "name": "Washing Machine", "description": "Automatic & semi-auto repair" },
       "refrigerator": { "name": "Refrigerator", "description": "Cooling repair & gas refill" },
@@ -700,6 +740,604 @@
     "backToBlog": "Back to Blog",
     "by": "By",
     "publishedOn": "Published on"
+  },
+  "servicePages": {
+    "ac": {
+      "title": "AC Maintenance Services in Saudi Arabia",
+      "description": "Trusted AC Repair & Maintenance Experts",
+      "heroText": "In the harsh climate of Saudi Arabia, a properly working air conditioning system is essential for maintaining comfort at home and in the workplace. Dammam Home Services Pro provides professional AC maintenance and repair solutions designed to keep your cooling systems running efficiently throughout the year.",
+      "sections": [
+        {
+          "title": "Professional AC Repairing Services",
+          "content": "At Dammam Home Services Pro, we specialize in complete AC repairing services for all types of air conditioning systems, including split ACs, window ACs, inverter units, and central cooling systems. Whether your AC is not cooling properly, leaking water, making unusual noises, or experiencing electrical issues, our skilled technicians can quickly identify the problem and provide reliable repair solutions. Our goal is to restore maximum cooling performance while ensuring long-lasting results."
+        },
+        {
+          "title": "Best AC Repair Services in Saudi Arabia",
+          "content": "We are proud to be recognized for offering the best AC reparing services with affordable pricing and fast response times. Our team understands how uncomfortable AC breakdowns can be during the intense Saudi heat, which is why we focus on quick and efficient service. From minor repairs to complete system troubleshooting, we handle every project professionally to ensure your comfort and convenience."
+        },
+        {
+          "title": "Complete AC Maintenance Solutions",
+          "content": "Regular AC maintenance is important to improve system performance, reduce electricity consumption, and prevent costly future repairs. Our maintenance services include filter cleaning, coil cleaning, gas refilling, thermostat inspection, compressor checking, electrical testing, and complete performance optimization. With regular servicing from Dammam Home Services Pro, your air conditioner can operate more efficiently and maintain consistent cooling throughout the year."
+        },
+        {
+          "title": "Residential & Commercial AC Services",
+          "content": "Our AC maintenance and repairing solutions are available for homes, apartments, villas, offices, restaurants, retail stores, and commercial buildings across Saudi Arabia. No matter the size or type of your property, our experienced technicians provide customized solutions that meet your cooling requirements. We work hard to ensure every customer receives high-quality service and dependable support."
+        },
+        {
+          "title": "Why Choose Dammam Home Services Pro?",
+          "content": "Choosing the right AC service provider is important for maintaining the efficiency and lifespan of your cooling system. Our company is trusted because of our experienced technicians, affordable pricing, professional customer support, and commitment to quality workmanship. We use modern tools and proven repair methods to provide reliable AC repairing services that customers can trust."
+        },
+        {
+          "title": "Benefits of Regular AC Maintenance",
+          "content": "Regular AC maintenance helps improve cooling efficiency, lower electricity bills, extend the lifespan of your unit, and maintain healthier indoor air quality. It also reduces the risk of sudden breakdowns and expensive emergency repairs. By scheduling routine maintenance, you can keep your air conditioning system operating smoothly even during the hottest summer months in Saudi Arabia."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How often should AC maintenance be scheduled?",
+          "answer": "It is recommended to schedule professional AC maintenance at least twice a year to maintain cooling efficiency and prevent major problems."
+        },
+        {
+          "question": "What are the signs that my AC needs repair?",
+          "answer": "Common signs include weak cooling, strange noises, water leakage, unpleasant odors, and increased electricity bills."
+        },
+        {
+          "question": "Do you repair all types of AC systems?",
+          "answer": "Yes, Dammam Home Services Pro repairs split ACs, window ACs, inverter systems, and central air conditioning units."
+        },
+        {
+          "question": "Can regular AC maintenance reduce electricity bills?",
+          "answer": "Yes, regular maintenance improves energy efficiency, helping your AC consume less power and reducing monthly electricity costs."
+        },
+        {
+          "question": "Why should I choose professional AC repairing services?",
+          "answer": "Professional technicians can accurately diagnose problems, provide safe repairs, improve system performance, and help extend the lifespan of your AC unit."
+        }
+      ],
+      "table": {
+        "headers": ["Service Type", "Description", "Starting Price"],
+        "rows": [
+          ["AC Cleaning", "Filter & Coil Deep Clean", "SAR 89"],
+          ["Repairing Leaks", "Gas & Water Leak Fix", "SAR 128"],
+          ["Full Refill", "Freon Gas Refill + Cleaning", "SAR 170"],
+          ["Installation", "New Unit Setup", "SAR 244"]
+        ]
+      },
+      "seo": {
+        "title": "Best AC Repair & Maintenance Services in Saudi Arabia | Dammam Home Services Pro",
+        "description": "Professional AC repair and maintenance services in Saudi Arabia. We fix split, window, and central AC units with expert technicians and affordable pricing."
+      }
+    },
+    "washing_machine": {
+      "title": "Washing Machine Repair Services in Saudi Arabia",
+      "description": "Professional Washing Machine Repairing by Dammam Home Services Pro",
+      "heroText": "A washing machine is one of the most essential appliances in every home and commercial property. When it stops working properly, daily routines can quickly become stressful and inconvenient. At Dammam Home Services Pro, we provide professional and affordable washing machine repair solutions designed to restore your appliance quickly and efficiently.",
+      "sections": [
+        {
+          "title": "Expert Washing Machine Repairing Services",
+          "content": "Our skilled technicians specialize in diagnosing and repairing all types of washing machine problems. Whether your machine is not spinning, leaking water, producing unusual noises, not draining properly, or failing to start, our experts can identify the issue and provide reliable repair solutions. We work with all major washing machine brands and models, including front-load, top-load, automatic, semi-automatic, and commercial washing machines."
+        },
+        {
+          "title": "Best Washing Machine Repair Services in Saudi Arabia",
+          "content": "We are proud to be recognized for providing the best washing machine repairing services with fast response times and affordable pricing. Our experienced technicians understand how important a properly functioning washing machine is for every household, which is why we offer quick and dependable repair solutions throughout Saudi Arabia."
+        },
+        {
+          "title": "Common Washing Machine Problems We Fix",
+          "content": "At Dammam Home Services Pro, we repair a wide range of washing machine issues. Common problems include machines not spinning properly, water leakage, drainage problems, excessive vibration, unusual sounds, electrical malfunctions, door lock issues, and machines that stop mid-cycle. Our technicians carefully inspect every component to ensure accurate diagnosis and complete repair solutions."
+        },
+        {
+          "title": "Residential & Commercial Washing Machine Repairing",
+          "content": "Our washing machine repair services are available for residential and commercial clients across Saudi Arabia. Whether you need repairs for a household washing machine or maintenance for commercial laundry equipment, our team provides customized solutions according to your requirements. We serve homes, apartments, hotels, restaurants, laundry businesses, and commercial facilities with professional care and attention."
+        },
+        {
+          "title": "Benefits of Professional Washing Machine Repair",
+          "content": "Professional washing machine repair services help improve appliance efficiency, reduce water and electricity consumption, prevent major breakdowns, and extend the lifespan of your machine. Timely repairs can also help avoid costly replacements and ensure smooth operation for everyday use. Regular maintenance and professional servicing keep your washing machine functioning efficiently for years."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What types of washing machines do you repair?",
+          "answer": "We repair front-load, top-load, automatic, semi-automatic, and commercial washing machines of all major brands."
+        },
+        {
+          "question": "What are common signs that a washing machine needs repair?",
+          "answer": "Common signs include water leakage, unusual noises, drainage issues, excessive vibration, spinning problems, and failure to start."
+        },
+        {
+          "question": "Do you provide same-day washing machine repair services?",
+          "answer": "Yes, Dammam Home Services Pro offers quick-response and same-day repair services in many areas of Saudi Arabia."
+        },
+        {
+          "question": "Is repairing a washing machine better than replacing it?",
+          "answer": "In many cases, professional repairs are more affordable and can significantly extend the lifespan of your appliance."
+        },
+        {
+          "question": "Why should I choose professional washing machine repairing services?",
+          "answer": "Professional technicians can accurately diagnose issues, ensure safe repairs, improve appliance performance, and prevent future problems."
+        }
+      ],
+      "table": {
+        "headers": ["Problem", "Diagnosis", "Estimated Time"],
+        "rows": [
+          ["Not Spinning", "Motor or Belt Check", "1-2 Hours"],
+          ["Water Leakage", "Pipe or Seal Repair", "1 Hour"],
+          ["Drainage Issues", "Pump Cleaning/Replace", "1-2 Hours"],
+          ["Electrical Fault", "PCB or Wiring Fix", "2-3 Hours"]
+        ]
+      },
+      "seo": {
+        "title": "Best Washing Machine Repair Services in Saudi Arabia | Dammam Home Services Pro",
+        "description": "Expert washing machine repair services in Saudi Arabia. We fix all brands including automatic and semi-automatic units with certified technicians."
+      }
+    },
+    "refrigerator": {
+      "title": "Refrigerator Repair & Gas Refill Services in Saudi Arabia",
+      "description": "Professional Refrigerator Cooling Repair by Dammam Home Services Pro",
+      "heroText": "A refrigerator is one of the most important appliances in every home, restaurant, hotel, and commercial property. When your refrigerator stops cooling properly or starts showing performance issues, it can lead to food spoilage, inconvenience, and unnecessary expenses.",
+      "sections": [
+        {
+          "title": "Expert Refrigerator Repair Services",
+          "content": "Our trained technicians specialize in repairing all types of refrigerator problems quickly and efficiently. Whether your refrigerator is not cooling, leaking water, making unusual noises, freezing excessively, or experiencing electrical faults, our experts can diagnose the issue and provide reliable repair solutions. We repair single-door refrigerators, double-door refrigerators, side-by-side units, commercial refrigerators, deep freezers, and inverter refrigerators from all major brands."
+        },
+        {
+          "title": "Refrigerator Gas Refill Services",
+          "content": "Low refrigerant levels are one of the most common reasons behind poor cooling performance. Our professional refrigerator gas refill services help restore proper cooling and improve energy efficiency. If your refrigerator is not cooling properly or takes too long to maintain temperature, our technicians carefully inspect the cooling system, identify any leakage issues, and refill the refrigerant safely using professional methods."
+        },
+        {
+          "title": "Professional Cooling Repair Services",
+          "content": "Cooling problems can occur due to compressor issues, gas leakage, blocked airflow, damaged thermostats, or electrical faults. At Dammam Home Services Pro, our cooling repair specialists provide complete solutions for refrigerators and freezers experiencing weak or inconsistent cooling performance."
+        },
+        {
+          "title": "Residential & Commercial Refrigerator Repairing",
+          "content": "At Dammam Home Services Pro, we provide refrigerator repair and cooling repair services for homes, apartments, restaurants, cafes, grocery stores, hotels, and commercial kitchens throughout Saudi Arabia. Whether you need minor repairs or complete cooling system restoration, our team delivers customized solutions according to your appliance requirements."
+        },
+        {
+          "title": "Benefits of Professional Refrigerator Repair & Gas Refill",
+          "content": "Professional refrigerator repair services help improve cooling efficiency, reduce electricity consumption, prevent food spoilage, and extend the lifespan of your appliance. Timely cooling repair and gas refill services can also prevent major breakdowns and expensive replacements in the future."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What are the signs that my refrigerator needs repair?",
+          "answer": "Common signs include weak cooling, unusual noises, water leakage, excessive ice buildup, and increased electricity consumption."
+        },
+        {
+          "question": "How do I know if my refrigerator needs gas refill services?",
+          "answer": "If your refrigerator is not cooling properly, takes longer to cool, or the freezer performance becomes weak, it may require refrigerant gas refilling."
+        },
+        {
+          "question": "Do you repair commercial refrigerators?",
+          "answer": "Yes, Dammam Home Services Pro repairs residential and commercial refrigerators, deep freezers, and cooling systems."
+        },
+        {
+          "question": "Can cooling repair services improve energy efficiency?",
+          "answer": "Yes, professional cooling repair and maintenance help your refrigerator operate efficiently while reducing electricity usage."
+        },
+        {
+          "question": "Why should I choose professional refrigerator repairing services?",
+          "answer": "Professional technicians can accurately diagnose cooling problems, safely refill refrigerant gas, provide long-lasting repairs, and help extend the lifespan of your appliance."
+        }
+      ],
+      "table": {
+        "headers": ["Service", "Inclusions", "Price Range"],
+        "rows": [
+          ["Gas Refill", "Leak Test + R134a/R600a Refill", "SAR 150-250"],
+          ["Cooling Repair", "Thermostat & Relay Check", "SAR 100-200"],
+          ["Compressor Fix", "Replacement or Wiring", "From SAR 350"]
+        ]
+      },
+      "seo": {
+        "title": "Best Refrigerator Repair & Gas Refill in Saudi Arabia | Dammam Home Services Pro",
+        "description": "Fast and reliable refrigerator repair and gas refill services in Saudi Arabia. Professional cooling repair for residential and commercial units."
+      }
+    },
+    "electrical": {
+      "title": "Electrical Services in Saudi Arabia",
+      "description": "Professional Electrical Repair & Installation Services by Dammam Home Services Pro",
+      "heroText": "Electrical systems are an essential part of every home, office, and commercial property. From lighting installations to complete electrical repairs, having safe and reliable electrical solutions is important for comfort, safety, and daily operations.",
+      "sections": [
+        {
+          "title": "Expert Electrical Repair Services",
+          "content": "Electrical issues can occur unexpectedly and may create serious safety risks if not handled properly. Our experienced electricians specialize in diagnosing and repairing all types of electrical problems quickly and efficiently. Whether you are dealing with power outages, faulty wiring, circuit breaker issues, electrical short circuits, damaged switches, or lighting problems, our skilled team provides dependable and long-lasting repair solutions."
+        },
+        {
+          "title": "Residential & Commercial Electrical Solutions",
+          "content": "Our electrical services are available for homes, apartments, villas, offices, retail stores, restaurants, warehouses, and commercial buildings throughout Saudi Arabia. Whether you need electrical maintenance, wiring installation, lighting upgrades, or emergency electrical repairs, our professionals provide customized solutions according to your property requirements."
+        },
+        {
+          "title": "Electrical Installation Services",
+          "content": "In addition to repairs, we also provide professional electrical installation services for residential and commercial properties. Our electricians handle lighting installation, switchboard installation, power socket fitting, ceiling fan installation, circuit breaker replacement, outdoor lighting setup, and complete wiring solutions."
+        },
+        {
+          "title": "Common Electrical Problems We Fix",
+          "content": "Our expert electricians repair a wide range of electrical issues, including faulty wiring, flickering lights, tripping circuit breakers, electrical short circuits, power fluctuations, damaged switches and sockets, overloaded circuits, and electrical panel problems."
+        },
+        {
+          "title": "Benefits of Professional Electrical Services",
+          "content": "Professional electrical services help improve safety, reduce the risk of electrical accidents, increase energy efficiency, and ensure smooth system performance. Timely electrical maintenance and repairs can prevent costly damages and extend the lifespan of your electrical systems."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What electrical services do you provide?",
+          "answer": "We provide electrical repairs, wiring installation, lighting installation, switchboard repair, circuit breaker replacement, fan installation, and complete electrical maintenance services."
+        },
+        {
+          "question": "Do you provide emergency electrical repair services?",
+          "answer": "Yes, Dammam Home Services Pro offers fast-response emergency electrical repair services across Saudi Arabia."
+        },
+        {
+          "question": "Why are my circuit breakers tripping frequently?",
+          "answer": "Frequent circuit breaker trips may be caused by overloaded circuits, faulty wiring, or damaged electrical appliances. Our electricians can inspect and repair the issue safely."
+        },
+        {
+          "question": "Is professional electrical repair important?",
+          "answer": "Yes, professional electrical repair ensures safety, prevents electrical hazards, improves efficiency, and provides long-lasting solutions."
+        },
+        {
+          "question": "Do you provide electrical services for commercial properties?",
+          "answer": "Yes, we provide residential and commercial electrical services for offices, shops, restaurants, warehouses, and commercial buildings."
+        }
+      ],
+      "table": {
+        "headers": ["Installation", "Price per Point", "Service Type"],
+        "rows": [
+          ["Light Fitting", "SAR 25-45", "New/Replacement"],
+          ["Socket Install", "SAR 35-60", "Wiring + Fitting"],
+          ["DB Board Work", "SAR 150-300", "Troubleshooting"]
+        ]
+      },
+      "seo": {
+        "title": "Best Electrical Repair & Installation in Saudi Arabia | Dammam Home Services Pro",
+        "description": "Professional electrician services in Saudi Arabia. Safe and certified electrical repairs, wiring, and installations for homes and businesses."
+      }
+    },
+    "plumbing": {
+      "title": "Plumbing Services in Saudi Arabia",
+      "description": "Professional Plumbing Repair & Installation Services by Dammam Home Services Pro",
+      "heroText": "Plumbing problems can disrupt daily life and cause serious damage if not repaired quickly and professionally. From leaking pipes and blocked drains to water pressure issues and bathroom fittings, reliable plumbing services are essential for every home and commercial property.",
+      "sections": [
+        {
+          "title": "Expert Plumbing Repair Services",
+          "content": "Our experienced plumbers specialize in diagnosing and repairing all types of plumbing issues efficiently and professionally. Whether you are dealing with pipe leakage, clogged drains, broken faucets, low water pressure, overflowing sinks, or damaged bathroom fittings, our skilled team provides reliable and long-lasting repair solutions."
+        },
+        {
+          "title": "Residential & Commercial Plumbing Solutions",
+          "content": "Our plumbing services are available for homes, apartments, villas, offices, restaurants, hotels, retail stores, warehouses, and commercial buildings throughout Saudi Arabia. Whether you need emergency plumbing repairs, bathroom installation, water tank repair, or drainage solutions, our experts provide customized services according to your requirements."
+        },
+        {
+          "title": "Plumbing Installation Services",
+          "content": "In addition to repairs, we provide complete plumbing installation services for kitchens, bathrooms, and commercial properties. Our plumbers handle sink installation, faucet fitting, toilet installation, shower setup, pipe fitting, water heater installation, drainage systems, and complete plumbing line installation."
+        },
+        {
+          "title": "Drain Cleaning & Pipe Leakage Repair",
+          "content": "Blocked drains and leaking pipes are common plumbing problems that can cause water damage and hygiene issues if ignored. Our professional plumbers provide effective drain cleaning and pipe leakage repair services using modern equipment and proven repair techniques."
+        },
+        {
+          "title": "Benefits of Professional Plumbing Services",
+          "content": "Professional plumbing services help prevent water damage, improve water efficiency, reduce repair costs, and maintain the proper functioning of your plumbing system. Timely plumbing maintenance and repairs can also increase the lifespan of pipes and fixtures while ensuring a safe and hygienic environment."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What plumbing services do you provide?",
+          "answer": "We provide pipe repair, drain cleaning, faucet installation, bathroom plumbing, water heater repair, leakage repair, plumbing maintenance, and complete plumbing installation services."
+        },
+        {
+          "question": "Do you offer emergency plumbing services?",
+          "answer": "Yes, Dammam Home Services Pro offers fast-response emergency plumbing repair services across Saudi Arabia."
+        },
+        {
+          "question": "What causes low water pressure in a house?",
+          "answer": "Low water pressure may be caused by pipe leakage, clogged pipes, faulty valves, or plumbing system damage. Our plumbers can inspect and repair the issue professionally."
+        },
+        {
+          "question": "Can you repair water heaters?",
+          "answer": "Yes, we repair and install electric water heaters, storage heaters, and instant water heating systems for residential and commercial properties."
+        },
+        {
+          "question": "Why should I hire professional plumbing services?",
+          "answer": "Professional plumbers provide safe installations, accurate repairs, prevent future plumbing problems, and ensure long-lasting performance for your plumbing system."
+        }
+      ],
+      "table": {
+        "headers": ["Repair", "Standard Rate", "Complexity"],
+        "rows": [
+          ["Drain Unblocking", "SAR 100-150", "Basic"],
+          ["Pipe Leak Fix", "SAR 120-200", "Moderate"],
+          ["Mixer Install", "SAR 80-120", "Standard"]
+        ]
+      },
+      "seo": {
+        "title": "Best Plumbing Repair & Installation in Saudi Arabia | Dammam Home Services Pro",
+        "description": "Expert plumbing services in Saudi Arabia. We handle leak repairs, drain cleaning, and bathroom installations with professional plumbers."
+      }
+    },
+    "cleaning": {
+      "title": "Cleaning Services in Saudi Arabia",
+      "description": "Professional Home & Commercial Cleaning Services by Dammam Home Services Pro",
+      "heroText": "A clean and hygienic environment is essential for maintaining comfort, health, and productivity in homes and workplaces. Whether it is regular house cleaning, office cleaning, deep cleaning, or move-in and move-out cleaning, professional cleaning services help create a fresh and healthy space.",
+      "sections": [
+        {
+          "title": "Expert Home Cleaning Services",
+          "content": "Keeping your home clean can be challenging with daily schedules. Our professional home cleaning services are designed to provide complete cleanliness and comfort for your family. Our trained cleaning staff carefully cleans bedrooms, kitchens, bathrooms, living rooms, floors, windows, and furniture to maintain a hygienic and organized environment."
+        },
+        {
+          "title": "Deep Cleaning Services",
+          "content": "Regular cleaning may not remove hidden dust, bacteria, and stubborn stains completely. Our professional deep cleaning services provide a more detailed and intensive cleaning process for homes, offices, kitchens, bathrooms, and commercial spaces. Our deep cleaning solutions include floor scrubbing, wall cleaning, furniture cleaning, kitchen degreasing, bathroom sanitization, carpet vacuuming, and complete dust removal."
+        },
+        {
+          "title": "Office & Commercial Cleaning Services",
+          "content": "A clean workplace creates a professional environment and improves employee productivity. At Dammam Home Services Pro, we provide office cleaning and commercial cleaning services for offices, retail stores, restaurants, hotels, warehouses, and commercial buildings throughout Saudi Arabia."
+        },
+        {
+          "title": "Sofa, Carpet & Mattress Cleaning Services",
+          "content": "Furniture and fabric surfaces can collect dust, stains, allergens, and bacteria over time. Our professional sofa cleaning, carpet cleaning, and mattress cleaning services help restore cleanliness and freshness to your home or office. We use modern cleaning equipment and effective stain removal techniques."
+        },
+        {
+          "title": "Benefits of Professional Cleaning Services",
+          "content": "Professional cleaning services help improve indoor hygiene, reduce allergens and bacteria, save time, and maintain a healthier environment. Regular cleaning also helps protect furniture, flooring, and surfaces from long-term damage while creating a cleaner and more organized living or working space."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What cleaning services do you provide?",
+          "answer": "We provide home cleaning, office cleaning, deep cleaning, carpet cleaning, sofa cleaning, mattress cleaning, kitchen cleaning, bathroom cleaning, and commercial cleaning services."
+        },
+        {
+          "question": "Do you provide deep cleaning services?",
+          "answer": "Yes, Dammam Home Services Pro offers professional deep cleaning services for homes, offices, and commercial properties."
+        },
+        {
+          "question": "Are your cleaning products safe?",
+          "answer": "Yes, we use safe and effective cleaning products that are suitable for residential and commercial environments."
+        },
+        {
+          "question": "Do you provide same-day cleaning services?",
+          "answer": "Yes, depending on availability, we offer fast-response and same-day cleaning services in many areas of Saudi Arabia."
+        },
+        {
+          "question": "Why should I hire professional cleaning services?",
+          "answer": "Professional cleaning services save time, improve hygiene, provide deep cleaning results, and help maintain a healthier and more organized environment."
+        }
+      ],
+      "table": {
+        "headers": ["Cleaning Type", "Duration", "Price"],
+        "rows": [
+          ["Standard Cleaning", "4 Hours", "SAR 120"],
+          ["Deep Cleaning", "Full Day", "From SAR 450"],
+          ["Sofa Cleaning", "1-2 Hours", "SAR 35/Seat"]
+        ]
+      },
+      "seo": {
+        "title": "Best Home & Commercial Cleaning Services in Saudi Arabia | Dammam Home Services Pro",
+        "description": "Professional cleaning services in Saudi Arabia. Deep cleaning, maid services, and office cleaning with trained staff and safe products."
+      }
+    }
+  },
+  "globalServiceInfo": {
+    "whyChooseUs": {
+      "title": "Why Choose DHS?",
+      "points": [
+        { "title": "Certified Experts", "desc": "Only the top 2% of technicians make it through our vetting process." },
+        { "title": "Premium Quality", "desc": "We use genuine parts and advanced tools for every repair." },
+        { "title": "Fast Response", "desc": "Technicians arrive at your doorstep in record time, 24/7." },
+        { "title": "Transparent Pricing", "desc": "No hidden fees. Get a clear estimate before work begins." }
+      ]
+    },
+    "howItWorks": {
+      "title": "How to work with us",
+      "steps": [
+        { "title": "Select Service", "desc": "Choose the category and specific service you need." },
+        { "title": "Set Location", "desc": "Pin your villa or apartment coordinates for precision arrival." },
+        { "title": "Schedule", "desc": "Pick a dynamic time slot that fits your busy life." },
+        { "title": "Relax", "desc": "Our vetted expert arrives and fixes the issue professionally." }
+      ]
+    },
+    "relatedServices": "Related Services",
+    "contactTitle": "Contact Us Today",
+    "contactDesc": "Ready to experience the future of home maintenance? Reach out now.",
+    "faqTitle": "Frequently Asked Questions (FAQs)"
+  },
+  "locationPages": {
+    "dammam": {
+      "name": "Dammam",
+      "title": "Best Home Services in Dammam",
+      "description": "Reliable Home Repair & Maintenance Solutions for Residential and Commercial Properties in Dammam",
+      "intro": "When it comes to maintaining a safe, comfortable, and fully functional property, professional home services play a major role. Many homeowners and businesses face problems like AC breakdowns, electrical faults, plumbing leaks, damaged fixtures, and general maintenance issues that can disrupt daily life. At Dammam Home Services Pro, we provide reliable and professional solutions for all types of home maintenance needs. Known for offering the Best home services in Dammam, our team delivers fast, affordable, and high-quality support for residential and commercial properties across the city.",
+      "sections": [
+        {
+          "title": "Expert Home Repairing Services in Dammam",
+          "content": "At Dammam Home Services Pro, we specialize in complete home repair services designed to keep your property in excellent condition. Our skilled technicians handle everything from electrical repairs and plumbing work to AC maintenance and appliance fixing with precision and care. We use advanced tools, modern repair methods, and quality materials to ensure lasting results. Whether you need emergency assistance or scheduled maintenance, our experienced team is ready to provide dependable services tailored to your requirements."
+        },
+        {
+          "title": "Best Home Services in Dammam",
+          "content": "Customers trust Dammam Home Services Pro because we focus on professionalism, quick response times, and customer satisfaction. Our team understands the importance of timely service and efficient repairs, especially during emergencies. We are proud to provide affordable pricing without compromising on quality workmanship. From small home repairs to complete maintenance solutions, our company has earned a strong reputation for delivering the Best home services in Dammam with honesty and reliability."
+        },
+        {
+          "title": "Residential & Commercial Home Solutions",
+          "content": "We provide complete maintenance and repair solutions for both residential and commercial properties throughout Dammam. Our services are suitable for apartments, villas, offices, retail shops, restaurants, and commercial buildings. Whether you need AC services near me, plumbing maintenance, electrical troubleshooting, or complete property repairs, our team can manage projects of every size. We understand that every property has unique requirements, so we customize our services to deliver practical and effective solutions."
+        },
+        {
+          "title": "Professional Installation Services",
+          "content": "Proper installation is essential for the performance and safety of home systems and appliances. At Dammam Home Services Pro, we provide professional installation services for air conditioners, lighting systems, electrical fixtures, water systems, kitchen fittings, and more. Our technicians ensure every installation is completed safely and correctly to avoid future problems. We focus on delivering smooth, efficient, and long-lasting installations that improve comfort and functionality for homes and businesses."
+        },
+        {
+          "title": "Repair & Maintenance Services",
+          "content": "Regular maintenance helps prevent expensive repairs and extends the life of your home systems. Our repair and maintenance services cover air conditioners, electrical systems, plumbing lines, doors, switches, appliances, and other household components. We offer AC washing and repairing services to improve cooling efficiency, reduce energy usage, and maintain indoor comfort during hot weather. Our maintenance experts inspect problems carefully and provide effective solutions that keep your property running smoothly year-round."
+        },
+        {
+          "title": "AC Washing and Repairing Services",
+          "content": "Air conditioning systems require regular cleaning and servicing to operate efficiently in Dammam’s climate. Our AC washing and repairing solutions include deep cleaning of filters, coils, drainage systems, and internal components to improve airflow and cooling performance. We also handle gas refilling, thermostat repairs, compressor issues, water leakage, and complete AC repair service in Dammam. Our technicians work with all major AC brands and ensure reliable cooling for residential and commercial properties."
+        },
+        {
+          "title": "Common Problems We Fix",
+          "content": "Many property owners experience issues such as poor AC cooling, water leakage, electrical power failures, damaged switches, blocked drainage systems, noisy air conditioners, and faulty appliances. At Dammam Home Services Pro, our technicians quickly identify the root cause of these problems and apply professional repair methods to restore normal functionality. We focus on long-lasting solutions that help customers avoid repeated breakdowns and unnecessary expenses."
+        },
+        {
+          "title": "Why Choose Dammam Home Services Pro?",
+          "content": "Choosing the right maintenance company is important for quality and peace of mind. Dammam Home Services Pro is trusted by customers because of our experienced staff, affordable pricing, and commitment to customer satisfaction. Our technicians are trained, skilled, and dedicated to delivering excellent workmanship on every project. We provide quick response services, transparent communication, and reliable solutions that customers can depend on. Our goal is to deliver professional home-repairing services that improve comfort, safety, and convenience for every client."
+        },
+        {
+          "title": "Advantages of Professional Home Services",
+          "content": "Hiring professional home service experts provides long-term benefits for your property. Professional maintenance improves safety, increases the lifespan of appliances and systems, and reduces the risk of costly future repairs. Expert AC services help maintain better indoor air quality and energy efficiency, while timely electrical and plumbing repairs prevent major property damage. With professional assistance from Dammam Home Services Pro, customers receive dependable solutions that save both time and money."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What home services do you provide in Dammam?",
+          "answer": "We provide AC repair, AC washing and repairing, electrical repairs, plumbing services, appliance maintenance, installations, and complete home repair services for residential and commercial properties."
+        },
+        {
+          "question": "Do you offer emergency AC repair service in Dammam?",
+          "answer": "Yes, Dammam Home Services Pro offers quick-response emergency AC repair and maintenance services across Dammam."
+        },
+        {
+          "question": "How often should AC systems be cleaned and serviced?",
+          "answer": "AC systems should generally be cleaned and serviced every few months to maintain cooling efficiency, reduce energy costs, and prevent breakdowns."
+        },
+        {
+          "question": "Are your technicians experienced and professional?",
+          "answer": "Yes, our technicians are skilled, trained, and experienced in handling all types of home maintenance and repair services professionally."
+        },
+        {
+          "question": "Why should I choose professional home repairing services?",
+          "answer": "Professional services help prevent costly future problems, improve safety, increase system lifespan, and ensure high-quality repairs with reliable results."
+        }
+      ]
+    },
+    "alkhobar": {
+      "name": "Alkhobar",
+      "title": "Best Home Services in Alkhobar",
+      "description": "Reliable Home Repair, AC Maintenance & Property Care Solutions for Residential and Commercial Properties in Alkhobar",
+      "intro": "Keeping your home or workplace in perfect condition requires reliable and professional maintenance solutions. From electrical faults and plumbing issues to AC breakdowns and property repairs, small problems can quickly become expensive if ignored. Dammam Home Services Pro provides dependable and affordable solutions for residential and commercial properties with a strong focus on quality workmanship and customer satisfaction. As a trusted provider of the Best home services in Alkhobar, our team delivers fast, professional, and long-lasting solutions tailored to your needs. Whether you need home repairing services, AC washing and repairing, or complete maintenance support, we are ready to help with expert care and timely service.",
+      "sections": [
+        {
+          "title": "Professional Home Repair & Maintenance Solutions in Alkhobar",
+          "content": "At Dammam Home Services Pro, we specialize in complete home maintenance, repair, and installation services for all types of properties. Our skilled technicians are trained to handle electrical repairs, plumbing maintenance, AC repair service in Alkhobar, appliance fixing, carpentry work, and general property maintenance with precision and professionalism. We use modern tools and proven repair techniques to ensure every service is completed efficiently and safely. Our goal is to provide practical solutions that improve comfort, safety, and functionality for every customer."
+        },
+        {
+          "title": "Trusted Home Services Company in Alkhobar",
+          "content": "Customers trust Dammam Home Services Pro because we focus on reliability, fast response times, and professional customer care. We understand how stressful unexpected home problems can be, which is why our team responds quickly and works carefully to restore your comfort without delays. Our affordable pricing, experienced technicians, and commitment to quality make us one of the most dependable providers offering the Best home services in Alkhobar. From emergency repairs to scheduled maintenance, we always aim to deliver excellent service and complete customer satisfaction."
+        },
+        {
+          "title": "Residential & Commercial Home Services",
+          "content": "Dammam Home Services Pro provides complete maintenance and repair services for homes, apartments, villas, offices, restaurants, shops, and commercial buildings across Alkhobar. Our team understands that every property has unique maintenance requirements, so we customize our services according to the specific needs of residential and commercial clients. Whether you need regular AC services near me, plumbing maintenance for your office, or complete home repairing services for your villa, we provide reliable and professional solutions for every type of property."
+        },
+        {
+          "title": "Expert Installation Services for Homes & Offices",
+          "content": "Proper installation services are essential for the long-term performance and safety of your property systems. Our experienced technicians handle AC installation, electrical fixture installation, appliance setup, lighting installation, plumbing fixture fitting, and other maintenance-related installations with complete attention to detail. Dammam Home Services Pro ensures that every installation project is completed using quality materials and professional standards to provide long-lasting results. We focus on delivering safe, efficient, and cost-effective installation services for both residential and commercial properties."
+        },
+        {
+          "title": "Reliable Repair & Maintenance Services",
+          "content": "Regular repair and maintenance services help prevent expensive damage and improve the lifespan of your home systems. Our team provides professional AC washing and repairing, plumbing repairs, electrical troubleshooting, leakage repairs, furniture fixing, appliance maintenance, and general home repair solutions. We carefully inspect every issue and provide effective repair services that restore proper functionality quickly. Dammam Home Services Pro believes in preventive maintenance solutions that help customers avoid future breakdowns and unnecessary repair costs."
+        },
+        {
+          "title": "Advanced AC Washing & Repairing Services",
+          "content": "Air conditioning systems require regular cleaning and servicing to maintain cooling efficiency and indoor air quality. Our specialized AC washing and repairing services include deep cleaning of indoor and outdoor units, gas refilling, filter cleaning, water leakage repair, thermostat troubleshooting, compressor inspection, and cooling performance checks. Dammam Home Services Pro provides expert AC repair service in Alkhobar to help customers enjoy comfortable indoor temperatures throughout the year. Our technicians ensure every AC unit operates efficiently while reducing energy consumption and improving system durability."
+        },
+        {
+          "title": "Common Home Problems We Fix Professionally",
+          "content": "Many property owners experience issues such as AC not cooling properly, water leakage, blocked drains, faulty switches, electrical fluctuations, broken fixtures, damaged furniture, unusual noises from appliances, and poor maintenance conditions. Dammam Home Services Pro provides fast and professional solutions for all these problems using advanced repair techniques and experienced technicians. We carefully diagnose every issue, explain the repair process clearly, and provide reliable services that restore comfort and convenience to your property."
+        },
+        {
+          "title": "Why Choose Dammam Home Services Pro?",
+          "content": "Dammam Home Services Pro is committed to delivering dependable and customer-focused maintenance solutions across Alkhobar. Our experienced staff understands the importance of quality service, timely response, and affordable pricing. We focus on providing honest recommendations, professional workmanship, and long-lasting repair solutions for every project. Customers choose us because we value customer satisfaction, maintain high service standards, and provide complete support from inspection to final repair. Whether you need emergency AC services near me or complete property maintenance, our team is always prepared to assist you professionally."
+        },
+        {
+          "title": "Benefits of Hiring Professional Home Services",
+          "content": "Hiring professional home maintenance experts helps protect your property, improve safety, and reduce long-term repair costs. Professional technicians can identify hidden issues early, prevent future breakdowns, and ensure all systems function efficiently. Dammam Home Services Pro provides reliable repair and maintenance solutions that improve comfort, energy efficiency, and property value. Our expert services save customers time, reduce stress, and provide peace of mind knowing that every repair or installation is handled correctly by trained professionals."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What types of home services do you provide in Alkhobar?",
+          "answer": "Dammam Home Services Pro provides AC repair, plumbing, electrical work, appliance repair, installation services, furniture fixing, and complete home maintenance solutions."
+        },
+        {
+          "question": "Do you offer AC washing and repairing services?",
+          "answer": "Yes, we provide professional AC washing and repairing services including deep cleaning, gas refilling, leakage repair, and cooling performance maintenance."
+        },
+        {
+          "question": "How quickly can your technicians arrive for repairs?",
+          "answer": "Our team aims to provide fast response services across Alkhobar and handles urgent repair requests as quickly as possible."
+        },
+        {
+          "question": "Are your home repair services affordable?",
+          "answer": "Yes, Dammam Home Services Pro offers competitive pricing with high-quality workmanship and transparent service solutions for residential and commercial customers."
+        },
+        {
+          "question": "Can I book residential and commercial maintenance services?",
+          "answer": "Yes, we provide complete home repairing services and maintenance solutions for villas, apartments, offices, restaurants, and commercial properties throughout Alkhobar."
+        }
+      ]
+    },
+    "aldhahran": {
+      "name": "Al Dhahran",
+      "title": "Best Home Services in Al Dhahran by Dammam Home Services Pro",
+      "description": "Reliable Home Maintenance & Repair Solutions in Al Dhahran",
+      "intro": "Modern homes require regular maintenance and professional care to stay comfortable, safe, and fully functional. From damaged electrical systems and leaking pipes to faulty air conditioners and general maintenance issues, homeowners often face problems that need immediate professional attention. Dammam Home Services Pro proudly provides the Best home services in Al Dhahran with complete repair, maintenance, and installation solutions for residential and commercial properties. Our experienced team understands the local needs of customers and delivers reliable, affordable, and long-lasting solutions with professional workmanship. Whether you need home repairing services, AC washing and repairing, or fast AC repair service in Al Dhahran, we are always ready to help.",
+      "sections": [
+        {
+          "title": "Professional Home Repair & Maintenance Experts in Al Dhahran",
+          "content": "At Dammam Home Services Pro, we specialize in complete home maintenance and repair solutions designed to keep your property in excellent condition. Our skilled technicians are trained to handle electrical work, plumbing repairs, AC maintenance, carpentry, appliance fixing, painting, and many other household services with precision and care. We use modern tools, quality materials, and proven repair techniques to ensure every project is completed professionally. Our team focuses on delivering safe, efficient, and cost-effective services that meet the highest quality standards for homes and businesses throughout Al Dhahran."
+        },
+        {
+          "title": "Trusted Home Services Company in Al Dhahran",
+          "content": "Customers trust Dammam Home Services Pro because we provide dependable solutions with fast response times and affordable pricing. We understand that home maintenance problems can interrupt daily life, which is why our technicians arrive quickly and complete the work efficiently. Our commitment to quality workmanship, transparent service, and customer satisfaction has made us a trusted choice for home repair services in the area. Whether customers search for AC services near me or require complete property maintenance, our professional team is prepared to deliver excellent results every time."
+        },
+        {
+          "title": "Residential & Commercial Home Service Solutions",
+          "content": "Dammam Home Services Pro offers complete home service solutions for apartments, villas, offices, retail stores, restaurants, and commercial buildings across Al Dhahran. Every property has different maintenance needs, and our technicians customize services according to the condition and requirements of the property. We handle everything from routine maintenance and emergency repairs to full system inspections and installations. Our residential and commercial services are designed to improve comfort, safety, efficiency, and long-term property value for every customer."
+        },
+        {
+          "title": "Complete Installation Services for Homes & Businesses",
+          "content": "Proper installation is essential for the performance and lifespan of home systems and appliances. Dammam Home Services Pro provides professional installation services for air conditioners, electrical fixtures, plumbing systems, lighting solutions, water heaters, kitchen appliances, and more. Our technicians carefully inspect the installation area and ensure every system is installed safely and correctly according to industry standards. We focus on delivering efficient installation services that reduce future repair problems and improve overall system performance for homes and businesses in Al Dhahran."
+        },
+        {
+          "title": "Home Repair & Preventive Maintenance Services",
+          "content": "Regular maintenance helps prevent expensive breakdowns and keeps home systems operating efficiently throughout the year. Our repair and maintenance services include AC repair service in Al Dhahran, plumbing repairs, electrical troubleshooting, fixture replacements, appliance maintenance, and general property repairs. We quickly identify the root cause of problems and provide durable repair solutions that help customers avoid recurring issues. Preventive maintenance services also improve energy efficiency, reduce repair costs, and extend the life of home equipment and appliances."
+        },
+        {
+          "title": "Advanced AC Washing & Repairing Services",
+          "content": "Air conditioning systems play an important role in maintaining indoor comfort in Al Dhahran’s hot climate. Dammam Home Services Pro provides specialized AC washing and repairing services to improve cooling efficiency and indoor air quality. Our technicians clean air filters, remove dust buildup, inspect cooling systems, check gas levels, and repair damaged components professionally. Regular AC maintenance helps prevent system failures, lowers electricity consumption, and ensures reliable cooling performance throughout the year. Customers searching for AC services near me can rely on our experienced technicians for fast and effective AC solutions."
+        },
+        {
+          "title": "General Home Problems We Professionally Fix",
+          "content": "Many property owners experience issues such as leaking pipes, blocked drains, faulty wiring, poor cooling performance, damaged switches, flickering lights, water heater failures, and appliance malfunctions. These problems can become more serious if not repaired quickly by professionals. Dammam Home Services Pro carefully inspects every issue and uses advanced repair methods to restore systems safely and efficiently. Our technicians are trained to diagnose problems accurately and provide reliable solutions that improve home safety, comfort, and functionality."
+        },
+        {
+          "title": "Why Choose Dammam Home Services Pro?",
+          "content": "Dammam Home Services Pro is committed to providing high-quality home maintenance services with professionalism and customer care. Our experienced technicians have the skills and knowledge to handle small repairs and large maintenance projects efficiently. We offer affordable pricing without compromising service quality and always focus on customer satisfaction. Clients choose our company because of our quick response times, reliable workmanship, transparent communication, and dedication to delivering lasting results. We work hard to maintain our reputation as a trusted provider of the Best home services in Al Dhahran."
+        },
+        {
+          "title": "Benefits of Hiring Professional Home Services",
+          "content": "Professional home services help property owners save time, reduce repair costs, and avoid future maintenance problems. Expert technicians can identify hidden issues before they become serious and ensure repairs are completed safely and correctly. Professional maintenance also improves energy efficiency, increases the lifespan of appliances and systems, and enhances overall property value. Hiring experienced specialists from Dammam Home Services Pro gives customers peace of mind knowing their homes and businesses are maintained by qualified professionals using proper tools and techniques."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What home services do you provide in Al Dhahran?",
+          "answer": "Dammam Home Services Pro provides AC repair, plumbing, electrical work, appliance installation, maintenance, carpentry, painting, and complete home repair services for residential and commercial properties."
+        },
+        {
+          "question": "Do you offer emergency AC repair service in Al Dhahran?",
+          "answer": "Yes, our technicians provide fast-response AC repair service in Al Dhahran for cooling issues, gas leaks, system breakdowns, and emergency maintenance needs."
+        },
+        {
+          "question": "Why is regular AC washing and repairing important?",
+          "answer": "Regular AC washing and repairing improve cooling efficiency, lower electricity bills, extend system lifespan, and help maintain clean indoor air quality."
+        },
+        {
+          "question": "Can you handle commercial property maintenance services?",
+          "answer": "Yes, we provide complete maintenance and repair solutions for offices, retail stores, restaurants, apartments, and commercial buildings throughout Al Dhahran."
+        },
+        {
+          "question": "How can I book home services near me?",
+          "answer": "You can contact Dammam Home Services Pro directly to schedule professional home maintenance, repair, installation, and AC services near me with quick and reliable support."
+        }
+      ]
+    }
   }
 }
 

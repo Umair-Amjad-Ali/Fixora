@@ -182,6 +182,7 @@ export function ServicesGrid() {
                     <p className={`text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed ${isWide ? 'text-sm pr-8' : 'text-[12px] mb-4'}`}>
                       {tConstants(`services.${service.slug}.description`)}
                     </p>
+
                     {!isWide && (
                       <div className="mt-auto flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-white/5">
                         <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">

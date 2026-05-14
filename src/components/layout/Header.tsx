@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Link, useRouter, usePathname } from "@/i18n/routing";
-import { Wrench, LogIn, UserPlus, LogOut, LayoutDashboard, ChevronDown, User, Menu, X, Tag, Globe, Home, ShieldCheck } from "lucide-react";
+import { Wrench, LogIn, UserPlus, LogOut, LayoutDashboard, ChevronDown, User, Menu, X, Tag, Globe, Home, ShieldCheck, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/context/AuthContext";
 import { useBooking } from "@/context/BookingContext";
@@ -91,12 +91,12 @@ export function Header() {
           </div>
         </Link>
 
-        <div className="flex items-center gap-4 lg:gap-8">
-          <nav className="hidden md:flex items-center gap-8">
+        <div className="flex items-center gap-2 lg:gap-3 xl:gap-4">
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-5">
             <Link 
-              href="/#services" 
+              href="/services" 
               className={`text-sm font-black uppercase tracking-widest transition-colors
-                ${pathname === "/#services" ? "text-primary" : "text-zinc-500 hover:text-foreground"}
+                ${pathname === "/services" ? "text-primary" : "text-zinc-500 hover:text-foreground"}
               `}
             >
               {t("services")}
@@ -109,9 +109,48 @@ export function Header() {
             >
               {t("blog")}
             </Link>
+
+            {/* Service Area Dropdown */}
+            <div className="relative group">
+              <button 
+                className={`text-sm font-black uppercase tracking-widest transition-colors flex items-center gap-1.5 py-2
+                  ${pathname.startsWith("/location/") ? "text-primary" : "text-zinc-500 hover:text-foreground"}
+                `}
+              >
+                {t("serviceArea")}
+                <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+              </button>
+              
+              <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                <div className="w-56 bg-white dark:bg-slate-950 border border-zinc-200 dark:border-slate-800 rounded-3xl shadow-2xl p-2 overflow-hidden">
+                    { [
+                      { name: locale === 'ar' ? "الدمام" : "Dammam", slug: "dammam" },
+                      { name: locale === 'ar' ? "الخبر" : "Alkhobar", slug: "alkhobar" },
+                      { name: locale === 'ar' ? "الظهران" : "Al Dhahran", slug: "aldhahran" }
+                    ].map((area) => {
+                      const isActive = pathname === `/location/${area.slug}`;
+                      return (
+                        <Link 
+                          key={area.slug}
+                          href={`/location/${area.slug}`}
+                          className={`flex items-center gap-3 w-full px-4 py-3 rounded-2xl transition-all font-bold text-xs uppercase tracking-widest
+                            ${isActive 
+                              ? "bg-primary/10 text-primary" 
+                              : "hover:bg-zinc-50 dark:hover:bg-slate-900 text-zinc-600 dark:text-zinc-400 hover:text-primary"
+                            }
+                          `}
+                        >
+                          <MapPin size={14} className={isActive ? "text-primary" : "text-zinc-400"} />
+                          {area.name}
+                        </Link>
+                      );
+                    })}
+                </div>
+              </div>
+            </div>
             <Link 
               href="/pricing"
-              className={`text-sm font-black uppercase tracking-widest transition-colors flex items-center gap-2
+              className={`hidden xl:flex text-sm font-black uppercase tracking-widest transition-colors items-center gap-2
                 ${pathname === "/pricing" ? "text-primary" : "text-zinc-500 hover:text-foreground"}
               `}
             >
@@ -120,8 +159,8 @@ export function Header() {
             </Link>
           </nav>
 
-          <div className="h-6 w-px bg-zinc-200 dark:bg-slate-800 hidden md:block" />
-            <div className="flex items-center gap-2">
+          <div className="h-6 w-px bg-zinc-200 dark:bg-slate-800 hidden xl:block" />
+            <div className="flex items-center gap-1.5 lg:gap-2">
             <button 
               onClick={() => setRegionModalOpen(true)}
               className="hidden lg:flex items-center justify-center gap-1.5 h-10 px-2 lg:px-4 bg-zinc-50 dark:bg-slate-900 border border-zinc-200 dark:border-slate-800 rounded-xl hover:border-primary/40 transition-all me-1 lg:me-2 group"
@@ -194,8 +233,8 @@ export function Header() {
 
               ) : (
                 <div className="flex items-center gap-2">
-                  <Link href="/auth/login" className="hidden lg:block">
-                    <Button variant="ghost" size="sm" className="h-10 px-5 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2">
+                  <Link href="/auth/login" className="hidden xl:block">
+                    <Button variant="ghost" size="sm" className="h-10 px-4 rounded-xl font-black uppercase tracking-widest text-[10px] gap-2">
                       <LogIn size={15} />
                       {tc("signIn")}
                     </Button>
@@ -287,7 +326,7 @@ export function Header() {
                 <p className="px-2 text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-1">{tc("menu") || "Menu"}</p>
                 <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
                   <Link 
-                    href="/#services" 
+                    href="/services" 
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-transparent hover:border-primary/20 transition-all group"
                   >
@@ -325,6 +364,42 @@ export function Header() {
                       <ChevronDown size={14} className="-rotate-90 rtl:rotate-90" />
                     </div>
                   </Link>
+                </motion.div>
+
+                {/* Mobile Service Areas */}
+                <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
+                  <div className="p-4 rounded-3xl bg-zinc-50 dark:bg-white/5 border border-transparent">
+                    <p className={`text-[10px] font-black uppercase tracking-widest mb-4 px-2 
+                      ${pathname.startsWith("/location/") ? "text-primary" : "text-zinc-400"}
+                    `}>
+                      {t("serviceArea")}
+                    </p>
+                    <div className="grid grid-cols-1 gap-2">
+                      {[
+                        { name: locale === 'ar' ? "الدمام" : "Dammam", slug: "dammam" },
+                        { name: locale === 'ar' ? "الخبر" : "Alkhobar", slug: "alkhobar" },
+                        { name: locale === 'ar' ? "الظهران" : "Al Dhahran", slug: "aldhahran" }
+                      ].map((area) => {
+                        const isActive = pathname === `/location/${area.slug}`;
+                        return (
+                          <Link 
+                            key={area.slug}
+                            href={`/location/${area.slug}`}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={`flex items-center gap-3 p-3 rounded-2xl border transition-all text-sm font-bold
+                              ${isActive
+                                ? "bg-primary/10 border-primary/30 text-primary shadow-sm shadow-primary/10"
+                                : "bg-white dark:bg-slate-900 border-zinc-100 dark:border-white/5"
+                              }
+                            `}
+                          >
+                            <MapPin size={16} className={isActive ? "text-primary" : "text-zinc-400"} />
+                            <span className="uppercase tracking-tight">{area.name}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </motion.div>
               </div>
 

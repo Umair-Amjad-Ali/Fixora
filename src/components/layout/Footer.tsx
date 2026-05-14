@@ -32,10 +32,11 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-foreground">{t("sectionServices")}</h4>
             <ul className="space-y-2 text-sm text-zinc-500">
-              <li>{t("acMaintenance")}</li>
-              <li>{t("electrical")}</li>
-              <li>{t("plumbing")}</li>
-              <li>{t("cleaning")}</li>
+              <li><Link href="/services/ac" className="hover:text-primary transition-colors">{t("acMaintenance")}</Link></li>
+              <li><Link href="/services/electrical" className="hover:text-primary transition-colors">{t("electrical")}</Link></li>
+              <li><Link href="/services/plumbing" className="hover:text-primary transition-colors">{t("plumbing")}</Link></li>
+              <li><Link href="/services/cleaning" className="hover:text-primary transition-colors">{t("cleaning")}</Link></li>
+              <li><Link href="/services" className="text-primary font-bold hover:underline transition-all mt-2 block">All Services</Link></li>
             </ul>
           </div>
           
