@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /*/book-service/
+Disallow: /*/profile/
+Disallow: /*/orders/
+Disallow: /*/auth/
+Disallow: /ar/blog
+Disallow: /ar/blog/
+
+Sitemap: https://homeservicepro.online/sitemap.xml

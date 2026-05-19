@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Root Redirect -->
+  <url>
+    <loc>https://homeservicepro.online/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Home - English -->
+  <url>
+    <loc>https://homeservicepro.online/en</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://homeservicepro.online/en"/>
+  </url>
+
+  <!-- Home - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://homeservicepro.online/en"/>
+  </url>
+
+  <!-- Services List - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/services</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services"/>
+  </url>
+
+  <!-- Services List - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/services</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services"/>
+  </url>
+
+  <!-- Service: AC Maintenance - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/services/ac</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/ac"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/ac"/>
+  </url>
+
+  <!-- Service: AC Maintenance - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/services/ac</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/ac"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/ac"/>
+  </url>
+
+  <!-- Service: Electrical - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/services/electrical</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/electrical"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/electrical"/>
+  </url>
+
+  <!-- Service: Electrical - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/services/electrical</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/electrical"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/electrical"/>
+  </url>
+
+  <!-- Service: Plumbing - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/services/plumbing</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/plumbing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/plumbing"/>
+  </url>
+
+  <!-- Service: Plumbing - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/services/plumbing</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/plumbing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/plumbing"/>
+  </url>
+
+  <!-- Service: Cleaning - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/services/cleaning</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/cleaning"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/cleaning"/>
+  </url>
+
+  <!-- Service: Cleaning - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/services/cleaning</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/cleaning"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/cleaning"/>
+  </url>
+
+  <!-- Service: Washing Machine - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/services/washing_machine</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/washing_machine"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/washing_machine"/>
+  </url>
+
+  <!-- Service: Washing Machine - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/services/washing_machine</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/washing_machine"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/washing_machine"/>
+  </url>
+
+  <!-- Service: Refrigerator - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/services/refrigerator</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/refrigerator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/refrigerator"/>
+  </url>
+
+  <!-- Service: Refrigerator - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/services/refrigerator</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/services/refrigerator"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/services/refrigerator"/>
+  </url>
+
+  <!-- Location: Dammam - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/location/dammam</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/location/dammam"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/location/dammam"/>
+  </url>
+
+  <!-- Location: Dammam - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/location/dammam</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/location/dammam"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/location/dammam"/>
+  </url>
+
+  <!-- Location: Alkhobar - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/location/alkhobar</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/location/alkhobar"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/location/alkhobar"/>
+  </url>
+
+  <!-- Location: Alkhobar - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/location/alkhobar</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/location/alkhobar"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/location/alkhobar"/>
+  </url>
+
+  <!-- Location: Al Dhahran - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/location/aldhahran</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/location/aldhahran"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/location/aldhahran"/>
+  </url>
+
+  <!-- Location: Al Dhahran - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/location/aldhahran</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/location/aldhahran"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/location/aldhahran"/>
+  </url>
+
+  <!-- Pricing - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/pricing</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/pricing"/>
+  </url>
+
+  <!-- Pricing - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/pricing</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/pricing"/>
+  </url>
+
+  <!-- About - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/about</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/about"/>
+  </url>
+
+  <!-- About - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/about</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/about"/>
+  </url>
+
+  <!-- Contact - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/contact</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/contact"/>
+  </url>
+
+  <!-- Contact - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/contact</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/contact"/>
+  </url>
+
+  <!-- Blog - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/blog</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Privacy Policy - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/privacy</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/privacy"/>
+  </url>
+
+  <!-- Privacy Policy - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/privacy</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/privacy"/>
+  </url>
+
+  <!-- Terms - English -->
+  <url>
+    <loc>https://homeservicepro.online/en/terms</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/terms"/>
+  </url>
+
+  <!-- Terms - Arabic -->
+  <url>
+    <loc>https://homeservicepro.online/ar/terms</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://homeservicepro.online/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://homeservicepro.online/ar/terms"/>
+  </url>
+
+</urlset>
